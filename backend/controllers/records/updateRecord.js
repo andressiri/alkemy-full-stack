@@ -1,5 +1,5 @@
 // @description  Handle update record
-// @route  PUT /api/records/:id
+// @route  PUT /api/v1/records/:id
 // @access  Private
 
 module.exports = (req, res) => {

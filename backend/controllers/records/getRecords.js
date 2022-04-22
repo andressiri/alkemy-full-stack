@@ -1,5 +1,5 @@
 // @description  Handle get records
-// @route  GET /api/records
+// @route  GET /api/v1/records
 // @access  Private
 
 module.exports = (req, res) => {

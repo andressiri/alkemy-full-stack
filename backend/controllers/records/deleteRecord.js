@@ -1,5 +1,5 @@
 // @description  Handle delete record
-// @route  DELETE /api/records/:id
+// @route  DELETE /api/v1/records/:id
 // @access  Private
 
 module.exports = (req, res) => {

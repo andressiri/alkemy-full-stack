@@ -1,5 +1,5 @@
 // @description  Handle save record
-// @route  POST /api/records
+// @route  POST /api/v1/records
 // @access  Private
 
 module.exports = (req, res) => {
