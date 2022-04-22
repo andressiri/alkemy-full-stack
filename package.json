@@ -1,7 +1,7 @@
 {
   "name": "alkemy-full-stack",
   "version": "1.0.0",
-  "description": "Spend checker app for Alkemy Full Stack challenge",
+  "description": "Spends checker app for Alkemy Full Stack challenge",
   "main": "index.js",
   "scripts": {
     "start": "node backend/index.js",

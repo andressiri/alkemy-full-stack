@@ -1,0 +1,1 @@
+This is a Spends checker app for developed for Alkemy Full Stack challenge
