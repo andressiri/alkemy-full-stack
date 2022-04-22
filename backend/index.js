@@ -3,6 +3,10 @@ const dotenv = require('dotenv').config();
 
 const app = express();
 
+// body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // @/api router
 app.use('/api/v1', require('./routes/router.js'));
 
