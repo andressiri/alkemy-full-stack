@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
+const { errorHandler } = require('./middleware/errorMiddleware.js');
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 // @/api router
 app.use('/api/v1', require('./routes/router.js'));
 
-const PORT = process.env.PORT || 8080;
+app.use(errorHandler);
 
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
