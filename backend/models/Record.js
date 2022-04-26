@@ -5,7 +5,8 @@ const Record = db.define('records', {
   record_uuid: {
     type: Sequelize.UUID,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
+    defaultValue: Sequelize.UUIDV4,
   },
   concept: {
     type: Sequelize.STRING,
