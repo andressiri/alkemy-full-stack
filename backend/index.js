@@ -4,6 +4,13 @@ const { errorHandler } = require('./middleware/errorMiddleware.js');
 
 const app = express();
 
+// Database
+const db = require('./config/postgreDB.js');
+  // Test DB
+db.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch(err => console.log ('DB Error: ' + err));
+
 // body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
