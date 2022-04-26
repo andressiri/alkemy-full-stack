@@ -9,17 +9,17 @@ module.exports = asyncHandler(async (req, res) => {
   const parsedAmount = parseFloat(amount);
 
   if (!concept || !amount || !operation_date || !operation_type) {
-    res.status(400)
+    res.status(400);
     throw new Error('Please send all the information required');
   };
 
   if (operation_type !== ('Income' && 'Outcome')) {
-    res.status(400)
+    res.status(400);
     throw new Error('Please send a valid operation type');
   };
 
   if (isNaN(parsedAmount)) {
-    res.status(400)
+    res.status(400);
     throw new Error('Please enter a number in the amount field');
   };
 
