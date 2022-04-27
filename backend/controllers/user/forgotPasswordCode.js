@@ -35,6 +35,7 @@ module.exports = asyncHandler(async (req, res) => {
   requestTimeLimiter(req, res, 'forgotPasswordCodeTimestamp', 10000);
 
   req.session.code = generateCode();
+  req.session.emailToVerify = email;
   
   const mailTemplate = getMailTemplate(name, req.session.code);
   const emailSuccess = await mailer.sendEmail(

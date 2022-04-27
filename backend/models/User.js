@@ -21,6 +21,9 @@ const User = db.define('person', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  verified: {
+    type: Sequelize.BOOLEAN,
+  }
 });
 
 module.exports = User;
