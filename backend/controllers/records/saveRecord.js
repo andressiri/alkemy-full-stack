@@ -28,7 +28,8 @@ module.exports = asyncHandler(async (req, res) => {
     amount: parsedAmount,
     operation_date,
     operation_type,
-    category
+    category,
+    user_uuid: req.user.user_uuid
   });
 
   res.status(201).json({message: 'Record created'});

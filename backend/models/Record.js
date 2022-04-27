@@ -26,6 +26,10 @@ const Record = db.define('records', {
   },
   category: {
     type: Sequelize.STRING,
+  },
+  user_uuid: {
+    type: Sequelize.UUID,
+    allowNull: false
   }
 });
 
