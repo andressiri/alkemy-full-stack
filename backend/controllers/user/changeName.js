@@ -2,16 +2,18 @@
 // @route  PUT /api/v1/user/name/:name
 // @access  Private
 const asyncHandler = require('express-async-handler');
+const User = require('../../models/User.js');
 
 module.exports = asyncHandler(async (req, res) => {
   const {name} = req.params;
 
-  if (!name) {
-    res.status(400);
-    throw new Error('Please send a new name');
-  };
+  // Unnecessary??
+  //if (!name) {
+  //  res.status(400);
+  //  throw new Error('Please send a new name');
+  //};
 
-  const nameUpdate = await Record.update({
+  const nameUpdate = await User.update({
       name: name
     },
     {
