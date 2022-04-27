@@ -5,6 +5,7 @@ const asyncHandler = require('express-async-handler');
 const User = require('../../models/User.js');
 const validateEmail = require('../../functions/validateEmail.js');
 const hashPassword = require('../../functions/hashPassword.js');
+const generateToken = require('../../functions/generateToken.js');
 
 module.exports = asyncHandler(async (req, res) => {
   const {name, email, password} = req.body;  
@@ -19,19 +20,30 @@ module.exports = asyncHandler(async (req, res) => {
     throw new Error('Please send a valid email');
   };
 
-  const project = await User.findOne({ where: { email: email } });
-  if (project !== null) {
+  const alreadyRegistered = await User.findOne({ where: { email: email } });
+  if (alreadyRegistered !== null) {
     res.status(409);
     throw new Error('That email is already registered');
   };
 
   const hashedPassword = await hashPassword(password);
 
-  await User.create({
+  const user = await User.create({
     name,
     email,
     password: hashedPassword
   });
 
-  res.status(201).json({message: 'User registered'});
+  if (user) {
+    const {user_uuid, name, email} = user;
+    res.status(201).json({message: 'User registered', userData: {
+      user_uuid,
+      name, 
+      email,
+      token: generateToken(user_uuid)
+    }});
+  } else {
+    res.status(400);
+    throw new Error('Invalid user data');
+  };
 })
