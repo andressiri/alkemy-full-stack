@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node backend/index.js",
-    "server": "nodemon backend/index.js"
+    "server": "nodemon backend/index.js",
+    "client": "npm start --prefix frontend"
   },
   "author": "Andrés Siri",
   "license": "ISC",
