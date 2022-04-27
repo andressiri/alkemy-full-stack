@@ -13,8 +13,8 @@ userRouter.get('/me', protectRoute, require('../controllers/user/getUserData.js'
 
 // verification handle
   // get verification code
-userRouter.post('/verification', protectRoute, require('../controllers/user/sendVerificationCodeProtected.js'));
-userRouter.post('/forgot-password', require('../controllers/user/forgotPasswordVerificationCode.js'));
+userRouter.post('/verification', protectRoute, require('../controllers/user/sendCodeProtected.js'));
+userRouter.post('/forgot-password', require('../controllers/user/forgotPasswordCode.js'));
   // verify email with code
 userRouter.put('/verification/:code', require('../controllers/user/verifyEmail.js'));
 
