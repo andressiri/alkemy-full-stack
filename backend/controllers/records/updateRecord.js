@@ -39,7 +39,5 @@ module.exports = asyncHandler(async (req, res) => {
     }
   );
 
-  console.log(recordUpdate);
-
   res.status(200).json({message: `Updated record ${req.params.uuid}`});
 })
