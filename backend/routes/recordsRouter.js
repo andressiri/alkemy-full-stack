@@ -8,7 +8,7 @@ recordsRouter.route('/')
   // save record handle
   .post(protectRoute, require('../controllers/records/saveRecord.js'));
 
-recordsRouter.route('/:id')
+recordsRouter.route('/:uuid')
   // update record handle
   .put(protectRoute, require('../controllers/records/updateRecord.js'))
   // delete record handle

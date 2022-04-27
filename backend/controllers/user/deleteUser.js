@@ -1,5 +1,5 @@
 // @description  Handle account delete
-// @route  DELETE /api/v1/user/delete/:id
+// @route  DELETE /api/v1/user/delete/:uuid
 // @access  Private
 const asyncHandler = require('express-async-handler');
 
