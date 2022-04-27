@@ -13,7 +13,7 @@ module.exports = asyncHandler(async (req, res) => {
   //  throw new Error('Please send a new name');
   //};
 
-  const nameUpdate = await User.update({
+  await User.update({
       name: name
     },
     {

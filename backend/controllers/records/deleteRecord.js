@@ -22,7 +22,7 @@ module.exports = asyncHandler(async (req, res) => {
     throw new Error('You can\'t delete that resource');
   };
 
-  const recordDelete = await Record.destroy({
+  await Record.destroy({
     where: {record_uuid: record_uuid}
   });
 

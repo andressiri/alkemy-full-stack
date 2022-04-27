@@ -28,7 +28,8 @@ module.exports = asyncHandler(async (req, res) => {
     throw new Error('You can\'t update that resource');
   };
 
-  const recordUpdate = await Record.update({
+  await Record.update(
+    {
       concept: concept,
       amount: amount,
       operation_date: operation_date,
