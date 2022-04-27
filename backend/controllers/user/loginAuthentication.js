@@ -25,7 +25,6 @@ module.exports = asyncHandler(async (req, res) => {
   if (user && (await bcrypt.compare(password, user.password))) {
     const {user_uuid, name, email} = user;
     res.status(201).json({message: 'User authenticated', userData: {
-      user_uuid,
       name, 
       email,
       token: generateToken(user_uuid)
