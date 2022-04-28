@@ -1,4 +1,7 @@
 import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {logout, reset} from '../features/auth/authSlice';
+import {useNavigate, useLocation} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,6 +11,17 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 function Header() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const {user} = useSelector((state) => state.auth);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate('/login');
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -24,7 +38,19 @@ function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Spends Checker
           </Typography>
-          <Button color="inherit">Login</Button>
+          {user
+            ? <Button onClick={handleLogout} color="inherit">
+                Logout
+              </Button>
+            : location.pathname === '/login'
+            ? <Button href='/register' color="inherit">
+                Register
+              </Button>
+            : <Button href='/login' color="inherit">
+                Login
+              </Button>
+          }
+
         </Toolbar>
       </AppBar>
     </Box>
