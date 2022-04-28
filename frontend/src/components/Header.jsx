@@ -19,8 +19,11 @@ function Header() {
   const handleLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    navigate('/login');
+    navigate('/');
   };
+
+  const handleGoToRegister = () => navigate('/register');
+  const handleGoToLogin = () => navigate('/Login');
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -43,10 +46,10 @@ function Header() {
                 Logout
               </Button>
             : location.pathname === '/login'
-            ? <Button href='/register' color="inherit">
+            ? <Button onClick={handleGoToRegister} color="inherit">
                 Register
               </Button>
-            : <Button href='/login' color="inherit">
+            : <Button onClick={handleGoToLogin} color="inherit">
                 Login
               </Button>
           }

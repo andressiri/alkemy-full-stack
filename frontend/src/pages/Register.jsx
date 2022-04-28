@@ -23,12 +23,11 @@ function Register() {
     password2: ''
   });
   const {name, email, password, password2} = formData;
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const {user, isLoading, isError, isSuccess, message} = useSelector(
     (state) => state.auth 
   );
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isError) {
@@ -80,6 +79,8 @@ function Register() {
 
     dispatch(register(userData));
   };
+
+  const handleGoToLogin = () => navigate('/login');
 
   return (
     <Container component="main" maxWidth="xs">
@@ -152,7 +153,7 @@ function Register() {
             Register
           </Button>
         </Box>
-        <Link href="/login" variant="body2">
+        <Link href='# 'onClick={handleGoToLogin} variant="body2">
             Already registered? Go to login
         </Link>
       </Box>
