@@ -35,7 +35,11 @@ function Register() {
     };
 
     if (isSuccess || user) {
-      navigate('/');
+      if (user.verified) {
+        navigate('/');
+      } else {
+        navigate('/verification');
+      }
     };
 
     dispatch(reset());

@@ -25,7 +25,7 @@ module.exports = asyncHandler(async (req, res) => {
   );
 
   if (emailSuccess.accepted[0] === `${email}`) {
-    res.status(201).json({message: 'Email sent with the code', userEmail: email});
+    res.status(201).json({message: 'Email sent with the code'});
     if (process.env.NODE_ENV === 'development') console.log(`code: ${req.session.code}`);
   } else {
     res.status(500)

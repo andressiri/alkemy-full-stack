@@ -11,6 +11,7 @@ import Register from './pages/Register';
 
 import {ToastContainer} from 'material-react-toastify';
 import 'material-react-toastify/dist/ReactToastify.css';
+import Verification from './pages/Verification';
 
 function App() {
   const {remember} = useSelector((state) => state.auth);
@@ -32,6 +33,7 @@ function App() {
             <Route path='/' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/verification' element={<Verification />} />
           </Routes>
         </div>
       </Router>

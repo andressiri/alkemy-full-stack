@@ -35,11 +35,12 @@ module.exports = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    const {user_uuid, name, email} = user;
+    const {user_uuid, name, email, verified} = user;
     res.status(201).json({message: 'User registered', userData: {
       name, 
       email,
-      token: generateToken(user_uuid)
+      token: generateToken(user_uuid),
+      verified
     }});
   } else {
     res.status(400);

@@ -28,7 +28,7 @@ function Header() {
   };
 
   const handleGoToRegister = () => navigate('/register');
-  const handleGoToLogin = () => navigate('/Login');
+  const handleGoToLogin = () => navigate('/login');
 
   return (
     <Box sx={{ flexGrow: 1 }}>

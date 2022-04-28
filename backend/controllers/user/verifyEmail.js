@@ -43,6 +43,6 @@ module.exports = asyncHandler(async (req, res) => {
 
   res.status(200).json({
     message: 'Code is correct, email verified',
-    token: generateToken(user_uuid)
+    token: generateToken(user_uuid, true)
   });
 })

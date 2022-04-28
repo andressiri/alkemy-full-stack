@@ -23,11 +23,12 @@ module.exports = asyncHandler(async (req, res) => {
   const user = await User.findOne({ where: { email: email } });
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    const {user_uuid, name, email} = user;
+    const {user_uuid, name, email, verified} = user;
     res.status(201).json({message: 'User authenticated', userData: {
       name, 
       email,
-      token: generateToken(user_uuid)
+      token: generateToken(user_uuid),
+      verified
     }});
   } else {
     res.status(400);
