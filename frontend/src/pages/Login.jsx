@@ -1,4 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {toast} from 'material-react-toastify';
+import {login, reset} from '../features/auth/authSlice';
+import validateEmail from '../functions/validateEmail';
+import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,21 +24,66 @@ function Login() {
     password: '',
     remember: false
   });
-  const {email, password} = formData;
+  const {email, password, remember} = formData;
+  const {user, isLoading, isError, isSuccess, message} = useSelector(
+    (state) => state.auth 
+  );
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const onFormChange = (event) => {
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    };
+
+    if (isSuccess || user) {
+      navigate('/');
+    };
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
+  const onInputChange = (event) => {
     setFormData((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value
     }));
   };
 
+  const onRememberChange = (event) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      remember: event.target.checked
+    }));
+  };
+
   const handleLogin = (event) => {
     event.preventDefault();
+
+    if (!email || !password) {
+      toast.error('Please fill all fields');
+      return;
+    };
+
+    if (!validateEmail(email)) {
+      toast.error('Please enter a valid email');
+      return;
+    };
+    
+    const userData = {
+      email,
+      password,
+      remember
+    };
+
+    dispatch(login(userData));
   };
+
+  const handleGoToRegister = () => navigate('/register');
 
   return (
     <Container component="main" maxWidth="xs">
+      {isLoading && <BackdropSpinner />}
       <CssBaseline />
       <Box
         sx={{
@@ -58,7 +109,7 @@ function Login() {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={onFormChange}
+            onChange={onInputChange}
           />
           <TextField
             margin="normal"
@@ -69,12 +120,12 @@ function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={onFormChange}
+            onChange={onInputChange}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-            onChange={onFormChange}
+            onChange={onRememberChange}
           />
           <Button
             type="submit"
@@ -91,7 +142,7 @@ function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/register" variant="body2">
+              <Link href='#' onClick={handleGoToRegister} variant="body2">
                 Don't have an account? Register
               </Link>
             </Grid>
