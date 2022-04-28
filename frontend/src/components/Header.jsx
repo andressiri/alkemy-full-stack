@@ -1,6 +1,7 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {logout, reset} from '../features/auth/authSlice';
+import {changeDrawer} from '../features/drawer/drawerSlice';
 import {useNavigate, useLocation} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,6 +16,10 @@ function Header() {
   const location = useLocation();
   const dispatch = useDispatch();
   const {user} = useSelector((state) => state.auth);
+
+  const handleChangeDrawer = () => {
+    dispatch(changeDrawer());
+  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -35,6 +40,7 @@ function Header() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={handleChangeDrawer}
           >
             <MenuIcon />
           </IconButton>

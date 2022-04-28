@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {changeDrawer} from '../features/drawer/drawerSlice';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -10,27 +12,27 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
 function NavigationDrawer() {
-  const [state, setState] = useState(false);
+  const {openDrawer} = useSelector((state) => state.drawer);
+  const dispatch = useDispatch();
 
-  const toggleDrawer = (open) => (event) => {
+  const toggleDrawer = () => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
-    }
-
-    setState(open);
+    };
+    dispatch(changeDrawer());
   };
 
   return (
     <Drawer
       anchor={'left'}
-      open={state}
-      onClose={toggleDrawer(false)}
+      open={openDrawer}
+      onClose={toggleDrawer()}
     >
       <Box
         sx={{ width: 250 }}
         role="presentation"
-        onClick={toggleDrawer(false)}
-        onKeyDown={toggleDrawer(false)}
+        onClick={toggleDrawer()}
+        onKeyDown={toggleDrawer()}
       >
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
