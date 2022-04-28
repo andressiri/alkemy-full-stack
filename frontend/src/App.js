@@ -5,6 +5,8 @@ import NavigationDrawer from './components/NavigationDrawer';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import {ToastContainer} from 'material-react-toastify';
+import 'material-react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+      <ToastContainer />
     </>
   );
 }
