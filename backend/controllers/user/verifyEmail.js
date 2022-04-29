@@ -39,7 +39,7 @@ module.exports = asyncHandler(async (req, res) => {
     }
   );
 
-  const user_uuid = updateResult[1].user_uuid;
+  const user_uuid = updateResult[1][0].user_uuid;
 
   res.status(200).json({
     message: 'Code is correct, email verified',
