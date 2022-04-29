@@ -6,6 +6,10 @@ const API_URL = '/api/v1/user/';
 const register = async (userData) => {
   const response = await axios.post(API_URL + 'register', userData);
 
+  if (response.data.userData) {
+    localStorage.setItem('user', JSON.stringify(response.data.userData));
+  };
+
   return response.data.userData;
 };
 
@@ -13,7 +17,7 @@ const register = async (userData) => {
 const login = async (userData) => {
   const response = await axios.post(API_URL + 'login', userData);
 
-  if (response.data.userData && userData.remember) {
+  if (response.data.userData) {
     localStorage.setItem('user', JSON.stringify(response.data.userData));
     localStorage.setItem('remember', JSON.stringify(userData.remember));
   };
@@ -24,7 +28,7 @@ const login = async (userData) => {
 // Logout user
 const logout = () => {
   localStorage.removeItem('user');
-  localStorage.removeItem('remember');
+  localStorage.removeItem('remember');  
 }
 
 // Send verification code
@@ -44,12 +48,25 @@ const sendCode = async (email, user) => {
 };
 
 // Check verification code
-const checkCode = async (code, user) => {
+const checkCode = async (code) => {
   const response = await axios.put(API_URL + `verification/${code}`);
 
-  return user 
-    ? {message: response.data.message}
-    : {message: response.data.message, token: response.data.token};
+  if (response.data.token) {
+    localStorage.setItem('temporaryToken', JSON.stringify(response.data.token));
+  };
+
+  return response.data;
+};
+
+// Change Password
+const changePassword = async (password, temporaryToken) => {
+  const response = await axios.put(
+    API_URL + 'password',
+    {password},
+    {headers: {'Authorization': `Bearer ${temporaryToken}`}}
+  );
+
+  return response.data.message;
 };
 
  const authService = {
@@ -57,7 +74,8 @@ const checkCode = async (code, user) => {
   login,
   logout,
   sendCode,
-  checkCode
+  checkCode,
+  changePassword
  };
 
  export default authService;

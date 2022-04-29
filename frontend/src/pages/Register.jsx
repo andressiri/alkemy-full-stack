@@ -35,11 +35,13 @@ function Register() {
     };
 
     if (isSuccess || user) {
-      if (user.verified) {
+      if (user && user.verified) {
         navigate('/');
       } else {
         navigate('/verification');
       }
+
+      if (isSuccess) toast.success('Thanks for joining us!');
     };
 
     dispatch(reset());
@@ -157,7 +159,7 @@ function Register() {
             Register
           </Button>
         </Box>
-        <Link href='# 'onClick={handleGoToLogin} variant="body2">
+        <Link href='#' onClick={handleGoToLogin} variant="body2">
             Already registered? Go to login
         </Link>
       </Box>

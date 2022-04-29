@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
 import {useSelector, useDispatch} from 'react-redux';
@@ -19,9 +19,7 @@ function Verification() {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [emailSent, setEmailSent] = useState(false);
-  const emailSentTo = useRef('');
-
-  const {user, isLoading, isError, isSuccess, message} = useSelector(
+  const {user, isLoading, isError, isSuccess, message, temporaryToken} = useSelector(
     (state) => state.auth 
   );
   const navigate = useNavigate();
@@ -33,23 +31,21 @@ function Verification() {
     };
 
     if (isSuccess) {
-      if (emailSentTo.current && !emailSent) {
-        setEmailSent(true);
-      };
-
-      if (emailSentTo.current && code) {
-        if (!user) {
-          navigate('/login')
-        } else {
-          navigate('/');
-        };
+      if (temporaryToken) {
+        navigate('/password')
+      } else {
+         navigate('/');
       };
 
       toast.success(message);
     };
 
-   dispatch(reset());
-  }, [user, isError, isSuccess, message, code, emailSent, navigate, dispatch]);
+    if (user && user.verified) {  // TODO: && user din't request password change/ name change?? / delete account
+      navigate('/');
+    };
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, temporaryToken, code, navigate, dispatch]);
 
   const onEmailChange = (event) => {
     setEmail(event.target.value);
@@ -72,7 +68,7 @@ function Verification() {
       return;
     };
     
-    emailSentTo.current = user ? user.email : email;
+    setEmailSent(email);
 
     dispatch(sendCode(email));
   };
@@ -101,7 +97,7 @@ function Verification() {
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          {emailSentTo.current ? <MarkEmailUnreadIcon /> : <MailLockIcon />}
+          {emailSent ? <MarkEmailUnreadIcon /> : <MailLockIcon />}
         </Avatar>
         <Typography component="h1" variant="h5">
           Identity verification

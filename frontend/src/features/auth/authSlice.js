@@ -4,6 +4,7 @@ import authService from './authService';
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem('user'));
 const remember = JSON.parse(localStorage.getItem('remember'));
+const temporaryToken = JSON.parse(localStorage.getItem('temporaryToken'));
 
 const initialState = {
   user: user ? user : null,
@@ -12,7 +13,7 @@ const initialState = {
   isLoading: false,
   message: '',
   remember: remember ? remember : false,
-  temporaryToken: null
+  temporaryToken: temporaryToken ? temporaryToken : null
 };
 
 // Register user
@@ -63,8 +64,20 @@ export const sendCode = createAsyncThunk('auth/sendCode',
 export const checkCode = createAsyncThunk('auth/checkCode',
   async (code, thunkAPI) => {
     try {
-      const message = await authService.checkCode(code, user);
-      return thunkAPI.fulfillWithValue(message);
+      const response = await authService.checkCode(code, user);
+      return thunkAPI.fulfillWithValue(response);
+    } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    };
+  }
+);
+
+// Change user password
+export const changePassword = createAsyncThunk('auth/changePassword',
+  async (password, thunkAPI) => {
+    try {
+      return await authService.changePassword(password, temporaryToken);
     } catch (error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -81,6 +94,10 @@ export const authSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.message = '';
+    },
+    resetToken: (state) => {
+      state.temporaryToken = null;
+      localStorage.removeItem('temporaryToken');
     }
   },
   extraReducers: (builder) => {
@@ -139,20 +156,33 @@ export const authSlice = createSlice({
       })
       .addCase(checkCode.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
         state.message = action.payload.message;
-        // if not user logged a temporary token will be obtained to change the password
-        if (action.payload.token) {
-          state.temporaryToken = action.payload.token;
-        };  
+        state.temporaryToken = action.payload.token;
+        if (user) state.user = {...user, verified: true};
+        state.isSuccess = true;
       })
       .addCase(checkCode.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.message = action.payload.message;
+        state.message = action.payload;
+      })
+      // Change password
+      .addCase(changePassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(changePassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       })
   }
 });
 
 export const {reset} = authSlice.actions;
+export const {resetToken} = authSlice.actions;
 export default authSlice.reducer;

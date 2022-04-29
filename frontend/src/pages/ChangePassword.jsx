@@ -2,30 +2,25 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
-import {login, reset} from '../features/auth/authSlice';
-import validateEmail from '../functions/validateEmail';
+import {changePassword, reset, resetToken, logout} from '../features/auth/authSlice';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-function Login() {
+function ChangePassword() {
   const [formData, setFormData] = useState({
-    email: '',
     password: '',
-    remember: false
+    password2: ''
   });
-  const {email, password, remember} = formData;
-  const {user, isLoading, isError, isSuccess, message} = useSelector(
+  const {password, password2} = formData;
+  const {isLoading, isError, isSuccess, message, temporaryToken} = useSelector(
     (state) => state.auth 
   );
   const navigate = useNavigate();
@@ -36,18 +31,19 @@ function Login() {
       toast.error(message);
     };
 
-    if (isSuccess || user) {
-      if (user && user.verified) {
-        navigate('/');
-      } else {
-        navigate('/verification');
-      }
+    if (isSuccess) {
+      toast.success(message);
+      dispatch(resetToken());
+      dispatch(logout());
+      navigate('/login');
+    };
 
-      if (isSuccess) toast.success('You are now logged in');
+    if (!temporaryToken) {
+      navigate('/');
     };
 
     dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+  }, [isError, isSuccess, message, temporaryToken, navigate, dispatch]);
 
   const onInputChange = (event) => {
     setFormData((prevState) => ({
@@ -56,36 +52,31 @@ function Login() {
     }));
   };
 
-  const onRememberChange = (event) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      remember: event.target.checked
-    }));
-  };
-
-  const handleLogin = (event) => {
+  const handleChangePassword = (event) => {
     event.preventDefault();
 
-    if (!email || !password) {
+    if (!password || !password2) {
       toast.error('Please fill all fields');
       return;
     };
 
-    if (!validateEmail(email)) {
-      toast.error('Please enter a valid email');
+    if (password.length < 6) {
+      toast.error('Password should have at least six characters');
       return;
     };
-    
-    const userData = {
-      email,
-      password,
-      remember
+
+    if (password !== password2) {
+      toast.error('Passwords do not match');
+      return;
     };
 
-    dispatch(login(userData));
+    dispatch(changePassword(password));
   };
 
-  const handleGoToRegister = () => navigate('/register');
+  const handleGoToLogin = () => {
+    dispatch(resetToken());
+    navigate('/login');
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -100,38 +91,33 @@ function Login() {
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
+          <LockOpenIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          Change Password
         </Typography>
-        <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onChange={onInputChange}
-          />
+        <Box component="form" onSubmit={handleChangePassword} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
             fullWidth
             name="password"
-            label="Password"
+            label="New password"
             type="password"
             id="password"
             autoComplete="current-password"
             onChange={onInputChange}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-            onChange={onRememberChange}
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password2"
+            label="Confirm password"
+            type="password"
+            id="password2"
+            autoComplete="current-password"
+            onChange={onInputChange}
           />
           <Button
             type="submit"
@@ -139,24 +125,15 @@ function Login() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Login
+            Change password
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='#' onClick={handleGoToRegister} variant="body2">
-                Don't have an account? Register
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
+        <Link href='#' onClick={handleGoToLogin} variant="body2">
+            Cancel
+        </Link>
       </Box>
     </Container>
   );
 };
 
-export default Login;
+export default ChangePassword;
