@@ -86,6 +86,19 @@ export const changePassword = createAsyncThunk('auth/changePassword',
   }
 );
 
+// Change user name
+export const changeName = createAsyncThunk('auth/changeName',
+  async (name, thunkAPI) => {
+    try {
+      const message = await authService.changeName(name, user.token);
+      return thunkAPI.fulfillWithValue(message);
+    } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    };
+  }
+);
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -180,6 +193,20 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(changePassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      // Change Name
+      .addCase(changeName.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(changeName.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(changeName.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

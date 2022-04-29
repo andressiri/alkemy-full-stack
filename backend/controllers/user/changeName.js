@@ -7,12 +7,6 @@ const User = require('../../models/User.js');
 module.exports = asyncHandler(async (req, res) => {
   const {name} = req.params;
 
-  // Unnecessary??
-  //if (!name) {
-  //  res.status(400);
-  //  throw new Error('Please send a new name');
-  //};
-
   await User.update({
       name: name
     },

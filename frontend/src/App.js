@@ -13,6 +13,7 @@ import {ToastContainer} from 'material-react-toastify';
 import 'material-react-toastify/dist/ReactToastify.css';
 import Verification from './pages/Verification';
 import ChangePassword from './pages/ChangePassword';
+import ChangeName from './pages/ChangeName';
 
 function App() {
   const {remember} = useSelector((state) => state.auth);
@@ -36,6 +37,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/verification' element={<Verification />} />
             <Route path='/password' element={<ChangePassword />} />
+            <Route path='/name' element={<ChangeName />} />
           </Routes>
         </div>
       </Router>

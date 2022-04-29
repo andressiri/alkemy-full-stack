@@ -69,13 +69,25 @@ const changePassword = async (password, temporaryToken) => {
   return response.data.message;
 };
 
+// Change Name
+const changeName = async (name, token) => {
+  const response = await axios.put(
+    API_URL + `name/${name}`,
+    {},
+    {headers: {'Authorization': `Bearer ${token}`}}
+  );
+
+  return response.data.message;
+};
+
  const authService = {
   register,
   login,
   logout,
   sendCode,
   checkCode,
-  changePassword
+  changePassword,
+  changeName
  };
 
  export default authService;

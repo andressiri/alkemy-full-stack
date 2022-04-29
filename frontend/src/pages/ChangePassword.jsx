@@ -32,7 +32,7 @@ function ChangePassword() {
     };
 
     if (isSuccess) {
-      toast.success(message);
+      toast.success('Password updated');
       dispatch(resetToken());
       dispatch(logout());
       navigate('/login');
@@ -96,7 +96,7 @@ function ChangePassword() {
           <LockOpenIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Change Password
+          Change password
         </Typography>
         <Box component="form" onSubmit={handleChangePassword} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -109,6 +109,7 @@ function ChangePassword() {
             id="password"
             autoComplete="current-password"
             onChange={onInputChange}
+            autoFocus
           />
           <TextField
             margin="normal"
