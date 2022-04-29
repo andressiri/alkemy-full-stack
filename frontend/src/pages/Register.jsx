@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
-import {register, reset} from '../features/auth/authSlice';
+import {register, reset, requireVerification} from '../features/auth/authSlice';
 import validateEmail from '../functions/validateEmail';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
@@ -38,6 +38,7 @@ function Register() {
       if (user && user.verified) {
         navigate('/');
       } else {
+        dispatch(requireVerification());
         navigate('/verification');
       }
 
@@ -87,6 +88,8 @@ function Register() {
   };
 
   const handleGoToLogin = () => navigate('/login');
+
+  if (user) return (<></>);
 
   return (
     <Container component="main" maxWidth="xs">

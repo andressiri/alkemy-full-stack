@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {useBeforeunload} from 'react-beforeunload';
 import {useSelector, useDispatch} from 'react-redux';
-import {logout, reset, resetToken} from './features/auth/authSlice';
+import {logout, resetToken} from './features/auth/authSlice';
 import Header from './components/Header';
 import NavigationDrawer from './components/NavigationDrawer';
 import Dashboard from './pages/Dashboard';
@@ -19,10 +19,9 @@ function App() {
   const dispatch = useDispatch();
 
   useBeforeunload(() => {
-    dispatch(resetToken())
+    dispatch(resetToken());
     if (remember) return;
     dispatch(logout());
-    dispatch(reset());
   });
 
   return (
@@ -32,7 +31,7 @@ function App() {
           <Header />
           <NavigationDrawer />
           <Routes>
-            <Route path='/' element={<Dashboard />} />
+            <Route path='/*' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/verification' element={<Verification />} />

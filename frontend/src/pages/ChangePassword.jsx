@@ -78,6 +78,8 @@ function ChangePassword() {
     navigate('/login');
   };
 
+  if (!temporaryToken) return (<></>);
+
   return (
     <Container component="main" maxWidth="xs">
       {isLoading && <BackdropSpinner />}

@@ -19,7 +19,7 @@ function Verification() {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [emailSent, setEmailSent] = useState(false);
-  const {user, isLoading, isError, isSuccess, message, temporaryToken} = useSelector(
+  const {user, isLoading, isError, isSuccess, message, temporaryToken, verificationRequired} = useSelector(
     (state) => state.auth 
   );
   const navigate = useNavigate();
@@ -40,12 +40,12 @@ function Verification() {
       toast.success(message);
     };
 
-    if (user && user.verified) {  // TODO: && user din't request password change/ name change?? / delete account
+    if (!verificationRequired) {
       navigate('/');
     };
 
     dispatch(reset());
-  }, [user, isError, isSuccess, message, temporaryToken, code, navigate, dispatch]);
+  }, [isError, isSuccess, message, temporaryToken, verificationRequired, navigate, dispatch]);
 
   const onEmailChange = (event) => {
     setEmail(event.target.value);
@@ -83,6 +83,8 @@ function Verification() {
 
     dispatch(checkCode(code));
   };
+
+  if (!verificationRequired) return (<></>);
 
   return (
     <Container component="main" maxWidth="xs">

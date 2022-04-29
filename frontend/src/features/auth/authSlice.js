@@ -13,7 +13,8 @@ const initialState = {
   isLoading: false,
   message: '',
   remember: remember ? remember : false,
-  temporaryToken: temporaryToken ? temporaryToken : null
+  temporaryToken: temporaryToken ? temporaryToken : null,
+  verificationRequired: false
 };
 
 // Register user
@@ -98,7 +99,10 @@ export const authSlice = createSlice({
     resetToken: (state) => {
       state.temporaryToken = null;
       localStorage.removeItem('temporaryToken');
-    }
+    },
+    requireVerification: (state) => {
+      state.verificationRequired = true;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -185,4 +189,5 @@ export const authSlice = createSlice({
 
 export const {reset} = authSlice.actions;
 export const {resetToken} = authSlice.actions;
+export const {requireVerification} = authSlice.actions;
 export default authSlice.reducer;
