@@ -13,7 +13,8 @@ const transporter = nodemailer.createTransport({
 
 transporter.verify()
   .then(() => {
-    console.log('Ready to send mails...');
+    if (process.env.NODE_ENV === 'development')
+      console.log('Ready to send mails...');
   });
 
 //  Send email

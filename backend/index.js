@@ -9,8 +9,14 @@ const app = express();
 const db = require('./config/postgreDB.js');
   // Test DB
 db.authenticate()
-  .then(() => console.log('Database connected...'))
-  .catch(err => console.log ('DB Error: ' + err));
+  .then(() => {
+    if (process.env.NODE_ENV === 'development')
+      console.log('Database connected...')
+  })
+  .catch(err => {
+    if (process.env.NODE_ENV === 'development')
+      console.log ('DB Error: ' + err)
+  });
 
 // body parser middleware
 app.use(express.json());
@@ -29,4 +35,8 @@ app.use('/api/v1', require('./routes/router.js'));
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
+app.listen(PORT, () => {
+  if (process.env.NODE_ENV === 'development') 
+    console.log(`Server started at port ${PORT}`
+  )}
+);
