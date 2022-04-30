@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
 import {useSelector, useDispatch} from 'react-redux';
 import {sendCode, checkCode, reset} from '../features/auth/authSlice';
+import {changeDelAccConfirm} from '../features/muiComponents/muiComponentsSlice';
 import validateEmail from '../functions/validateEmail';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
@@ -19,9 +20,16 @@ function Verification() {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [emailSent, setEmailSent] = useState(false);
-  const {user, isLoading, isError, isSuccess, message, temporaryToken, verificationRequired} = useSelector(
-    (state) => state.auth 
-  );
+  const {
+    user,
+    isLoading,
+    isError,
+    isSuccess,
+    message,
+    temporaryToken,
+    verificationRequired,
+    deleteRequired
+  } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,21 +39,29 @@ function Verification() {
     };
 
     if (isSuccess) {
-      if (temporaryToken) {
-        navigate('/password')
-      } else {
-         navigate('/');
+      setEmailSent(true);
+      
+      if (message === 'Code is correct, email verified') {
+        if (temporaryToken) {
+          if (!deleteRequired) {
+            navigate('/password')
+          } else {
+            dispatch(changeDelAccConfirm());
+          }  
+        } else {
+          navigate('/');
+        };
       };
 
       toast.success(message);
     };
 
-    if (!verificationRequired) {
+    if (!verificationRequired && !deleteRequired) {
       navigate('/');
     };
 
     dispatch(reset());
-  }, [isError, isSuccess, message, temporaryToken, verificationRequired, navigate, dispatch]);
+  }, [isError, isSuccess, message, temporaryToken, verificationRequired, deleteRequired, navigate, dispatch]);
 
   const onEmailChange = (event) => {
     setEmail(event.target.value);
@@ -67,10 +83,11 @@ function Verification() {
       toast.error('Please enter a valid email');
       return;
     };
-    
-    setEmailSent(email);
 
-    dispatch(sendCode(email));
+    dispatch(sendCode({
+      email: user ? user.email : email,
+      token: user ? user.token : null
+    }));
   };
 
   const handleCheckCode = (event) => {
@@ -84,7 +101,7 @@ function Verification() {
     dispatch(checkCode(code));
   };
 
-  if (!verificationRequired) return (<></>);
+  if (!verificationRequired && !deleteRequired) return (<></>);
 
   return (
     <Container component="main" maxWidth="xs">

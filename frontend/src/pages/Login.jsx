@@ -36,15 +36,17 @@ function Login() {
       toast.error(message);
     };
 
-    if (isSuccess || user) {
-      if (user && user.verified) {
+    if (isSuccess && !user) {
+      toast.success('You are now logged in');
+    };
+
+    if (user) {
+      if (user.verified) {
         navigate('/');
       } else {
         dispatch(requireVerification());
         navigate('/verification');
-      }
-
-      if (isSuccess) toast.success('You are now logged in');
+      };
     };
 
     dispatch(reset());
