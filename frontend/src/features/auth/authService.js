@@ -32,13 +32,13 @@ const logout = () => {
 }
 
 // Send verification code
-const sendCode = async (email, user) => {
+const sendCode = async (email, token) => {
   let response;
-  if (user) {
+  if (token) {
     response = await axios.post(
       API_URL + 'verification',
       {},
-      {headers: {'Authorization': `Bearer ${user.token}`}}
+      {headers: {'Authorization': `Bearer ${token}`}}
     );
   } else {
     response = await axios.post(API_URL + 'forgot-password', {email});
@@ -58,8 +58,9 @@ const checkCode = async (code) => {
   return response.data;
 };
 
-// Change Password
+// Change Password  NOT WORKING TODO temporary token null pero da respuesta positiva
 const changePassword = async (password, temporaryToken) => {
+
   const response = await axios.put(
     API_URL + 'password',
     {password},
@@ -80,6 +81,19 @@ const changeName = async (name, token) => {
   return response.data.message;
 };
 
+// Delete account
+const deleteAccount = async (password, temporaryToken, user) => {
+  const response = await axios.delete(
+    API_URL + `delete/${temporaryToken}`,
+    {
+      data: {password},
+      headers: {'Authorization': `Bearer ${user.token}`}
+    }
+  );
+
+  return response.data;
+};
+
  const authService = {
   register,
   login,
@@ -87,7 +101,8 @@ const changeName = async (name, token) => {
   sendCode,
   checkCode,
   changePassword,
-  changeName
+  changeName,
+  deleteAccount
  };
 
  export default authService;

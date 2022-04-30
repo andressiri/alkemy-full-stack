@@ -14,7 +14,8 @@ const initialState = {
   message: '',
   remember: remember ? remember : false,
   temporaryToken: temporaryToken ? temporaryToken : null,
-  verificationRequired: false
+  verificationRequired: false,
+  deleteRequired: false
 };
 
 // Register user
@@ -50,9 +51,9 @@ export const logout = createAsyncThunk('auth/logout',
 
 // Send verification code
 export const sendCode = createAsyncThunk('auth/sendCode',
-  async (email, thunkAPI) => {
+  async (obj, thunkAPI) => {
     try {
-      const message = await authService.sendCode(email, user);
+      const message = await authService.sendCode(obj.email, obj.token);
       return thunkAPI.fulfillWithValue(message);
     } catch (error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -65,7 +66,7 @@ export const sendCode = createAsyncThunk('auth/sendCode',
 export const checkCode = createAsyncThunk('auth/checkCode',
   async (code, thunkAPI) => {
     try {
-      const response = await authService.checkCode(code, user);
+      const response = await authService.checkCode(code);
       return thunkAPI.fulfillWithValue(response);
     } catch (error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -76,9 +77,9 @@ export const checkCode = createAsyncThunk('auth/checkCode',
 
 // Change user password
 export const changePassword = createAsyncThunk('auth/changePassword',
-  async (password, thunkAPI) => {
+  async (obj, thunkAPI) => {
     try {
-      return await authService.changePassword(password, temporaryToken);
+      return await authService.changePassword(obj.password, obj.temporaryToken);
     } catch (error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -88,10 +89,23 @@ export const changePassword = createAsyncThunk('auth/changePassword',
 
 // Change user name
 export const changeName = createAsyncThunk('auth/changeName',
-  async (name, thunkAPI) => {
+  async (obj, thunkAPI) => {
     try {
-      const message = await authService.changeName(name, user.token);
+      const message = await authService.changeName(obj.name, obj.token);
       return thunkAPI.fulfillWithValue(message);
+    } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    };
+  }
+);
+
+// Delete Account
+export const deleteAccount = createAsyncThunk('auth/deleteAccount',
+  async (obj, thunkAPI) => {
+    try {
+      const data = await authService.deleteAccount(obj.password, obj.temporaryToken, obj.user);
+      return thunkAPI.fulfillWithValue(data.message);
     } catch (error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -114,7 +128,12 @@ export const authSlice = createSlice({
       localStorage.removeItem('temporaryToken');
     },
     requireVerification: (state) => {
+      state.deleteRequired = false;
       state.verificationRequired = true;
+    },
+    requireDelete: (state) => {
+      state.verificationRequired = false;
+      state.deleteRequired = true;
     },
   },
   extraReducers: (builder) => {
@@ -211,10 +230,25 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      // Delete account
+      .addCase(deleteAccount.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteAccount.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteAccount.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
   }
 });
 
 export const {reset} = authSlice.actions;
 export const {resetToken} = authSlice.actions;
 export const {requireVerification} = authSlice.actions;
+export const {requireDelete} = authSlice.actions;
 export default authSlice.reducer;

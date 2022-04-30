@@ -32,7 +32,7 @@ function ChangePassword() {
     };
 
     if (isSuccess) {
-      toast.success('Password updated');
+      toast.success(message);
       dispatch(resetToken());
       dispatch(logout());
       navigate('/login');
@@ -70,7 +70,7 @@ function ChangePassword() {
       return;
     };
 
-    dispatch(changePassword(password));
+    dispatch(changePassword({password, temporaryToken}));
   };
 
   const handleGoToLogin = () => {

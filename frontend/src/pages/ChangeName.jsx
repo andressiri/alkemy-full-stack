@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
-import {changeName, reset, resetToken, logout} from '../features/auth/authSlice';
+import {changeName, reset} from '../features/auth/authSlice';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -51,7 +51,10 @@ function ChangeName() {
       return;
     };
 
-    dispatch(changeName(name));
+    dispatch(changeName({
+      name,
+      token: user ? user.token : null
+    }));
   };
 
   const handleCancel = () => {

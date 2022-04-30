@@ -1,8 +1,8 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {changeDrawer} from '../features/drawer/drawerSlice';
-import {requireVerification} from '../features/auth/authSlice';
+import {changeDrawer, changeDeleteAccount} from '../features/muiComponents/muiComponentsSlice';
+import {logout, requireVerification} from '../features/auth/authSlice';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -16,10 +16,11 @@ import LoginIcon from '@mui/icons-material/Login';
 import FaceIcon from '@mui/icons-material/Face';
 import PasswordIcon from '@mui/icons-material/Password';
 import LogoutIcon from '@mui/icons-material/Logout';
+import NoAccountsIcon from '@mui/icons-material/NoAccounts';
 
 function NavigationDrawer() {
   const {user} = useSelector((state) => state.auth);
-  const {openDrawer} = useSelector((state) => state.drawer);
+  const {openDrawer} = useSelector((state) => state.muiComponents);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,7 +42,12 @@ function NavigationDrawer() {
   };
 
   const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login');
+  };
 
+  const handleDeleteAccount = () => {
+    dispatch(changeDeleteAccount());
   };
 
   return (
@@ -87,6 +93,10 @@ function NavigationDrawer() {
                 text: 'Logout',
                 icon: <LogoutIcon />,
                 onClick: handleLogout
+              }, {
+                text: 'Delete account',
+                icon: <NoAccountsIcon />,
+                onClick: handleDeleteAccount
               }].map((obj) => (
                 <ListItem button onClick={obj.onClick} key={obj.text}>
                   <ListItemIcon>

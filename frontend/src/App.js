@@ -8,12 +8,14 @@ import NavigationDrawer from './components/NavigationDrawer';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
-
 import {ToastContainer} from 'material-react-toastify';
 import 'material-react-toastify/dist/ReactToastify.css';
 import Verification from './pages/Verification';
 import ChangePassword from './pages/ChangePassword';
 import ChangeName from './pages/ChangeName';
+import DeleteAccount from './components/DeleteAccount';
+import DelAccConfirm from './components/DelAccConfirm';
+import PasswordToDelete from './components/PasswordToDelete';
 
 function App() {
   const {remember} = useSelector((state) => state.auth);
@@ -31,6 +33,8 @@ function App() {
         <div>
           <Header />
           <NavigationDrawer />
+          <DeleteAccount />
+          <DelAccConfirm />
           <Routes>
             <Route path='/*' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />
@@ -38,6 +42,7 @@ function App() {
             <Route path='/verification' element={<Verification />} />
             <Route path='/password' element={<ChangePassword />} />
             <Route path='/name' element={<ChangeName />} />
+            <Route path='/delete-account' element={<PasswordToDelete />} />
           </Routes>
         </div>
       </Router>
