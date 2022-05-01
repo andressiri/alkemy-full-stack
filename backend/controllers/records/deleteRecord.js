@@ -26,5 +26,5 @@ module.exports = asyncHandler(async (req, res) => {
     where: {record_uuid: record_uuid}
   });
 
-  res.status(200).json({message: `Deleted record ${req.params.uuid}`});
+  res.status(200).json({message: 'Deleted record', record_uuid: req.params.uuid});
 })

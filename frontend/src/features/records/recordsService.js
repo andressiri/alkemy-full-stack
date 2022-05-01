@@ -34,10 +34,21 @@ const updateRecord = async (recordData, token) => {
   return response.data;
 };
 
+// Update records
+const deleteRecord = async (record_uuid, token) => {
+  const response = await axios.delete(
+    API_URL + `${record_uuid}`,
+    {headers: {'Authorization': `Bearer ${token}`}}
+  );
+
+  return response.data;
+};
+
 const authService = {
   saveRecord,
   getRecords,
-  updateRecord
+  updateRecord,
+  deleteRecord
  };
 
  export default authService;

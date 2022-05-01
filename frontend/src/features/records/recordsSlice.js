@@ -50,6 +50,19 @@ export const updateRecord = createAsyncThunk('records/updateRecord',
   }
 );
 
+// Delete record
+export const deleteRecord = createAsyncThunk('records/deleteRecord',
+  async (obj, thunkAPI) => {
+    try {
+      const data = await recordsService.deleteRecord(obj.record_uuid, obj.token);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    };
+  }
+);
+
 export const recordsSlice = createSlice({
   name: 'records',
   initialState,
@@ -107,6 +120,23 @@ export const recordsSlice = createSlice({
         state.records[indexAtRecords] = action.payload.recordData;
       })
       .addCase(updateRecord.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      // Delete record
+      .addCase(deleteRecord.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteRecord.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+        state.records = state.records.filter((record) => {
+          return record.record_uuid !== action.payload.record_uuid;
+        })
+      })
+      .addCase(deleteRecord.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

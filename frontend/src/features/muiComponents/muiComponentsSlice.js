@@ -7,6 +7,7 @@ const initialState = {
   openAddRecord: false,
   openEditRecord: false,
   openCloseConfirm: false,
+  openDeleteRecordConfirm: false,
   recordFormState: {
     concept: '',
     amount: 0,
@@ -28,6 +29,7 @@ export const muiComponentsSlice = createSlice({
       state.openAddRecord = false;
       state.openEditRecord = false;
       state.openCloseConfirm = false;
+      state.openDeleteRecordConfirm = false;
     },
     changeDrawer: (state) => {
       state.openDrawer = !state.openDrawer;
@@ -46,6 +48,9 @@ export const muiComponentsSlice = createSlice({
     },
     changeCloseConfirm: (state) => {
       state.openCloseConfirm = !state.openCloseConfirm;
+    },
+    changeDeleteRecordConfirm: (state) => {
+      state.openDeleteRecordConfirm = !state.openDeleteRecordConfirm;
     },
     updateRecordFormState: (state, action) => {
       state.recordFormState = action.payload;
@@ -74,6 +79,7 @@ export const {
   changeAddRecord,
   changeEditRecord,
   changeCloseConfirm,
+  changeDeleteRecordConfirm,
   updateRecordFormState,
   resetRecordFormState,
   updateRecordSelected

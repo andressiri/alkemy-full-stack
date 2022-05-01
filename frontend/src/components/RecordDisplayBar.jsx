@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {
+  changeDeleteRecordConfirm,
   changeEditRecord,
   updateRecordFormState,
   updateRecordSelected
@@ -13,10 +14,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import styled from '@emotion/styled';
 
 function RecordDisplayBar({parentToChild}) {
-  const handleEffect = useRef(false);
   const dispatch = useDispatch();
-  const {user} = useSelector((state) => state.auth);
-  const {isLoading, isError, isSuccess, message} = useSelector((state) => state.records);
   const {record_uuid, concept, amount, operation_date, operation_type, category} = parentToChild;
   const backgroundColor = useRef('#ef5350');
   if (operation_type === 'Income') backgroundColor.current = '#4caf50';
@@ -42,11 +40,16 @@ function RecordDisplayBar({parentToChild}) {
       operationType: operation_type,
       category
     };
-    
+
     dispatch(updateRecordSelected(record_uuid));
     dispatch(updateRecordFormState(recordData));
     dispatch(changeEditRecord());
   };
+
+  const handleDeleteRecord = () => {
+    dispatch(updateRecordSelected(record_uuid));
+    dispatch(changeDeleteRecordConfirm());
+  }
 
   return (
     <Box
@@ -100,7 +103,7 @@ function RecordDisplayBar({parentToChild}) {
           size="large"
           edge="start"
           aria-label="menu"
-          onClick={() => {}}
+          onClick={handleDeleteRecord}
         >
           <DeleteIcon fontSize="large" sx={{color: 'white'}} />
         </IconButton>
