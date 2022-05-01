@@ -17,6 +17,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { getRecords } from '../features/records/recordsSlice';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -36,7 +37,8 @@ function Login() {
       toast.error(message);
     };
 
-    if (isSuccess && !user) {
+    if (isSuccess) {
+      dispatch(getRecords(user.token));
       toast.success('You are now logged in');
     };
 

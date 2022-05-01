@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   changeAddRecord,
@@ -28,13 +28,16 @@ import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 
 
 function AddRecordForm() {
+  const handleEffect = useRef(false);
   const {user} = useSelector((state) => state.auth);
   const {addRecordFormState} = useSelector((state) => state.muiComponents);
   const {concept, amount, date, operationType, category} = addRecordFormState;
-  const {isLoading, isError, isSuccess, message} = useSelector((state) => state.records)
+  const {isLoading, isError, isSuccess, message} = useSelector((state) => state.records);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (handleEffect.current === false) return;
+
     if (isError) toast.error(message);
 
     if (isSuccess) {
@@ -44,6 +47,7 @@ function AddRecordForm() {
     };
 
     dispatch(resetRecordsReq());
+    handleEffect.current = false;
   }, [isError, isSuccess, message, dispatch]);
 
   const handleCreateRecord = (event) => {
@@ -53,6 +57,8 @@ function AddRecordForm() {
       toast.error('Please fill all required fields');
       return;
     };
+
+    handleEffect.current = true;
 
     const recordData = {
       concept,
@@ -88,7 +94,6 @@ function AddRecordForm() {
   };
 
   const handleDateChange = (newValue) => {
-    console.log(newValue);
     const newState = {
       ...addRecordFormState,
       date: newValue._d.toString()
