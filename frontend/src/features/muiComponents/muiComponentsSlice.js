@@ -48,6 +48,15 @@ export const muiComponentsSlice = createSlice({
     },
     updateAddRecordState: (state, action) => {
       state.addRecordFormState = action.payload;
+    },
+    resetAddRecordState: (state) => {
+      state.addRecordFormState = {
+        concept: '',
+        amount: 0,
+        date: new Date(),
+        operationType: '',
+        category: ''
+      };
     }
   }
 });
@@ -59,6 +68,7 @@ export const {
   changeDelAccConfirm,
   changeAddRecord,
   changeCloseConfirm,
-  updateAddRecordState
+  updateAddRecordState,
+  resetAddRecordState
 } = muiComponentsSlice.actions;
 export default muiComponentsSlice.reducer;

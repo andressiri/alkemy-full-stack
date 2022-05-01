@@ -3,7 +3,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {
   changeAddRecord,
   changeCloseConfirm,
-  updateAddRecordState
+  updateAddRecordState,
+  resetAddRecordState
 } from '../features/muiComponents/muiComponentsSlice';
 import {toast} from 'material-react-toastify';
 import BackdropSpinner from './BackdropSpinner';
@@ -31,7 +32,15 @@ function AddRecordForm() {
   const {concept, amount, date, operationType, category} = addRecordFormState;
   const dispatch = useDispatch();
 
-  const handleCreateRecord = () => {
+  const handleCreateRecord = (event) => {
+    event.preventDefault();
+
+    if (!concept || !amount || !date || !operationType) {
+      toast.error('Please fill all required fields');
+      return;
+    };
+
+
   };
 
   const onAmountChange = (event) => {
@@ -44,11 +53,13 @@ function AddRecordForm() {
 
   const handleOnCancel = () => {
     dispatch(changeAddRecord());
+    dispatch(resetAddRecordState());
   };
 
   const handleOnClose = () => {
     if (!concept && !amount && !operationType && !category) {
       dispatch(changeAddRecord());
+      dispatch(resetAddRecordState());
       return;
     };
     dispatch(changeCloseConfirm());
