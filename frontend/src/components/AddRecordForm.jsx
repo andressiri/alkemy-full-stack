@@ -6,6 +6,7 @@ import {
   updateAddRecordState,
   resetAddRecordState
 } from '../features/muiComponents/muiComponentsSlice';
+import {resetRecordsReq, saveRecord} from '../features/records/recordsSlice';
 import {toast} from 'material-react-toastify';
 import BackdropSpinner from './BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
@@ -21,16 +22,29 @@ import Container from '@mui/material/Container';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
 import AddRecordAutocomplete from './AddRecordAutocomplete';
 import AddRecordTypeSelect from './AddRecordTypeSelect';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import {AdapterMoment} from '@mui/x-date-pickers/AdapterMoment';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 
 
 function AddRecordForm() {
-  const [dateValue, setDateValue] = useState(new Date());
+  const {user} = useSelector((state) => state.auth);
   const {addRecordFormState} = useSelector((state) => state.muiComponents);
   const {concept, amount, date, operationType, category} = addRecordFormState;
+  const {isLoading, isError, isSuccess, message} = useSelector((state) => state.records)
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+
+    if (isSuccess) {
+      toast.success(message);
+      dispatch(resetAddRecordState());
+      dispatch(changeAddRecord());
+    };
+
+    dispatch(resetRecordsReq());
+  }, [isError, isSuccess, message, dispatch]);
 
   const handleCreateRecord = (event) => {
     event.preventDefault();
@@ -40,7 +54,15 @@ function AddRecordForm() {
       return;
     };
 
+    const recordData = {
+      concept,
+      amount,
+      operation_date: date,
+      operation_type: operationType,
+      category
+    };
 
+    dispatch(saveRecord({recordData, token: user.token}));
   };
 
   const onAmountChange = (event) => {
@@ -66,19 +88,18 @@ function AddRecordForm() {
   };
 
   const handleDateChange = (newValue) => {
-    setDateValue(newValue);
+    console.log(newValue);
     const newState = {
       ...addRecordFormState,
-      date: newValue
+      date: newValue._d.toString()
     };
     dispatch(updateAddRecordState(newState));
   };
 
-  //{isLoading && <BackdropSpinner />}
-
   //handle on close
   return (
     <Dialog open={true} onClose={handleOnClose} fullWidth>
+      {isLoading && <BackdropSpinner />}
       <Container component="main" maxWidth="sm">
         <Box
           sx={{
@@ -109,7 +130,7 @@ function AddRecordForm() {
             />
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DesktopDatePicker
-                value={date}
+                value={Date.parse(date)}
                 label="Operation date"
                 inputFormat="DD/MM/yyyy"
                 onChange={handleDateChange}

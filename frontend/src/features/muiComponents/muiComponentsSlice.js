@@ -9,15 +9,10 @@ const initialState = {
   addRecordFormState: {
     concept: '',
     amount: 0,
-    date: new Date(),
+    date: new Date().toString(),
     operationType: '',
     category: ''
   }
-};
-
-// Change AddRecordFormState with data sent
-const prepareAddRecordState = (value, name) => {
-
 };
 
 export const muiComponentsSlice = createSlice({
@@ -53,7 +48,7 @@ export const muiComponentsSlice = createSlice({
       state.addRecordFormState = {
         concept: '',
         amount: 0,
-        date: new Date(),
+        date: new Date().toString(),
         operationType: '',
         category: ''
       };

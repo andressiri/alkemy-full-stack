@@ -13,7 +13,7 @@ module.exports = asyncHandler(async (req, res) => {
     throw new Error('Please send all the information required');
   };
 
-  if (operation_type !== ('Income' && 'Outcome')) {
+  if (operation_type !== 'Income' && operation_type !== 'Outcome') {
     res.status(400);
     throw new Error('Please send a valid operation type');
   };
@@ -23,7 +23,7 @@ module.exports = asyncHandler(async (req, res) => {
     throw new Error('Please enter a number in the amount field');
   };
 
-  await Record.create({
+  const createResult = await Record.create({
     concept,
     amount: parsedAmount,
     operation_date,
@@ -32,5 +32,5 @@ module.exports = asyncHandler(async (req, res) => {
     user_uuid: req.user.user_uuid
   });
 
-  res.status(201).json({message: 'Record created'});
+  res.status(201).json({message: 'Record created', recordData: createResult.dataValues});
 })
