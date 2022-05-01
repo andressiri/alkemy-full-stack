@@ -1,4 +1,6 @@
 import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {changeAddRecord} from '../features/muiComponents/muiComponentsSlice';
 import Box from '@mui/material/Box';
 import FilterBarAutocomplete from './FilterBarAutocomplete';
 import OperationTypeSelect from './OperationTypeSelect';
@@ -7,7 +9,13 @@ import IconButton from '@mui/material/IconButton';
 import AddCircleSharpIcon from '@mui/icons-material/AddCircleSharp';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
-function FilterBar() {  
+function FilterBar() {
+  const dispatch = useDispatch();
+
+  const handleAddRecord = () => {
+    dispatch(changeAddRecord());
+  };
+
   return (
     <Box
       direction="row"
@@ -48,11 +56,10 @@ function FilterBar() {
             color="secondary"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={() => {}}
+            onClick={handleAddRecord}
           >
             <AddCircleSharpIcon fontSize="large"/>
           </IconButton>
-
       </Box>
     </Box>
   );

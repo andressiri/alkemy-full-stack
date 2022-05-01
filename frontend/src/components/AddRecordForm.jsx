@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
+import {changeAddRecord, changeCloseConfirm} from '../features/muiComponents/muiComponentsSlice';
 import {toast} from 'material-react-toastify';
-import {resetMUIComponents} from '../features/muiComponents/muiComponentsSlice';
 import BackdropSpinner from './BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -30,7 +29,7 @@ function AddRecordForm() {
     operationType: '',
     category: ''
   });
-  const navigate = useNavigate();
+  const {concept, amount, date, operationType, category} = recordData;
   const dispatch = useDispatch();
 
   const handleCreateRecord = () => {
@@ -39,7 +38,16 @@ function AddRecordForm() {
   const onChange = () => {
   };
 
-  const handleCancel = () => {
+  const handleOnCancel = () => {
+    dispatch(changeAddRecord());
+  };
+
+  const handleOnClose = () => {
+    if (!concept && !amount && !operationType) {
+      dispatch(changeAddRecord());
+      return;
+    };
+    dispatch(changeCloseConfirm());
   };
 
   const handleDateChange = () => {
@@ -49,7 +57,7 @@ function AddRecordForm() {
 
   //handle on close
   return (
-    <Dialog open={true} fullWidth>
+    <Dialog open={true} onClose={handleOnClose} fullWidth>
       <Container component="main" maxWidth="sm">
         <Box
           sx={{
@@ -104,9 +112,9 @@ function AddRecordForm() {
               Create new record
             </Button>
           </Box>
-          <Link href='#' onClick={handleCancel} variant="body2" sx={{m: 2}}>
+          <Button onClick={handleOnCancel} variant="outlined" color="secondary" sx={{m: 2}}>
             Cancel
-          </Link>
+          </Button>
         </Box>
       </Container>
     </Dialog>

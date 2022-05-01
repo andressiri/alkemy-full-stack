@@ -4,6 +4,8 @@ const initialState = {
   openDrawer: false,
   openDeleteAccount: false,
   openDelAccConfirm: false,
+  openAddRecord: false,
+  openCloseConfirm: false
 };
 
 export const muiComponentsSlice = createSlice({
@@ -14,6 +16,8 @@ export const muiComponentsSlice = createSlice({
       state.openDrawer = false;
       state.openDeleteAccount = false;
       state.openDelAccConfirm = false;
+      state.openAddRecord = false;
+      state.openCloseConfirm = false;
     },
     changeDrawer: (state) => {
       state.openDrawer = !state.openDrawer;
@@ -23,12 +27,22 @@ export const muiComponentsSlice = createSlice({
     },
     changeDelAccConfirm: (state) => {
       state.openDelAccConfirm = !state.openDelAccConfirm;
+    },
+    changeAddRecord: (state) => {
+      state.openAddRecord = !state.openAddRecord;
+    },
+    changeCloseConfirm: (state) => {
+      state.openCloseConfirm = !state.openCloseConfirm;
     }
   }
 });
 
-export const {resetMUIComponents} = muiComponentsSlice.actions;
-export const {changeDrawer} = muiComponentsSlice.actions;
-export const {changeDeleteAccount} = muiComponentsSlice.actions;
-export const {changeDelAccConfirm} = muiComponentsSlice.actions;
+export const {
+  resetMUIComponents,
+  changeDrawer,
+  changeDeleteAccount,
+  changeDelAccConfirm,
+  changeAddRecord,
+  changeCloseConfirm
+} = muiComponentsSlice.actions;
 export default muiComponentsSlice.reducer;
