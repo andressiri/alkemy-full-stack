@@ -1,24 +1,27 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {updateAddRecordState} from '../features/muiComponents/muiComponentsSlice';
+import {updateRecordFormState} from '../features/muiComponents/muiComponentsSlice';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-function AddRecordTypeSelect() {
-  const {addRecordFormState} = useSelector((state) => state.muiComponents);
-  const {operationType} = addRecordFormState;
+function RecordFormTypeSelect({parentToChild}) {
+  const {recordFormState} = useSelector((state) => state.muiComponents);
+  const {operationType} = recordFormState;
   const [color, setColor] = useState('#bdbdbd');
   const dispatch = useDispatch();
+  const {specifics} = parentToChild;
+  const [readOnly, setReadOnly] = useState(false);
+  if (specifics === 'edit') setReadOnly(true); 
 
   const handleChange = (event) => {
     const value = event.target.value
     const newState = {
-      ...addRecordFormState,
+      ...recordFormState,
       operationType: value
     };
-    dispatch(updateAddRecordState(newState));
+    dispatch(updateRecordFormState(newState));
     const colorValue = value === 'None'
       ? '#bdbdbd'
       : value === 'Income'
@@ -40,6 +43,7 @@ function AddRecordTypeSelect() {
         sx={{
           color: color
         }}
+        inputProps={{ readOnly: readOnly }}
       >
         <MenuItem value={'Income'} sx={{color: '#4caf50'}}>Income</MenuItem>
         <MenuItem value={'Outcome'} sx={{color: '#ef5350'}}>Outcome</MenuItem>
@@ -48,4 +52,4 @@ function AddRecordTypeSelect() {
   );
 };
 
-export default AddRecordTypeSelect;
+export default RecordFormTypeSelect;

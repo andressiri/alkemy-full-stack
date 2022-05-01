@@ -49,7 +49,7 @@ const checkCode = async (code) => {
   return response.data;
 };
 
-// Change Password  NOT WORKING TODO temporary token null pero da respuesta positiva
+// Change Password
 const changePassword = async (password, temporaryToken) => {
 
   const response = await axios.put(

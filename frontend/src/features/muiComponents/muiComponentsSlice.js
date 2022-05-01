@@ -5,8 +5,9 @@ const initialState = {
   openDeleteAccount: false,
   openDelAccConfirm: false,
   openAddRecord: false,
+  openEditRecord: false,
   openCloseConfirm: false,
-  addRecordFormState: {
+  recordFormState: {
     concept: '',
     amount: 0,
     date: new Date().toString(),
@@ -24,6 +25,7 @@ export const muiComponentsSlice = createSlice({
       state.openDeleteAccount = false;
       state.openDelAccConfirm = false;
       state.openAddRecord = false;
+      state.openEditRecord = false;
       state.openCloseConfirm = false;
     },
     changeDrawer: (state) => {
@@ -38,14 +40,17 @@ export const muiComponentsSlice = createSlice({
     changeAddRecord: (state) => {
       state.openAddRecord = !state.openAddRecord;
     },
+    changeEditRecord: (state) => {
+      state.openEditRecord = !state.openEditRecord;
+    },
     changeCloseConfirm: (state) => {
       state.openCloseConfirm = !state.openCloseConfirm;
     },
-    updateAddRecordState: (state, action) => {
-      state.addRecordFormState = action.payload;
+    updateRecordFormState: (state, action) => {
+      state.recordFormState = action.payload;
     },
-    resetAddRecordState: (state) => {
-      state.addRecordFormState = {
+    resetRecordFormState: (state) => {
+      state.recordFormState = {
         concept: '',
         amount: 0,
         date: new Date().toString(),
@@ -62,8 +67,9 @@ export const {
   changeDeleteAccount,
   changeDelAccConfirm,
   changeAddRecord,
+  changeEditRecord,
   changeCloseConfirm,
-  updateAddRecordState,
-  resetAddRecordState
+  updateRecordFormState,
+  resetRecordFormState
 } = muiComponentsSlice.actions;
 export default muiComponentsSlice.reducer;

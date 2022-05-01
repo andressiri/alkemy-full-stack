@@ -2,9 +2,11 @@ import React, {useRef, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   changeAddRecord,
+  changeEditRecord,
   changeCloseConfirm,
-  updateAddRecordState,
-  resetAddRecordState
+  updateRecordFormState,
+  resetRecordFormState,
+  resetMUIComponents
 } from '../features/muiComponents/muiComponentsSlice';
 import {resetRecordsReq, saveRecord} from '../features/records/recordsSlice';
 import {toast} from 'material-react-toastify';
@@ -14,25 +16,24 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import CssBaseline from '@mui/material/CssBaseline';
-import Link from '@mui/material/Link';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import EditIcon from '@mui/icons-material/Edit';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
-import AddRecordAutocomplete from './AddRecordAutocomplete';
-import AddRecordTypeSelect from './AddRecordTypeSelect';
+import RecordFormAutocomplete from './RecordFormAutocomplete';
+import RecordFormTypeSelect from './RecordFormTypeSelect';
 import {AdapterMoment} from '@mui/x-date-pickers/AdapterMoment';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 
 
-function AddRecordForm() {
+function RecordForm({parentToChild}) {
   const handleEffect = useRef(false);
   const {user} = useSelector((state) => state.auth);
-  const {addRecordFormState} = useSelector((state) => state.muiComponents);
-  const {concept, amount, date, operationType, category} = addRecordFormState;
+  const {recordFormState} = useSelector((state) => state.muiComponents);
+  const {concept, amount, date, operationType, category} = recordFormState;
   const {isLoading, isError, isSuccess, message} = useSelector((state) => state.records);
+  const {specifics} = parentToChild;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,15 +43,19 @@ function AddRecordForm() {
 
     if (isSuccess) {
       toast.success(message);
-      dispatch(resetAddRecordState());
-      dispatch(changeAddRecord());
+      dispatch(resetRecordFormState());
+      if (specifics === 'edit') {
+        dispatch(changeEditRecord());
+      } else {
+        dispatch(changeAddRecord());
+      };
     };
 
     dispatch(resetRecordsReq());
     handleEffect.current = false;
   }, [isError, isSuccess, message, dispatch]);
 
-  const handleCreateRecord = (event) => {
+  const handleRecordFormAction = (event) => {
     event.preventDefault();
 
     if (!concept || !amount || !date || !operationType) {
@@ -67,27 +72,30 @@ function AddRecordForm() {
       operation_type: operationType,
       category
     };
-
-    dispatch(saveRecord({recordData, token: user.token}));
+    if (specifics === 'edit') {
+      //dispatch(editRecord({recordData, token: user.token})) TODO
+    } else {
+      dispatch(saveRecord({recordData, token: user.token}));
+    };
   };
 
   const onAmountChange = (event) => {
     const newState = {
-      ...addRecordFormState,
+      ...recordFormState,
       amount: event.target.value
     };
-    dispatch(updateAddRecordState(newState));
+    dispatch(updateRecordFormState(newState));
   };
 
   const handleOnCancel = () => {
-    dispatch(changeAddRecord());
-    dispatch(resetAddRecordState());
+    dispatch(resetMUIComponents());
+    dispatch(resetRecordFormState());
   };
 
   const handleOnClose = () => {
     if (!concept && !amount && !operationType && !category) {
-      dispatch(changeAddRecord());
-      dispatch(resetAddRecordState());
+      dispatch(resetMUIComponents());
+      dispatch(resetRecordFormState());
       return;
     };
     dispatch(changeCloseConfirm());
@@ -95,10 +103,10 @@ function AddRecordForm() {
 
   const handleDateChange = (newValue) => {
     const newState = {
-      ...addRecordFormState,
+      ...recordFormState,
       date: newValue._d.toString()
     };
-    dispatch(updateAddRecordState(newState));
+    dispatch(updateRecordFormState(newState));
   };
 
   //handle on close
@@ -116,13 +124,19 @@ function AddRecordForm() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <AddSharpIcon fontSize="large"/>
+            {specifics === 'edit' 
+              ? <EditIcon fontSize="large"/>
+              : <AddSharpIcon fontSize="large"/>
+            }
           </Avatar>
           <Typography component="h1" variant="h5" sx={{textAlign: 'center'}}>
-            Create a new record
+            {specifics === 'edit'
+              ? 'Edit record'
+              : 'Create a new record'
+            }
           </Typography>
-          <Box component="form" onSubmit={handleCreateRecord} noValidate sx={{ mt: 1 }}>
-            <AddRecordAutocomplete required parentToChild={{specifics: 'Concept', required: true}} />
+          <Box component="form" onSubmit={handleRecordFormAction} noValidate sx={{ mt: 1 }}>
+            <RecordFormAutocomplete required parentToChild={{specifics: 'Concept', required: true}} />
             <TextField
               margin="normal"
               required
@@ -149,15 +163,18 @@ function AddRecordForm() {
                 }
               />
             </LocalizationProvider>
-            <AddRecordTypeSelect />
-            <AddRecordAutocomplete parentToChild={{specifics: 'Category'}} />
+            <RecordFormTypeSelect parentToChild={{specifics: specifics}}/>
+            <RecordFormAutocomplete parentToChild={{specifics: 'Category'}} />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Create new record
+              {specifics === 'edit'
+                ? 'Edit record' 
+                : 'Create new record'
+              }
             </Button>
           </Box>
           <Button onClick={handleOnCancel} variant="outlined" color="secondary" sx={{m: 2}}>
@@ -169,4 +186,4 @@ function AddRecordForm() {
   );
 };
 
-export default AddRecordForm;
+export default RecordForm;

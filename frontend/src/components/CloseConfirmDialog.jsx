@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {
   resetMUIComponents,
   changeCloseConfirm,
-  resetAddRecordState
+  resetRecordFormState
 } from '../features/muiComponents/muiComponentsSlice';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -24,7 +24,7 @@ function CloseConfirmDialog() {
   };
 
   const handleConfirm = () => {
-    dispatch(resetAddRecordState());
+    dispatch(resetRecordFormState());
     dispatch(resetMUIComponents());
   };
 

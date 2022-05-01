@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {updateAddRecordState} from '../features/muiComponents/muiComponentsSlice';
+import {updateRecordFormState} from '../features/muiComponents/muiComponentsSlice';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import ListItem from '@mui/material/ListItem';
@@ -9,16 +9,16 @@ import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function AddRecordAutocomplete({parentToChild}) {
+function RecordFormAutocomplete({parentToChild}) {
   const filter = createFilterOptions();
   const {specifics, required} = parentToChild;
-  const {addRecordFormState} = useSelector((state) => state.muiComponents);
+  const {recordFormState} = useSelector((state) => state.muiComponents);
   const specificValue = specifics === 'Concept' ? 'concept' : 'category';
-  const value = addRecordFormState[specificValue];
+  const value = recordFormState[specificValue];
   const dispatch = useDispatch();
 
   const onAutcompleteChange = (event, newValue) => {
-    let newState = addRecordFormState
+    let newState = recordFormState
 
     if (typeof newValue === 'string') {
       newState = {
@@ -37,7 +37,7 @@ function AddRecordAutocomplete({parentToChild}) {
       };
     };
 
-    dispatch(updateAddRecordState(newState));
+    dispatch(updateRecordFormState(newState));
   };
 
   const concepts = [
@@ -142,4 +142,4 @@ function AddRecordAutocomplete({parentToChild}) {
   );
 };
 
-export default AddRecordAutocomplete;
+export default RecordFormAutocomplete;
