@@ -29,26 +29,26 @@ function OperationTypeSelect() {
   };
 
   return (
-      <StyledFormControl sx={{ m: 1, width: 150 }}>
-        <StyledLabel color='secondary' id="operationTypeLabel">Operation type</StyledLabel>
-        <StyledSelect
-          labelId="operationTypeLabel"
-          id="operationType"
-          value={type}
-          label="Operation type"
-          onChange={handleChange}
-          size='small'
-          color='secondary'
-          sx={{
-            color: '#9c27b0'
-          }}
-        >
-          <MenuItem value={'None'}>None</MenuItem>
-          <MenuItem value={'Income'}>Income</MenuItem>
-          <MenuItem value={'Outcome'}>Outcome</MenuItem>
-        </StyledSelect>
-      </StyledFormControl>
+    <StyledFormControl sx={{ m: 1, width: 150 }}>
+      <StyledLabel color='secondary' id="operationTypeLabel">Operation type</StyledLabel>
+      <StyledSelect
+        labelId="operationTypeLabel"
+        id="operationType"
+        value={type}
+        label="Operation type"
+        onChange={handleChange}
+        size='small'
+        color='secondary'
+        sx={{
+          color: '#9c27b0'
+        }}
+      >
+        <MenuItem value={'None'}>None</MenuItem>
+        <MenuItem value={'Income'}>Income</MenuItem>
+        <MenuItem value={'Outcome'}>Outcome</MenuItem>
+      </StyledSelect>
+    </StyledFormControl>
   );
 };
 
-export default OperationTypeSelect
+export default OperationTypeSelect;
