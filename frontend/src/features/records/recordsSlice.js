@@ -37,6 +37,19 @@ export const getRecords = createAsyncThunk('records/getRecords',
   }
 );
 
+// Update record
+export const updateRecord = createAsyncThunk('records/updateRecord',
+  async (obj, thunkAPI) => {
+    try {
+      const data = await recordsService.updateRecord(obj.recordData, obj.token);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    };
+  }
+);
+
 export const recordsSlice = createSlice({
   name: 'records',
   initialState,
@@ -76,6 +89,24 @@ export const recordsSlice = createSlice({
         state.records = action.payload.records.reverse();
       })
       .addCase(getRecords.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      // Update record
+      .addCase(updateRecord.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateRecord.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+        const indexAtRecords = state.records.map(record => {
+          return record.record_uuid;
+        }).indexOf(action.payload.recordData.record_uuid);
+        state.records[indexAtRecords] = action.payload.recordData;
+      })
+      .addCase(updateRecord.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

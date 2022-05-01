@@ -23,9 +23,21 @@ const getRecords = async (token) => {
   return response.data;
 };
 
+// Update records
+const updateRecord = async (recordData, token) => {
+  const response = await axios.put(
+    API_URL + `${recordData.record_uuid}`,
+    recordData,
+    {headers: {'Authorization': `Bearer ${token}`}}
+  );
+
+  return response.data;
+};
+
 const authService = {
   saveRecord,
-  getRecords
+  getRecords,
+  updateRecord
  };
 
  export default authService;

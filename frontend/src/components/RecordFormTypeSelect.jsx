@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {updateRecordFormState} from '../features/muiComponents/muiComponentsSlice';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,8 +12,8 @@ function RecordFormTypeSelect({parentToChild}) {
   const [color, setColor] = useState('#bdbdbd');
   const dispatch = useDispatch();
   const {specifics} = parentToChild;
-  const [readOnly, setReadOnly] = useState(false);
-  if (specifics === 'edit') setReadOnly(true); 
+  const readOnly = useRef(false);
+  if (specifics === 'edit') readOnly.current = true; 
 
   const handleChange = (event) => {
     const value = event.target.value
@@ -43,7 +43,7 @@ function RecordFormTypeSelect({parentToChild}) {
         sx={{
           color: color
         }}
-        inputProps={{ readOnly: readOnly }}
+        inputProps={{ readOnly: readOnly.current }}
       >
         <MenuItem value={'Income'} sx={{color: '#4caf50'}}>Income</MenuItem>
         <MenuItem value={'Outcome'} sx={{color: '#ef5350'}}>Outcome</MenuItem>

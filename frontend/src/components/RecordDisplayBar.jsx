@@ -1,6 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {changeAddRecord} from '../features/muiComponents/muiComponentsSlice';
+import {
+  changeEditRecord,
+  updateRecordFormState,
+  updateRecordSelected
+} from '../features/muiComponents/muiComponentsSlice';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { TextField } from '@mui/material';
@@ -11,11 +15,11 @@ import styled from '@emotion/styled';
 function RecordDisplayBar({parentToChild}) {
   const handleEffect = useRef(false);
   const dispatch = useDispatch();
-  const {recordFormState} = useSelector((state) => state.muiComponents);
-  const {concept, amount, date, operationType, category} = recordFormState;
+  const {user} = useSelector((state) => state.auth);
   const {isLoading, isError, isSuccess, message} = useSelector((state) => state.records);
+  const {record_uuid, concept, amount, operation_date, operation_type, category} = parentToChild;
   const backgroundColor = useRef('#ef5350');
-  if (parentToChild.operation_type === 'Income') backgroundColor.current = '#4caf50';
+  if (operation_type === 'Income') backgroundColor.current = '#4caf50';
 
   const StyledDisabledTextField = styled(TextField)({
     "& .Mui-disabled": {
@@ -30,12 +34,18 @@ function RecordDisplayBar({parentToChild}) {
     },
   });
 
-  const handleAddRecord = () => {
-    dispatch(changeAddRecord());
-  };
-
-  const handleOnClick = () => {
-    console.log(parentToChild);
+  const handleEditRecord = () => {
+    const recordData = {
+      concept,
+      amount: parseFloat(amount),
+      date: operation_date,
+      operationType: operation_type,
+      category
+    };
+    
+    dispatch(updateRecordSelected(record_uuid));
+    dispatch(updateRecordFormState(recordData));
+    dispatch(changeEditRecord());
   };
 
   return (
@@ -43,7 +53,7 @@ function RecordDisplayBar({parentToChild}) {
     direction="row"
     sx={{
       maxWidth: 900,
-      m: 2,
+      m: 1,
       p: 1,
       backgroundColor: `${backgroundColor.current}`,
       borderRadius: 4,
@@ -54,36 +64,35 @@ function RecordDisplayBar({parentToChild}) {
     }}
     >
       <StyledDisabledTextField
-        onClick={handleOnClick}
         disabled
-        id={`${parentToChild.record_uuid}Concept`}
+        id={`${record_uuid}Concept`}
         label="Concept"
         size="small"
-        defaultValue={parentToChild.concept}
+        defaultValue={concept}
         sx={{m: 1, p: 0, width: 200}}
       />
       <StyledDisabledTextField
         disabled
-        id={`${parentToChild.record_uuid}Amount`}
+        id={`${record_uuid}Amount`}
         label="Amount"
         size="small"
-        defaultValue={parentToChild.amount}
+        defaultValue={amount}
         sx={{m: 1, width: 100}}
       />
       <StyledDisabledTextField
         disabled
-        id={`${parentToChild.record_uuid}Date`}
+        id={`${record_uuid}Date`}
         label="Date"
         size="small"
-        defaultValue={parentToChild.operation_date.toString()}
+        defaultValue={operation_date.toString()}
         sx={{m: 1,  width: 115}}
       />
       <StyledDisabledTextField
         disabled
-        id={`${parentToChild.record_uuid}Date`}
+        id={`${record_uuid}Date`}
         label="Category"
         size="small"
-        defaultValue={parentToChild.category}
+        defaultValue={category}
         sx={{m: 1,  width: 150}}
       />
       <Box sx={{display: 'flex', width: '150px', alignItems: 'center', justifyContent: 'center'}}>
@@ -99,7 +108,7 @@ function RecordDisplayBar({parentToChild}) {
           size="large"
           edge="start"
           aria-label="menu"
-          onClick={() => {}}
+          onClick={handleEditRecord} 
         >
           <EditIcon fontSize="large" sx={{color: 'white'}} />
         </IconButton>

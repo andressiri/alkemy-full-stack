@@ -28,7 +28,7 @@ module.exports = asyncHandler(async (req, res) => {
     throw new Error('You can\'t update that resource');
   };
 
-  await Record.update(
+  const updateResult = await Record.update(
     {
       concept: concept,
       amount: amount,
@@ -36,9 +36,16 @@ module.exports = asyncHandler(async (req, res) => {
       category: category
     },
     {
-      where: {record_uuid: record_uuid}
+      where: {record_uuid: record_uuid},
+      returning: true,
+      raw: true,
     }
   );
 
-  res.status(200).json({message: `Updated record ${req.params.uuid}`});
+  const recordData = {
+    ...updateResult[1][0],
+    user_uuid: 'null'
+  };
+
+  res.status(200).json({message: `Record updated`, recordData});
 })

@@ -9,7 +9,8 @@ module.exports = asyncHandler(async (req, res) => {
 
   const records = await Record.findAll({
     raw: true,
-    where: {user_uuid: req.user.user_uuid}
+    where: {user_uuid: req.user.user_uuid},
+    attributes: {exclude: ['user_uuid']}
   });
 
   if (!records[0]) message = `No records saved by ${req.user.name}`;

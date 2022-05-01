@@ -8,7 +8,7 @@ import {
   resetRecordFormState,
   resetMUIComponents
 } from '../features/muiComponents/muiComponentsSlice';
-import {resetRecordsReq, saveRecord} from '../features/records/recordsSlice';
+import {resetRecordsReq, saveRecord, updateRecord} from '../features/records/recordsSlice';
 import {toast} from 'material-react-toastify';
 import BackdropSpinner from './BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
@@ -30,7 +30,7 @@ import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 function RecordForm({parentToChild}) {
   const handleEffect = useRef(false);
   const {user} = useSelector((state) => state.auth);
-  const {recordFormState} = useSelector((state) => state.muiComponents);
+  const {recordFormState, recordSelected} = useSelector((state) => state.muiComponents);
   const {concept, amount, date, operationType, category} = recordFormState;
   const {isLoading, isError, isSuccess, message} = useSelector((state) => state.records);
   const {specifics} = parentToChild;
@@ -66,14 +66,16 @@ function RecordForm({parentToChild}) {
     handleEffect.current = true;
 
     const recordData = {
+      record_uuid: recordSelected,
       concept,
       amount,
       operation_date: date,
       operation_type: operationType,
       category
     };
+    
     if (specifics === 'edit') {
-      //dispatch(editRecord({recordData, token: user.token})) TODO
+      dispatch(updateRecord({recordData, token: user.token}));
     } else {
       dispatch(saveRecord({recordData, token: user.token}));
     };
@@ -125,7 +127,7 @@ function RecordForm({parentToChild}) {
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             {specifics === 'edit' 
-              ? <EditIcon fontSize="large"/>
+              ? <EditIcon />
               : <AddSharpIcon fontSize="large"/>
             }
           </Avatar>
@@ -142,6 +144,7 @@ function RecordForm({parentToChild}) {
               required
               fullWidth
               id="amount"
+              value={amount}
               label="Amount"
               type="number"
               name="amount"

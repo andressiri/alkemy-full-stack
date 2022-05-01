@@ -13,7 +13,8 @@ const initialState = {
     date: new Date().toString(),
     operationType: '',
     category: ''
-  }
+  },
+  recordSelected: ''
 };
 
 export const muiComponentsSlice = createSlice({
@@ -57,7 +58,11 @@ export const muiComponentsSlice = createSlice({
         operationType: '',
         category: ''
       };
-    }
+      state.recordSelected = '';
+    },
+    updateRecordSelected: (state, action) => {
+      state.recordSelected = action.payload;
+    },
   }
 });
 
@@ -70,6 +75,7 @@ export const {
   changeEditRecord,
   changeCloseConfirm,
   updateRecordFormState,
-  resetRecordFormState
+  resetRecordFormState,
+  updateRecordSelected
 } = muiComponentsSlice.actions;
 export default muiComponentsSlice.reducer;
