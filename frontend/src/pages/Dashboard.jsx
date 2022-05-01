@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import FilterBar from '../components/FilterBar';
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <>
+      <FilterBar />
+    </>
   );
 };
 
