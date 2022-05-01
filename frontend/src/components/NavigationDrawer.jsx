@@ -10,8 +10,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginIcon from '@mui/icons-material/Login';
 import FaceIcon from '@mui/icons-material/Face';
 import PasswordIcon from '@mui/icons-material/Password';
@@ -32,6 +31,7 @@ function NavigationDrawer() {
   };
 
   const handleLogin = () => navigate('/login');
+  const handleRegister = () => navigate('/register');
 
 
   const handleChangeName = () => navigate('/name');
@@ -52,7 +52,7 @@ function NavigationDrawer() {
 
   return (
     <Drawer
-      anchor={'left'}
+      anchor={'right'}
       open={openDrawer}
       onClose={toggleDrawer()}
     >
@@ -63,24 +63,22 @@ function NavigationDrawer() {
         onKeyDown={toggleDrawer()}
       >
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
           {!user
-            ? <ListItem button onClick={handleLogin}>
-                <ListItemIcon>
-                  <LoginIcon />
-                </ListItemIcon>
-                <ListItemText primary="Login" />
-              </ListItem>
+
+            ? <Divider>
+                <ListItem button onClick={handleLogin}>
+                  <ListItemIcon>
+                    <LoginIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Login" />
+                </ListItem>
+                <ListItem button onClick={handleRegister}>
+                  <ListItemIcon>
+                    <AccountCircleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Register" />
+                </ListItem>
+              </Divider>
             : [{
                 text:'Change name',
                 icon: <FaceIcon />,

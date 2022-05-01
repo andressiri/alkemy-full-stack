@@ -10,15 +10,21 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import PaidIcon from '@mui/icons-material/Paid';
 
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
   const {user} = useSelector((state) => state.auth);
+  const {recordsAdditionResult} = useSelector((state) => state.records);
 
   const handleChangeDrawer = () => {
     dispatch(changeDrawer());
+  };
+
+  const handleGoToDashboard = () => {
+    navigate('/');
   };
 
   const handleLogout = () => {
@@ -40,13 +46,30 @@ function Header() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={handleChangeDrawer}
+            onClick={handleGoToDashboard}
           >
-            <MenuIcon />
+            <PaidIcon fontSize="large" color="secondary" />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, cursor: 'pointer' }}
+            onClick={handleGoToDashboard}
+          >
             Spends Checker
           </Typography>
+          <Box sx={{ 
+              p: 2.5,
+              backgroundColor: 'red',
+              height: 10,
+              borderRadius: 5,
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'flex'
+            }}
+          >
+            Save
+          </Box>
           {user
             ? <Button onClick={handleLogout} color="inherit">
                 Logout
@@ -59,6 +82,16 @@ function Header() {
                 Login
               </Button>
           }
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={handleChangeDrawer}
+          >
+            <MenuIcon />
+          </IconButton>
 
         </Toolbar>
       </AppBar>

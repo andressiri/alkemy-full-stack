@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import InputLabel from '@mui/material/InputLabel';
 import styled from '@emotion/styled';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { updateFilters } from '../features/muiComponents/muiComponentsSlice';
 
 function OperationTypeSelect() {
-  const [type, setType] = useState('None');
   const [color, setColor] = useState('#bdbdbd');
+  const {filters} = useSelector((state) => state.muiComponents);
+  const dispatch = useDispatch();
 
   const StyledFormControl = styled(FormControl)({
 
@@ -25,7 +28,11 @@ function OperationTypeSelect() {
 
   const handleChange = (event) => {
     const value = event.target.value
-    setType(value);
+    const filtersData = {
+      ...filters,
+      typeFilter: value
+    }
+    dispatch(updateFilters(filtersData))
     const colorValue = value === 'None'
       ? '#bdbdbd'
       : value === 'Income'
@@ -40,7 +47,7 @@ function OperationTypeSelect() {
       <StyledSelect
         labelId="operationTypeLabel"
         id="operationType"
-        value={type}
+        value={filters.typeFilter}
         label="Operation type"
         onChange={handleChange}
         size='small'
