@@ -6,9 +6,17 @@ import Select from '@mui/material/Select';
 
 function AddRecordTypeSelect() {
   const [type, setType] = useState('');
+  const [color, setColor] = useState('#bdbdbd');
 
   const handleChange = (event) => {
-    setType(event.target.value);
+    const value = event.target.value
+    setType(value);
+    const colorValue = value === 'None'
+      ? '#bdbdbd'
+      : value === 'Income'
+        ? '#4caf50'
+        : '#ef5350';
+    setColor(colorValue);
   };
 
   return (
@@ -21,6 +29,9 @@ function AddRecordTypeSelect() {
         value={type}
         label="Operation type"
         onChange={handleChange}
+        sx={{
+          color: color
+        }}
       >
         <MenuItem value={'Income'} sx={{color: '#4caf50'}}>Income</MenuItem>
         <MenuItem value={'Outcome'} sx={{color: '#ef5350'}}>Outcome</MenuItem>

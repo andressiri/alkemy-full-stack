@@ -7,6 +7,7 @@ import Select from '@mui/material/Select';
 
 function OperationTypeSelect() {
   const [type, setType] = useState('None');
+  const [color, setColor] = useState('#bdbdbd');
 
   const StyledFormControl = styled(FormControl)({
   });
@@ -25,12 +26,19 @@ function OperationTypeSelect() {
   });
 
   const handleChange = (event) => {
-    setType(event.target.value);
+    const value = event.target.value
+    setType(value);
+    const colorValue = value === 'None'
+      ? '#bdbdbd'
+      : value === 'Income'
+        ? '#4caf50'
+        : '#ef5350';
+    setColor(colorValue);
   };
 
   return (
     <StyledFormControl sx={{ m: 1, width: 150 }}>
-      <StyledLabel color='secondary' id="operationTypeLabel">Operation type</StyledLabel>
+      <StyledLabel id="operationTypeLabel">Operation type</StyledLabel>
       <StyledSelect
         labelId="operationTypeLabel"
         id="operationType"
@@ -40,12 +48,12 @@ function OperationTypeSelect() {
         size='small'
         color='secondary'
         sx={{
-          color: '#9c27b0'
+          color: color
         }}
       >
         <MenuItem value={'None'}>None</MenuItem>
-        <MenuItem value={'Income'}>Income</MenuItem>
-        <MenuItem value={'Outcome'}>Outcome</MenuItem>
+        <MenuItem value={'Income'} sx={{color: '#4caf50'}}>Income</MenuItem>
+        <MenuItem value={'Outcome'} sx={{color: '#ef5350'}}>Outcome</MenuItem>
       </StyledSelect>
     </StyledFormControl>
   );
