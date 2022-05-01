@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import styled from '@emotion/styled';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
@@ -7,11 +8,15 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { updateFilters } from '../features/muiComponents/muiComponentsSlice';
 
 function FilterBarAutocomplete({parentToChild}) {
-  const [value, setValue] = useState(null);
   const filter = createFilterOptions();
+  const {filters} = useSelector((state) => state.muiComponents);
   const {specifics} = parentToChild;
+  let value = filters.conceptFilter;
+  if (specifics === 'Category') value = filters.categoryFilter;
+  const dispatch = useDispatch();
 
   const StyledAutocomplete = styled(Autocomplete)({
     "& .MuiInputLabel-outlined:not(.MuiInputLabel-shrink)": {
@@ -68,6 +73,7 @@ function FilterBarAutocomplete({parentToChild}) {
     {content: 'Surchage on sales'},
     {content: 'Taxes'},
     {content: 'Travel expenses'},
+    {content: 'None'}
   ];
 
   const categories = [
@@ -76,6 +82,7 @@ function FilterBarAutocomplete({parentToChild}) {
     {content: 'Office'},
     {content: 'Personal'},
     {content: 'Presents'},
+    {content: 'None'},
   ];
 
   const setOptions = () => {
@@ -86,18 +93,29 @@ function FilterBarAutocomplete({parentToChild}) {
   };
 
   const onAutcompleteChange = (event, newValue) => {
+    if (newValue === null) newValue = {content: 'None'};
+    let newState = filters
+    let specificValue = 'conceptFilter';
+    if (specifics === 'Category') specificValue = 'categoryFilter';
+
     if (typeof newValue === 'string') {
-      setValue({
-        content: newValue,
-      });
+      newState = {
+        ...newState,
+        [specificValue]: {content : newValue}
+      };
     } else if (newValue && newValue.inputValue) {
-      // Create a new value from the user input
-      setValue({
-        content: newValue.inputValue,
-      });
+      newState = {
+        ...newState,
+        [specificValue]: newValue.inputValue
+      };
     } else {
-      setValue(newValue);
-    };
+      newState = {
+        ...newState,
+        [specificValue]: newValue.content
+      };
+    }
+
+    dispatch(updateFilters(newState));
   };
 
   const autocompleteFilterOptions = (options, params) => {

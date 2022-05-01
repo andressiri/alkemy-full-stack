@@ -15,7 +15,12 @@ const initialState = {
     operationType: '',
     category: ''
   },
-  recordSelected: ''
+  recordSelected: '',
+  filters: {
+    conceptFilter: 'None',
+    typeFilter: 'None',
+    categoryFilter: 'None'
+  }
 };
 
 export const muiComponentsSlice = createSlice({
@@ -68,6 +73,9 @@ export const muiComponentsSlice = createSlice({
     updateRecordSelected: (state, action) => {
       state.recordSelected = action.payload;
     },
+    updateFilters: (state, action) => {
+      state.filters = action.payload;
+    },
   }
 });
 
@@ -82,6 +90,7 @@ export const {
   changeDeleteRecordConfirm,
   updateRecordFormState,
   resetRecordFormState,
-  updateRecordSelected
+  updateRecordSelected,
+  updateFilters
 } = muiComponentsSlice.actions;
 export default muiComponentsSlice.reducer;
