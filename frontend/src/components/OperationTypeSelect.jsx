@@ -10,19 +10,17 @@ function OperationTypeSelect() {
   const [color, setColor] = useState('#bdbdbd');
 
   const StyledFormControl = styled(FormControl)({
+
   });
   
   const StyledLabel = styled(InputLabel)({
-    "& .MuiFormLabel-root ": {
-      opacity: 0.6,
-      color: "red !important",
-    },
+
   });
 
   const StyledSelect = styled(Select)({
     "& .MuiSvgIcon-root": {
       color: "#ba68c8"
-    }
+    },
   });
 
   const handleChange = (event) => {

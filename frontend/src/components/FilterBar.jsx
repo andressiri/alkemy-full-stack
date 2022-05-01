@@ -7,7 +7,7 @@ import OperationTypeSelect from './OperationTypeSelect';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AddCircleSharpIcon from '@mui/icons-material/AddCircleSharp';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
 
 function FilterBar() {
   const dispatch = useDispatch();
@@ -31,35 +31,28 @@ function FilterBar() {
         justifyContent: 'center' 
       }}
     >
-        <Typography variant="h6" component="div" sx={{m: 1, color: '#ba68c8' }}>
-          Filter
-        </Typography>
-        <FilterBarAutocomplete parentToChild={{specifics: 'Concept'}}/>
-        <OperationTypeSelect />
-        <FilterBarAutocomplete parentToChild={{specifics: 'Category'}}/>
-
-
-        <Box sx={{display: 'flex', width: '150px', alignItems: 'center', justifyContent: 'center'}}>
-          <IconButton
-            size="large"
-            edge="start"
-            color="secondary"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={() => {}}
-          >
-            <RestartAltIcon fontSize="large"/>
-          </IconButton>
-          <IconButton
-            size="large"
-            edge="start"
-            color="secondary"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={handleAddRecord}
-          >
-            <AddCircleSharpIcon fontSize="large"/>
-          </IconButton>
+      <FilterBarAutocomplete parentToChild={{specifics: 'Concept'}}/>
+      <OperationTypeSelect />
+      <FilterBarAutocomplete parentToChild={{specifics: 'Category'}}/>
+      <Box sx={{m: 0, display: 'flex', width: '150px', alignItems: 'center', justifyContent: 'center'}}>
+        <IconButton
+          size="large"
+          edge="start"
+          color="secondary"
+          aria-label="menu"
+          onClick={() => {}}
+        >
+          <ReplayCircleFilledIcon fontSize="large"/>
+        </IconButton>
+        <IconButton
+          size="large"
+          edge="start"
+          color="secondary"
+          aria-label="menu"
+          onClick={handleAddRecord}
+        >
+          <AddCircleSharpIcon fontSize="large"/>
+        </IconButton>
       </Box>
     </Box>
   );
