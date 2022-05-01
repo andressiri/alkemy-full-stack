@@ -5,7 +5,19 @@ const initialState = {
   openDeleteAccount: false,
   openDelAccConfirm: false,
   openAddRecord: false,
-  openCloseConfirm: false
+  openCloseConfirm: false,
+  addRecordFormState: {
+    concept: '',
+    amount: 0,
+    date: new Date(),
+    operationType: '',
+    category: ''
+  }
+};
+
+// Change AddRecordFormState with data sent
+const prepareAddRecordState = (value, name) => {
+
 };
 
 export const muiComponentsSlice = createSlice({
@@ -33,6 +45,9 @@ export const muiComponentsSlice = createSlice({
     },
     changeCloseConfirm: (state) => {
       state.openCloseConfirm = !state.openCloseConfirm;
+    },
+    updateAddRecordState: (state, action) => {
+      state.addRecordFormState = action.payload;
     }
   }
 });
@@ -43,6 +58,7 @@ export const {
   changeDeleteAccount,
   changeDelAccConfirm,
   changeAddRecord,
-  changeCloseConfirm
+  changeCloseConfirm,
+  updateAddRecordState
 } = muiComponentsSlice.actions;
 export default muiComponentsSlice.reducer;

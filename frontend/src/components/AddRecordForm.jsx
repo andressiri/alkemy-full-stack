@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {changeAddRecord, changeCloseConfirm} from '../features/muiComponents/muiComponentsSlice';
+import {
+  changeAddRecord,
+  changeCloseConfirm,
+  updateAddRecordState
+} from '../features/muiComponents/muiComponentsSlice';
 import {toast} from 'material-react-toastify';
 import BackdropSpinner from './BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
@@ -22,20 +26,20 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 
 function AddRecordForm() {
-  const [recordData, setRecordData] = useState({
-    concept: '',
-    amount: 0,
-    date: '',
-    operationType: '',
-    category: ''
-  });
-  const {concept, amount, date, operationType, category} = recordData;
+  const [dateValue, setDateValue] = useState(new Date());
+  const {addRecordFormState} = useSelector((state) => state.muiComponents);
+  const {concept, amount, date, operationType, category} = addRecordFormState;
   const dispatch = useDispatch();
 
   const handleCreateRecord = () => {
   };
 
-  const onChange = () => {
+  const onAmountChange = (event) => {
+    const newState = {
+      ...addRecordFormState,
+      amount: event.target.value
+    };
+    dispatch(updateAddRecordState(newState));
   };
 
   const handleOnCancel = () => {
@@ -43,14 +47,20 @@ function AddRecordForm() {
   };
 
   const handleOnClose = () => {
-    if (!concept && !amount && !operationType) {
+    if (!concept && !amount && !operationType && !category) {
       dispatch(changeAddRecord());
       return;
     };
     dispatch(changeCloseConfirm());
   };
 
-  const handleDateChange = () => {
+  const handleDateChange = (newValue) => {
+    setDateValue(newValue);
+    const newState = {
+      ...addRecordFormState,
+      date: newValue
+    };
+    dispatch(updateAddRecordState(newState));
   };
 
   //{isLoading && <BackdropSpinner />}
@@ -84,12 +94,13 @@ function AddRecordForm() {
               label="Amount"
               type="number"
               name="amount"
-              onChange={onChange}
+              onChange={onAmountChange}
             />
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DesktopDatePicker
+                value={date}
                 label="Operation date"
-                inputFormat="MM/DD/yyyy"
+                inputFormat="DD/MM/yyyy"
                 onChange={handleDateChange}
                 renderInput={
                   (params) => <TextField

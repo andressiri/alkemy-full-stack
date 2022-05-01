@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import styled from '@emotion/styled';
+import {useSelector, useDispatch} from 'react-redux';
+import {updateAddRecordState} from '../features/muiComponents/muiComponentsSlice';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import ListItem from '@mui/material/ListItem';
@@ -9,9 +10,35 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function AddRecordAutocomplete({parentToChild}) {
-  const [value, setValue] = useState(null);
   const filter = createFilterOptions();
   const {specifics, required} = parentToChild;
+  const {addRecordFormState} = useSelector((state) => state.muiComponents);
+  const specificValue = specifics === 'Concept' ? 'concept' : 'category';
+  const value = addRecordFormState[specificValue];
+  const dispatch = useDispatch();
+
+  const onAutcompleteChange = (event, newValue) => {
+    let newState = addRecordFormState
+
+    if (typeof newValue === 'string') {
+      newState = {
+        ...newState,
+        [specificValue]: {content : newValue}
+      };
+    } else if (newValue && newValue.inputValue) {
+      newState = {
+        ...newState,
+        [specificValue]: newValue.inputValue
+      };
+    } else {
+      newState = {
+        ...newState,
+        [specificValue]: newValue.content
+      };
+    };
+
+    dispatch(updateAddRecordState(newState));
+  };
 
   const concepts = [
     {content: 'Accounting expenditures'},
@@ -43,21 +70,6 @@ function AddRecordAutocomplete({parentToChild}) {
     switch (specifics) {
       case 'Concept': return concepts;
       case 'Category': return categories;
-    };
-  };
-
-  const onAutcompleteChange = (event, newValue) => {
-    if (typeof newValue === 'string') {
-      setValue({
-        content: newValue,
-      });
-    } else if (newValue && newValue.inputValue) {
-      // Create a new value from the user input
-      setValue({
-        content: newValue.inputValue,
-      });
-    } else {
-      setValue(newValue);
     };
   };
 
