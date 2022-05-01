@@ -1,8 +1,10 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import recordsService from './recordsService';
 
+const records = JSON.parse(localStorage.getItem('records'))
+
 const initialState = {
-  records: [],
+  records: records ? records : [],
   isError: false,
   isSuccess: false,
   isLoading: false,

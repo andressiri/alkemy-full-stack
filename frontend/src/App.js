@@ -18,12 +18,17 @@ import DelAccConfirm from './components/DelAccConfirm';
 import PasswordToDelete from './components/PasswordToDelete';
 
 function App() {
-  const {remember} = useSelector((state) => state.auth);
+  const {user, remember} = useSelector((state) => state.auth);
+  const {records} = useSelector((state) => state.records);
   const dispatch = useDispatch();
 
   useBeforeunload(() => {
-    dispatch(resetToken());
-    if (remember) return;
+    if (remember) {
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('remember', JSON.stringify(remember));
+      localStorage.setItem('records', JSON.stringify(records));
+      return;
+    };
     dispatch(logout());
   });
 

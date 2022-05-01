@@ -4,7 +4,6 @@ import authService from './authService';
 // Get state from localStorage
 const user = JSON.parse(localStorage.getItem('user'));
 const remember = JSON.parse(localStorage.getItem('remember'));
-const temporaryToken = JSON.parse(localStorage.getItem('temporaryToken'));
 
 const initialState = {
   user: user ? user : null,
@@ -13,7 +12,7 @@ const initialState = {
   isLoading: false,
   message: '',
   remember: remember ? remember : false,
-  temporaryToken: temporaryToken ? temporaryToken : null,
+  temporaryToken: null,
   verificationRequired: false,
   deleteRequired: false
 };
@@ -125,7 +124,6 @@ export const authSlice = createSlice({
     },
     resetToken: (state) => {
       state.temporaryToken = null;
-      localStorage.removeItem('temporaryToken');
     },
     requireVerification: (state) => {
       state.deleteRequired = false;
