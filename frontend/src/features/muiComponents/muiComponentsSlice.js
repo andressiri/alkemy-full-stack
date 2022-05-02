@@ -76,6 +76,13 @@ export const muiComponentsSlice = createSlice({
     updateFilters: (state, action) => {
       state.filters = action.payload;
     },
+    resetFilters: (state, action) => {
+      state.filters = {
+        conceptFilter: 'None',
+        typeFilter: 'None',
+        categoryFilter: 'None'
+      }
+    },
   }
 });
 
@@ -91,6 +98,7 @@ export const {
   updateRecordFormState,
   resetRecordFormState,
   updateRecordSelected,
-  updateFilters
+  updateFilters,
+  resetFilters
 } = muiComponentsSlice.actions;
 export default muiComponentsSlice.reducer;

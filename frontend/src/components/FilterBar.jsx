@@ -1,10 +1,9 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {changeAddRecord} from '../features/muiComponents/muiComponentsSlice';
+import {useDispatch} from 'react-redux';
+import {changeAddRecord, resetFilters} from '../features/muiComponents/muiComponentsSlice';
 import Box from '@mui/material/Box';
 import FilterBarAutocomplete from './FilterBarAutocomplete';
 import OperationTypeSelect from './OperationTypeSelect';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AddCircleSharpIcon from '@mui/icons-material/AddCircleSharp';
 import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
@@ -14,6 +13,10 @@ function FilterBar() {
 
   const handleAddRecord = () => {
     dispatch(changeAddRecord());
+  };
+
+  const handleResetFilters = () => {
+    dispatch(resetFilters());
   };
 
   return (
@@ -40,7 +43,7 @@ function FilterBar() {
           edge="start"
           color="secondary"
           aria-label="menu"
-          onClick={() => {}}
+          onClick={handleResetFilters}
         >
           <ReplayCircleFilledIcon fontSize="large"/>
         </IconButton>
