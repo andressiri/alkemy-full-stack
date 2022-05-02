@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'material-react-toastify';
-import {login, reset, requireVerification} from '../features/auth/authSlice';
+import {login, resetAuthReq, requireVerification} from '../features/auth/authSlice';
 import validateEmail from '../functions/validateEmail';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
@@ -51,7 +51,7 @@ function Login() {
       };
     };
 
-    dispatch(reset());
+    dispatch(resetAuthReq());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onInputChange = (event) => {

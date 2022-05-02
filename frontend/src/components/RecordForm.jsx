@@ -6,7 +6,8 @@ import {
   changeCloseConfirm,
   updateRecordFormState,
   resetRecordFormState,
-  resetMUIComponents
+  resetMUIComponents,
+  resetMUIDialogs
 } from '../features/muiComponents/muiComponentsSlice';
 import {resetRecordsReq, saveRecord, updateRecord} from '../features/records/recordsSlice';
 import {toast} from 'material-react-toastify';
@@ -43,11 +44,11 @@ function RecordForm({parentToChild}) {
 
     if (isSuccess) {
       toast.success(message);
-      dispatch(resetRecordFormState());
       if (specifics === 'edit') {
-        dispatch(changeEditRecord());
+        dispatch(resetRecordFormState());
+        dispatch(resetMUIDialogs());
       } else {
-        dispatch(changeAddRecord());
+        dispatch(resetMUIComponents());
       };
     };
 
@@ -90,13 +91,13 @@ function RecordForm({parentToChild}) {
   };
 
   const handleOnCancel = () => {
-    dispatch(resetMUIComponents());
+    dispatch(resetMUIDialogs());
     dispatch(resetRecordFormState());
   };
 
   const handleOnClose = () => {
     if (!concept && !amount && !operationType && !category) {
-      dispatch(resetMUIComponents());
+      dispatch(resetMUIDialogs());
       dispatch(resetRecordFormState());
       return;
     };

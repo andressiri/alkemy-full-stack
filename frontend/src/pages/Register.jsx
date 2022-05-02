@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
-import {register, reset, requireVerification} from '../features/auth/authSlice';
+import {register, resetAuthReq, requireVerification} from '../features/auth/authSlice';
 import validateEmail from '../functions/validateEmail';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
@@ -45,7 +45,7 @@ function Register() {
       if (isSuccess) toast.success('Thanks for joining us!');
     };
 
-    dispatch(reset());
+    dispatch(resetAuthReq());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onInputChange = (event) => {

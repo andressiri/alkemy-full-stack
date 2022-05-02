@@ -1,8 +1,13 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {changeDrawer, changeDeleteAccount} from '../features/muiComponents/muiComponentsSlice';
-import {logout, requireVerification} from '../features/auth/authSlice';
+import {logout, requireVerification, resetAuth} from '../features/auth/authSlice';
+import {resetRecords} from '../features/records/recordsSlice';
+import {
+  changeDrawer,
+  changeDeleteAccount,
+  resetMUIComponents
+} from '../features/muiComponents/muiComponentsSlice';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -24,7 +29,10 @@ function NavigationDrawer() {
   const dispatch = useDispatch();
 
   const toggleDrawer = () => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
       return;
     };
     dispatch(changeDrawer());
@@ -43,7 +51,10 @@ function NavigationDrawer() {
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(resetAuth());
     navigate('/login');
+    dispatch(resetRecords());
+    dispatch(resetMUIComponents());
   };
 
   const handleDeleteAccount = () => {

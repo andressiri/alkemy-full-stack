@@ -66,6 +66,7 @@ export const recordsSlice = createSlice({
   name: 'records',
   initialState,
   reducers: {
+    resetRecords: (state) => state = initialState,
     resetRecordsReq: (state) => {
       state.isLoading = false;
       state.isError = false;
@@ -183,5 +184,8 @@ export const recordsSlice = createSlice({
   }
 });
 
-export const {resetRecordsReq} = recordsSlice.actions;
+export const {
+  resetRecords,
+  resetRecordsReq
+} = recordsSlice.actions;
 export default recordsSlice.reducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {resetMUIComponents} from '../features/muiComponents/muiComponentsSlice';
+import {resetMUIDialogs} from '../features/muiComponents/muiComponentsSlice';
 import {requireDelete} from '../features/auth/authSlice';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -16,13 +16,13 @@ function DeleteAccount() {
   const dispatch = useDispatch();
 
   const handleClose = () => {
-    dispatch(resetMUIComponents());
+    dispatch(resetMUIDialogs());
   };
 
   const handleConfirm = () => {
     dispatch(requireDelete());
     navigate('/verification');
-    dispatch(resetMUIComponents());
+    dispatch(resetMUIDialogs());
   };
 
   return (

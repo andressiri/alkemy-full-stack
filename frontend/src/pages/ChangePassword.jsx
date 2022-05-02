@@ -2,17 +2,19 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
-import {changePassword, reset, resetToken, logout} from '../features/auth/authSlice';
+import {changePassword, resetAuthReq, resetToken, logout, resetAuth} from '../features/auth/authSlice';
+import {resetRecords} from '../features/records/recordsSlice';
+import {resetMUIComponents} from '../features/muiComponents/muiComponentsSlice';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Link from '@mui/material/Link';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 function ChangePassword() {
   const [formData, setFormData] = useState({
@@ -33,16 +35,18 @@ function ChangePassword() {
 
     if (isSuccess) {
       toast.success(message);
-      dispatch(resetToken());
       dispatch(logout());
+      dispatch(resetAuth());
       navigate('/login');
+      dispatch(resetRecords());
+      dispatch(resetMUIComponents());
     };
 
     if (!temporaryToken) {
       navigate('/');
     };
 
-    dispatch(reset());
+    dispatch(resetAuthReq());
   }, [isError, isSuccess, message, temporaryToken, navigate, dispatch]);
 
   const onInputChange = (event) => {

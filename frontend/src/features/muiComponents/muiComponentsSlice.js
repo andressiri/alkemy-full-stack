@@ -27,8 +27,8 @@ export const muiComponentsSlice = createSlice({
   name: 'muiComponents',
   initialState,
   reducers: {
-    resetMUIComponents: (state) => {
-      state.openDrawer = false;
+    resetMUIComponents: (state) => state = initialState,
+    resetMUIDialogs: (state) => {
       state.openDeleteAccount = false;
       state.openDelAccConfirm = false;
       state.openAddRecord = false;
@@ -88,6 +88,7 @@ export const muiComponentsSlice = createSlice({
 
 export const {
   resetMUIComponents,
+  resetMUIDialogs,
   changeDrawer,
   changeDeleteAccount,
   changeDelAccConfirm,

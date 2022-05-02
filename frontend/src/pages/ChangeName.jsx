@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
-import {changeName, reset} from '../features/auth/authSlice';
+import {changeName, resetAuthReq} from '../features/auth/authSlice';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -36,7 +36,7 @@ function ChangeName() {
       navigate('/');
     };
 
-    dispatch(reset());
+    dispatch(resetAuthReq());
   }, [isError, isSuccess, message, user, navigate, dispatch]);
 
   const onNameChange = (event) => {

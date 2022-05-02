@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'material-react-toastify';
-import {resetMUIComponents} from '../features/muiComponents/muiComponentsSlice';
+import {resetMUIDialogs} from '../features/muiComponents/muiComponentsSlice';
 import BackdropSpinner from './BackdropSpinner';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -32,15 +32,15 @@ function ConfirmDeleteRecordDialog() {
 
     handleEffect.current = false;
     dispatch(resetRecordsReq());
-    dispatch(resetMUIComponents());
+    dispatch(resetMUIDialogs());
   }, [isError, isSuccess, message, dispatch]);
 
   const handleClose = () => {
-    dispatch(resetMUIComponents());
+    dispatch(resetMUIDialogs());
   };
 
   const handleCancel = () => {
-    dispatch(resetMUIComponents());
+    dispatch(resetMUIDialogs());
   };
 
   const handleConfirm = () => {

@@ -1,7 +1,8 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {logout, reset} from '../features/auth/authSlice';
-import {changeDrawer} from '../features/muiComponents/muiComponentsSlice';
+import {logout, resetAuth} from '../features/auth/authSlice';
+import {resetRecords} from '../features/records/recordsSlice';
+import {changeDrawer, resetMUIComponents} from '../features/muiComponents/muiComponentsSlice';
 import {useNavigate, useLocation} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -31,7 +32,9 @@ function Header() {
 
   const handleLogout = () => {
     dispatch(logout());
-    dispatch(reset());
+    dispatch(resetAuth());
+    dispatch(resetRecords());
+    dispatch(resetMUIComponents());
     navigate('/');
   };
 

@@ -2,16 +2,17 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'material-react-toastify';
-import {deleteAccount, logout, resetToken, reset} from '../features/auth/authSlice';
-import {resetMUIComponents} from '../features/muiComponents/muiComponentsSlice';
+import {deleteAccount, logout, resetAuthReq, resetAuth} from '../features/auth/authSlice';
+import {resetRecords} from '../features/records/recordsSlice';
+import {resetMUIComponents, resetMUIDialogs} from '../features/muiComponents/muiComponentsSlice';
 import BackdropSpinner from './BackdropSpinner';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
 
 function PasswordToDelete() {
   const [password, setPassword] = useState('');
@@ -27,14 +28,15 @@ function PasswordToDelete() {
     };
 
     if (isSuccess) {
-      dispatch(resetToken());
-      dispatch(logout());
-      dispatch(resetMUIComponents());
       toast.success(message);
+      dispatch(logout());
+      dispatch(resetAuth());
       navigate('/');
+      dispatch(resetRecords());
+      dispatch(resetMUIComponents());
     };
 
-    dispatch(reset());
+    dispatch(resetAuthReq());
   }, [isError, isSuccess, message, navigate, dispatch]);
 
   const passwordChange = (event) => {
@@ -44,7 +46,7 @@ function PasswordToDelete() {
   const handleClose = () => {
     toast.success('Account delete canceled');
     navigate('/');
-    dispatch(resetMUIComponents());
+    dispatch(resetMUIDialogs());
   };
 
   const handleDelete = () => {

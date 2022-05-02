@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
 import {useSelector, useDispatch} from 'react-redux';
-import {sendCode, checkCode, reset} from '../features/auth/authSlice';
+import {sendCode, checkCode, resetAuthReq} from '../features/auth/authSlice';
 import {changeDelAccConfirm} from '../features/muiComponents/muiComponentsSlice';
 import validateEmail from '../functions/validateEmail';
 import BackdropSpinner from '../components/BackdropSpinner';
@@ -60,7 +60,7 @@ function Verification() {
       navigate('/');
     };
 
-    dispatch(reset());
+    dispatch(resetAuthReq());
   }, [isError, isSuccess, message, temporaryToken, verificationRequired, deleteRequired, navigate, dispatch]);
 
   const onEmailChange = (event) => {
