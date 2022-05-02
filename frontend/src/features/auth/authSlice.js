@@ -13,8 +13,9 @@ const initialState = {
   message: '',
   remember: remember ? remember : false,
   temporaryToken: null,
-  verificationRequired: false,
-  deleteRequired: false
+  userVerificationRequired: false,
+  passwordChangeRequired: false,
+  accountDeleteRequired: false
 };
 
 // Register user
@@ -127,12 +128,25 @@ export const authSlice = createSlice({
       state.temporaryToken = null;
     },
     requireVerification: (state) => {
-      state.deleteRequired = false;
-      state.verificationRequired = true;
+      state.passwordChangeRequired = false;
+      state.accountDeleteRequired = false;
+      state.userVerificationRequired = true;
     },
-    requireDelete: (state) => {
-      state.verificationRequired = false;
-      state.deleteRequired = true;
+    changeVerificationStatus: (state) => {
+      state.user = {
+        ...user,
+        verified: true
+      };
+    },
+    requirePasswordChange: (state) => {
+      state.userVerificationRequired = false;
+      state.accountDeleteRequired = false;
+      state.passwordChangeRequired = true;
+    },
+    requireAccountDelete: (state) => {
+      state.userVerificationRequired = false;
+      state.passwordChangeRequired = false;
+      state.accountDeleteRequired = true;
     },
   },
   extraReducers: (builder) => {
@@ -251,6 +265,8 @@ export const {
   resetAuthReq,
   resetToken,
   requireVerification,
-  requireDelete
+  changeVerificationStatus,
+  requirePasswordChange,
+  requireAccountDelete,
 } = authSlice.actions;
 export default authSlice.reducer;

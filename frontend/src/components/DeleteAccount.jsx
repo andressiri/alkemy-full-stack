@@ -2,7 +2,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {resetMUIDialogs} from '../features/muiComponents/muiComponentsSlice';
-import {requireDelete} from '../features/auth/authSlice';
+import {requireAccountDelete} from '../features/auth/authSlice';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -20,7 +20,7 @@ function DeleteAccount() {
   };
 
   const handleConfirm = () => {
-    dispatch(requireDelete());
+    dispatch(requireAccountDelete());
     navigate('/verification');
     dispatch(resetMUIDialogs());
   };

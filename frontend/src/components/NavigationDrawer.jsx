@@ -1,7 +1,7 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {logout, requireVerification, resetAuth} from '../features/auth/authSlice';
+import {logout, requirePasswordChange, resetAuth} from '../features/auth/authSlice';
 import {resetRecords} from '../features/records/recordsSlice';
 import {
   changeDrawer,
@@ -45,7 +45,7 @@ function NavigationDrawer() {
   const handleChangeName = () => navigate('/name');
 
   const handleChangePassword = () => {
-    dispatch(requireVerification());
+    dispatch(requirePasswordChange());
     navigate('/verification');
   };
 

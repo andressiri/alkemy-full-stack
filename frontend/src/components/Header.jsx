@@ -14,22 +14,23 @@ import MenuIcon from '@mui/icons-material/Menu';
 import PaidIcon from '@mui/icons-material/Paid';
 
 function Header() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch = useDispatch();
   const {user} = useSelector((state) => state.auth);
   const {recordsAdditionResult} = useSelector((state) => state.records);
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   let additionColor = '#ef5350';
-  if (recordsAdditionResult > 0) additionColor = '#4caf50'; 
+  if (recordsAdditionResult > 0) additionColor = '#4caf50';
  
-  const handleChangeDrawer = () => {
-    dispatch(changeDrawer());
-  };
+  const handleChangeDrawer = () => dispatch(changeDrawer());
 
-  const handleGoToDashboard = () => {
-    navigate('/');
-  };
-
+  const handleGoToDashboard = () => navigate('/');
+  
+  const handleGoToLogin = () => navigate('/login');
+  
+  const handleGoToRegister = () => navigate('/register');
+  
   const handleLogout = () => {
     dispatch(logout());
     dispatch(resetAuth());
@@ -37,9 +38,6 @@ function Header() {
     dispatch(resetMUIComponents());
     navigate('/');
   };
-
-  const handleGoToRegister = () => navigate('/register');
-  const handleGoToLogin = () => navigate('/login');
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -67,7 +65,7 @@ function Header() {
               </Typography>
             }
           </Box>
-          {user &&
+          {(user && user.verified === true) && 
             <Box 
               sx={{
                 mr: 2,

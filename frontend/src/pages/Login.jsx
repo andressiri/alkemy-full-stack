@@ -2,7 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'material-react-toastify';
-import {login, resetAuthReq, requireVerification} from '../features/auth/authSlice';
+import {
+  login,
+  resetAuthReq,
+  requireVerification,
+  requirePasswordChange
+} from '../features/auth/authSlice';
 import validateEmail from '../functions/validateEmail';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
@@ -92,6 +97,11 @@ function Login() {
 
   const handleGoToRegister = () => navigate('/register');
 
+  const handleForgotPassword = () => {
+    dispatch(requirePasswordChange());
+    navigate('/verification');
+  };
+
   if (user) return (<></>);
 
   return (
@@ -150,7 +160,7 @@ function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="#" onClick={handleForgotPassword} variant="body2">
                 Forgot password?
               </Link>
             </Grid>

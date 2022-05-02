@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
+import {getRecords} from '../features/records/recordsSlice';
 import BackdropSpinner from '../components/BackdropSpinner';
-import Box from '@mui/material/Box';
-import FilterBar from '../components/FilterBar';
-import RecordForm from '../components/RecordForm';
 import CloseConfirmDialog from '../components/CloseConfirmDialog';
-import RecordDisplayBar from '../components/RecordDisplayBar';
 import ConfirmDeleteRecordDialog from '../components/ConfirmDeleteRecordDialog';
+import FilterBar from '../components/FilterBar';
+import RecordDisplayBar from '../components/RecordDisplayBar';
+import RecordForm from '../components/RecordForm';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import {Typography} from '@mui/material';
-import {Button} from '@mui/material';
-import {Navigate} from 'react-router-dom';
-import { getRecords } from '../features/records/recordsSlice';
 
 function Dashboard() {
   const {
@@ -102,6 +101,8 @@ function Dashboard() {
       </Box>
     );
   };
+
+  if (user && user.verified !== true) return (<></>)
 
   return (
     <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}} >

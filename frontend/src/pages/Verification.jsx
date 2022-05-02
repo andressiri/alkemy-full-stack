@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
 import {useSelector, useDispatch} from 'react-redux';
-import {sendCode, checkCode, resetAuthReq} from '../features/auth/authSlice';
+import {sendCode, checkCode, resetAuthReq, changeVerificationStatus} from '../features/auth/authSlice';
 import {changeDelAccConfirm} from '../features/muiComponents/muiComponentsSlice';
 import validateEmail from '../functions/validateEmail';
 import BackdropSpinner from '../components/BackdropSpinner';
@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import MailLockIcon from '@mui/icons-material/MailLock';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import Typography from '@mui/material/Typography';
@@ -27,8 +28,9 @@ function Verification() {
     isSuccess,
     message,
     temporaryToken,
-    verificationRequired,
-    deleteRequired
+    userVerificationRequired,
+    passwordChangeRequired,
+    accountDeleteRequired
   } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,40 +39,33 @@ function Verification() {
     if (isError) {
       toast.error(message);
     };
-
+    
     if (isSuccess) {
       setEmailSent(true);
       
       if (message === 'Code is correct, email verified') {
-        if (temporaryToken) {
-          if (!deleteRequired) {
-            navigate('/password')
-          } else {
-            dispatch(changeDelAccConfirm());
-          }  
+        if (passwordChangeRequired) {
+          navigate('/password')
+        } else if (accountDeleteRequired) {
+          dispatch(changeDelAccConfirm());
         } else {
+          dispatch(changeVerificationStatus());
           navigate('/');
         };
       };
-
+      
       toast.success(message);
     };
-
-    if (!verificationRequired && !deleteRequired) {
+    
+    if (!userVerificationRequired && !accountDeleteRequired && !passwordChangeRequired) {
       navigate('/');
     };
-
+    
     dispatch(resetAuthReq());
-  }, [isError, isSuccess, message, temporaryToken, verificationRequired, deleteRequired, navigate, dispatch]);
-
-  const onEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const onCodeChange = (event) => {
-    setCode(event.target.value);
-  };
-
+  }, [isError, isSuccess, message, temporaryToken, userVerificationRequired, accountDeleteRequired, navigate, dispatch]);
+  
+  const onEmailChange = (event) => setEmail(event.target.value);  
+  
   const handleSendCode = (event) => {
     event.preventDefault();
 
@@ -89,6 +84,8 @@ function Verification() {
       token: user ? user.token : null
     }));
   };
+  
+  const onCodeChange = (event) => setCode(event.target.value);
 
   const handleCheckCode = (event) => {
     event.preventDefault();
@@ -101,7 +98,13 @@ function Verification() {
     dispatch(checkCode(code));
   };
 
-  if (!verificationRequired && !deleteRequired) return (<></>);
+  const handleGoToLogin = () => navigate('/login');
+
+  if (
+    !userVerificationRequired &&
+    !accountDeleteRequired &&
+    !passwordChangeRequired  
+  ) return (<></>);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -164,6 +167,12 @@ function Verification() {
             Check code
           </Button>
         </Box>
+        {!user &&
+          <Link href='#' onClick={handleGoToLogin} variant="body2" sx={{mt : 2}} >
+            Remebered? Cancel
+          </Link>
+        }
+
       </Box>
     </Container>
   );
