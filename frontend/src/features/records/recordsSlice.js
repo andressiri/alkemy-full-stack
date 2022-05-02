@@ -84,8 +84,16 @@ export const recordsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.message = action.payload.message;
-        state.records.unshift(action.payload.recordData);
-        
+        if (state.records[0] === 'No record to show here') {
+          console.log(state.records[0])
+          state.records = [action.payload.recordData];
+        } else {
+          console.log(state.records[0])
+          state.records.unshift(action.payload.recordData);
+        };
+
+        console.log(state.records[0])
+
         const incomesSum = state.records.filter((record) => {
           return record.operation_type === 'Income'
         }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
@@ -108,9 +116,14 @@ export const recordsSlice = createSlice({
       .addCase(getRecords.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.message = action.payload.message;
+        if (!action.payload.records[0]) {
+          state.records = ['No record to show here'];
+          state.message = action.payload.message;
+          return;
+        };
         state.records = action.payload.records.reverse();
-
+        state.message = action.payload.message;
+        
         const incomesSum = state.records.filter((record) => {
           return record.operation_type === 'Income'
         }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
@@ -165,6 +178,12 @@ export const recordsSlice = createSlice({
         state.records = state.records.filter((record) => {
           return record.record_uuid !== action.payload.record_uuid;
         });
+
+        if (!state.records[0]) {
+          state.records = ['No record to show here'];
+          state.recordsAdditionResult = 0;
+          return;
+        };
         
         const incomesSum = state.records.filter((record) => {
           return record.operation_type === 'Income'

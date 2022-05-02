@@ -31,6 +31,11 @@ function Dashboard() {
   useEffect(() => {
     if (user && !records[0]) dispatch(getRecords(user.token));
   }, [user, records, dispatch]);
+
+  useEffect(() => {
+    console.log(user)
+    if (user && user.verified !== true) navigate('/verification');
+  }, []);
   
   let arrayToDisplay = records.map(record => {return record});
 
@@ -51,6 +56,8 @@ function Dashboard() {
       return record.category === categoryFilter;
     });
   };
+
+  if (!arrayToDisplay[0]) arrayToDisplay = ['No record to show here'];
 
   const handleLogin = () => navigate('/login');
   const handleRegister = () => navigate('/register');
@@ -104,7 +111,9 @@ function Dashboard() {
       {openDeleteRecordConfirm && <ConfirmDeleteRecordDialog />}
       <CloseConfirmDialog />
       <FilterBar />
-      {arrayToDisplay.map(record => {return <RecordDisplayBar key={record.record_uuid} parentToChild={record} />})}
+      { arrayToDisplay[0] === 'No record to show here'
+      ? <p>No record to show here</p>
+      : arrayToDisplay.map(record => {return <RecordDisplayBar key={record.record_uuid} parentToChild={record} />})}
     </Box>
   );
 };
