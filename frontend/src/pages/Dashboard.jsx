@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Box from '@mui/material/Box';
 import FilterBar from '../components/FilterBar';
@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {Typography} from '@mui/material';
 import {Button} from '@mui/material';
 import {Navigate} from 'react-router-dom';
+import { getRecords } from '../features/records/recordsSlice';
 
 function Dashboard() {
   const {
@@ -24,7 +25,12 @@ function Dashboard() {
   const {conceptFilter, typeFilter, categoryFilter} = filters;
   const {user} = useSelector((state) => state.auth);
   const {records, isLoading} = useSelector((state) => state.records);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && !records[0]) dispatch(getRecords(user.token));
+  }, [user, records, dispatch]);
   
   let arrayToDisplay = records.map(record => {return record});
 

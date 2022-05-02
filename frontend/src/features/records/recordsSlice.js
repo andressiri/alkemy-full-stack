@@ -1,14 +1,13 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import recordsService from './recordsService';
 
-const records = JSON.parse(localStorage.getItem('records'))
-
 const initialState = {
-  records: records ? records : [],
+  records: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
+  recordsAdditionResult: 0
 };
 
 // Save record
@@ -85,6 +84,16 @@ export const recordsSlice = createSlice({
         state.isSuccess = true;
         state.message = action.payload.message;
         state.records.unshift(action.payload.recordData);
+        
+        const incomesSum = state.records.filter((record) => {
+          return record.operation_type === 'Income'
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+
+        const outcomesSum = state.records.filter((record) => {
+          return record.operation_type === 'Outcome'
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+
+        state.recordsAdditionResult = incomesSum - outcomesSum;
       })
       .addCase(saveRecord.rejected, (state, action) => {
         state.isLoading = false;
@@ -100,6 +109,16 @@ export const recordsSlice = createSlice({
         state.isSuccess = true;
         state.message = action.payload.message;
         state.records = action.payload.records.reverse();
+
+        const incomesSum = state.records.filter((record) => {
+          return record.operation_type === 'Income'
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+
+        const outcomesSum = state.records.filter((record) => {
+          return record.operation_type === 'Outcome'
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+
+        state.recordsAdditionResult = incomesSum - outcomesSum;
       })
       .addCase(getRecords.rejected, (state, action) => {
         state.isLoading = false;
@@ -118,6 +137,16 @@ export const recordsSlice = createSlice({
           return record.record_uuid;
         }).indexOf(action.payload.recordData.record_uuid);
         state.records[indexAtRecords] = action.payload.recordData;
+        
+        const incomesSum = state.records.filter((record) => {
+          return record.operation_type === 'Income'
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+
+        const outcomesSum = state.records.filter((record) => {
+          return record.operation_type === 'Outcome'
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+
+        state.recordsAdditionResult = incomesSum - outcomesSum;
       })
       .addCase(updateRecord.rejected, (state, action) => {
         state.isLoading = false;
@@ -134,7 +163,17 @@ export const recordsSlice = createSlice({
         state.message = action.payload.message;
         state.records = state.records.filter((record) => {
           return record.record_uuid !== action.payload.record_uuid;
-        })
+        });
+        
+        const incomesSum = state.records.filter((record) => {
+          return record.operation_type === 'Income'
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+
+        const outcomesSum = state.records.filter((record) => {
+          return record.operation_type === 'Outcome'
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+
+        state.recordsAdditionResult = incomesSum - outcomesSum;
       })
       .addCase(deleteRecord.rejected, (state, action) => {
         state.isLoading = false;

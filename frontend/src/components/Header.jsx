@@ -18,7 +18,9 @@ function Header() {
   const dispatch = useDispatch();
   const {user} = useSelector((state) => state.auth);
   const {recordsAdditionResult} = useSelector((state) => state.records);
-
+  let additionColor = '#ef5350';
+  if (recordsAdditionResult > 0) additionColor = '#4caf50'; 
+ 
   const handleChangeDrawer = () => {
     dispatch(changeDrawer());
   };
@@ -40,36 +42,47 @@ function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={handleGoToDashboard}
-          >
-            <PaidIcon fontSize="large" color="secondary" />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, cursor: 'pointer' }}
-            onClick={handleGoToDashboard}
-          >
-            Spends Checker
-          </Typography>
-          <Box sx={{ 
-              p: 2.5,
-              backgroundColor: 'red',
-              height: 10,
-              borderRadius: 5,
-              alignItems: 'center',
-              justifyContent: 'center',
-              display: 'flex'
-            }}
-          >
-            Save
+          <Box sx={{flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }} >
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+              onClick={handleGoToDashboard}
+              >
+              <PaidIcon fontSize="large" color="secondary" />
+            </IconButton>
+            {window.innerWidth > 600 &&
+              <Typography
+              variant="h6"
+              component="div"
+              sx={{cursor: 'pointer' }}
+              onClick={handleGoToDashboard}
+              >
+                Spends Checker
+              </Typography>
+            }
           </Box>
+          {user &&
+            <Box 
+              sx={{
+                mr: 2,
+                p: 2.5,
+                backgroundColor: additionColor,
+                height: 5,
+                width: 40,
+                borderRadius: 2,
+                alignItems: 'center',
+                justifyContent: 'center',
+                display: 'flex'
+              }}
+            >
+              <Typography>
+                {recordsAdditionResult}
+              </Typography>
+            </Box>
+          }
           {user
             ? <Button onClick={handleLogout} color="inherit">
                 Logout
@@ -87,7 +100,7 @@ function Header() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2}}
             onClick={handleChangeDrawer}
           >
             <MenuIcon />

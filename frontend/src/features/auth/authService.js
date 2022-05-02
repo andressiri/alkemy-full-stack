@@ -24,7 +24,6 @@ const login = async (userData) => {
 const logout = () => {
   localStorage.removeItem('user');
   localStorage.removeItem('remember');
-  localStorage.removeItem('records');
 }
 
 // Send verification code

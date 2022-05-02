@@ -26,7 +26,6 @@ function App() {
     if (remember) {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('remember', JSON.stringify(remember));
-      localStorage.setItem('records', JSON.stringify(records));
       return;
     };
     dispatch(logout());
