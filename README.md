@@ -11,12 +11,12 @@
 
   ## Instalación
   Para instalar esta aplicación para probarla en desarrollo necesitas:
-    * Crear e ir a un nuevo directorio.
-    * Inicializar un nuevo repositorio con el comando "git init".
-    * Obten [este repositorio](https://github.com/andressiri/alkemy-full-stack) con el comando "git pull https://github.com/andressiri/alkemy-full-stack"
-    * Instala las dependencias del directorio raíz con el comando "npm install".
-    * Dirigete al directorio "frontend" e instala las dependencias con el comando "npm install" nuevamente.
-    * Crea un archivo .env en el directorio razíz con las siguientes variables:
+    1. Crear e ir a un nuevo directorio.
+    2. Inicializar un nuevo repositorio con el comando "git init".
+    3. Obten [este repositorio](https://github.com/andressiri/alkemy-full-stack) con el comando "git pull https://github.com/andressiri/alkemy-full-stack"
+    4. Instala las dependencias del directorio raíz con el comando "npm install".
+    5. Dirigete al directorio "frontend" e instala las dependencias con el comando "npm install" nuevamente.
+    6. Crea un archivo .env en el directorio razíz con las siguientes variables:
       - NODE_ENV = development
       - DB_NAME = "el nombre de tu base de datos PostgreSQL"
       - DB_USERNAME = "tu nombre de usuario para esa base de datos de PostgreSQL"
@@ -25,27 +25,27 @@
       - MAILER_MAIL = "tu email de **gmail**"
       - MAIL_PASSWORD" = "tu "contraseña de aplicación" generada desde google" (no es la constraseña de tu email)
 
-    * Crea las tablas en tu base de datos PostgreSQL:
+    7. Crea las tablas en tu base de datos PostgreSQL:
       - La tabla "people":
-        * user_uuid UUID PRIMARY KEY
-        * name VARCHAR(50) NOT NULL
-        * email VARCHAR(100) NOT NULL UNIQUE
-        * password VARCHAR(100) NOT NULL
-        * verified BOOLEAN
-        * createdAt TIMESTAMP NOT NULL
-        * updatedAt TIMESTAMP
+        - user_uuid UUID PRIMARY KEY
+        - name VARCHAR(50) NOT NULL
+        - email VARCHAR(100) NOT NULL UNIQUE
+        - password VARCHAR(100) NOT NULL
+        - verified BOOLEAN
+        - createdAt TIMESTAMP NOT NULL
+        - updatedAt TIMESTAMP
       
       - La tabla "records":
-        * record_uuid UUID PRIMARY KEY
-        * concept VARCHAR(50) NOT NULL
-        * amount REAL NOT NULL
-        * operation_date DATE NOT NULL
-        * operation_type VARCHAR(7) NOT NULL
-        * category VARCHAR(50)
-        * user_UUID UUID
-        * createdAt TIMESTAMP NOT NULL
-        * updatedAt TIMESTAMP NOT NULL
-        * agrega una restricción para operation_type: 
+        - record_uuid UUID PRIMARY KEY
+        - concept VARCHAR(50) NOT NULL
+        - amount REAL NOT NULL
+        - operation_date DATE NOT NULL
+        - operation_type VARCHAR(7) NOT NULL
+        - category VARCHAR(50)
+        - user_UUID UUID
+        - createdAt TIMESTAMP NOT NULL
+        - updatedAt TIMESTAMP NOT NULL
+        - agrega una restricción para operation_type: 
           operation_type VARCHAER(7) CONSTRAINT type_valid_values
             CHECK(operation_type = "Income" OR operation_type = "Outcome")
      
@@ -64,12 +64,12 @@
 
   ## Installation
   To install this app for development mode testing you need to:
-    - Create and go to a new directory.
-    - Initialize a new repository with "git init" command.
-    - Git pull [this repository](https://github.com/andressiri/alkemy-full-stack) with "git pull https://github.com/andressiri/alkemy-full-stack" command.
-    - Install root directory dependencies with "npm install" command.
-    - Move to frontend directory and install client dependencies with the "npm install" command again.
-    - Create a .env file at the root directory with the following variables:
+    1. Create and go to a new directory.
+    2. Initialize a new repository with "git init" command.
+    3. Git pull [this repository](https://github.com/andressiri/alkemy-full-stack) with "git pull https://github.com/andressiri/alkemy-full-stack" command.
+    4. Install root directory dependencies with "npm install" command.
+    5. Move to frontend directory and install client dependencies with the "npm install" command again.
+    6. Create a .env file at the root directory with the following variables:
       - NODE_ENV = development
       - DB_NAME = "your PostgreSQL database name"
       - DB_USERNAME = "your PostgreSQL user name"
@@ -78,7 +78,7 @@
       - MAILER_MAIL = "your **gmail** email"
       - MAIL_PASSWORD" = "the "application password" generated with google" (not your email password)
 
-    - Create tables at your PostgreSQL database:
+    7. Create tables at your PostgreSQL database:
       - "people" table:
         - user_uuid UUID PRIMARY KEY
         - name VARCHAR(50) NOT NULL
