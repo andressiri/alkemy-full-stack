@@ -20,12 +20,7 @@ function FilterBarAutocomplete({parentToChild}) {
 
   const StyledAutocomplete = styled(Autocomplete)({
     "& .MuiInputLabel-outlined:not(.MuiInputLabel-shrink)": {
-      // Default transform is "translate(14px, 20px) scale(1)""
-      // This lines up the label with the initial cursor position in the input
-      // after changing its padding-left.
-      //transform: "translate(34px, 20px) scale(1);"
-      opacity: 0.6,
-      color: "#ba68c8",
+      color: "#ba68c899",
     },
     "& .MuiInputLabel-shrink": {
       color: "#ba68c8",
@@ -34,24 +29,18 @@ function FilterBarAutocomplete({parentToChild}) {
       color: "#ba68c8",
       margin: -3
     },
-    '& .css-1wnwmuc-MuiInputBase-root-MuiOutlinedInput-root': {
+    '& .MuiOutlinedInput-root': {
       paddingRight: "45px !important"
     },
     "& .MuiAutocomplete-inputRoot": {
-      color: "#9c27b0",
-      // This matches the specificity of the default styles at https://github.com/mui-org/material-ui/blob/v4.11.3/packages/material-ui-lab/src/Autocomplete/Autocomplete.js#L90
-      '&[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input:first-of-type': {
-        // Default left padding is 6px
-        paddingTop: '3px',
-        paddingLeft: '5px',
-      },
+      color: "#ba68c8",
       "& .MuiOutlinedInput-notchedOutline": {
         borderColor: "#ba68c8"
       },
-      "&:hover .MuiOutlinedInput-notchedOutline": {
+      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
         borderColor: "#9c27b0"
       },
-      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      "&:hover .MuiOutlinedInput-notchedOutline": {
         borderColor: "#7b1fa2"
       }
     }

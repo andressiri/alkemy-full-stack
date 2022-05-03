@@ -17,7 +17,7 @@ const initialState = {
   },
   recordSelected: '',
   conceptFilter: '',
-  typeFilter: 'None',
+  typeFilter: '',
   categoryFilter: ''
 };
 
@@ -76,13 +76,14 @@ export const muiComponentsSlice = createSlice({
     },
     updateTypeFilter: (state, action) => {
       state.typeFilter = action.payload;
+      if (action.payload === 'None') state.typeFilter = '';
     },
     updateCategoryFilter: (state, action) => {
       state.categoryFilter = action.payload;
     },
     resetFilters: (state) => {
       state.conceptFilter = ''
-      state.typeFilter = 'None';
+      state.typeFilter = '';
       state.categoryFilter = '';
     },
   }

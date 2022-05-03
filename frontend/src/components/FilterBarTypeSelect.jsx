@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import styled from '@emotion/styled';
 import {useSelector, useDispatch} from 'react-redux';
 import {updateTypeFilter} from '../features/muiComponents/muiComponentsSlice';
@@ -8,54 +8,83 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
 function FilterBarTypeSelect() {
-  const [color, setColor] = useState('#bdbdbd');
+  const [color, setColor] = useState('#ba68c8');
+  const [focusColor, setFocusColor] = useState('#9c27b0');
+  const [hoverColor, setHoverColor] = useState('#7b1fa2');
   const {typeFilter} = useSelector((state) => state.muiComponents);
   const dispatch = useDispatch();
 
-  const StyledFormControl = styled(FormControl)({ //TODO
+  useLayoutEffect(() => {
+    let auxColor = '#ba68c8';
+    let auxFocusColor = '#9c27b0';
+    let auxHoverColor = '#7b1fa2';
 
-  });
-  
-  const StyledLabel = styled(InputLabel)({ //TODO
+    if (typeFilter === 'Income') {
+      auxColor = '#4caf50';
+      auxFocusColor = '#2e7d32';
+      auxHoverColor = '#1b5e20';
+    };
 
-  });
+    if (typeFilter === 'Outcome') {
+      auxColor = '#ef5350';
+      auxFocusColor = '#d32f2f';
+      auxHoverColor = '#c62828';
+    };
 
-  const StyledSelect = styled(Select)({
-    "& .MuiSvgIcon-root": {
-      color: "#ba68c8"
+    setColor(auxColor);
+    setFocusColor(auxFocusColor);
+    setHoverColor(auxHoverColor);
+  }, [typeFilter]);
+
+  const StyledFormControl = styled(FormControl)({
+    "& .MuiInputLabel-outlined:not(.MuiInputLabel-shrink)": {
+      color: `${color}99`,
     },
+    "& .MuiInputLabel-shrink": {
+      color: color,
+    },
+    "& .MuiSvgIcon-root": {
+      color: color
+    },
+    '& .MuiOutlinedInput-notchedOutline:not(.Mui-disabled)': {
+      borderColor: color,
+    },
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline:not(.Mui-disabled)': {
+      borderColor: focusColor,
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline:not(.Mui-disabled)': {
+      borderColor: hoverColor,
+    }
   });
 
-  const handleChange = (event) => {
-    const value = event.target.value
-    dispatch(updateTypeFilter(value));
-    const colorValue = value === 'None'
-      ? '#bdbdbd'
-      : value === 'Income'
-        ? '#4caf50'
-        : '#ef5350';
-    setColor(colorValue);
-  };
+  const handleChange = (event) => dispatch(updateTypeFilter(event.target.value));
 
   return (
     <StyledFormControl sx={{ m: 1, width: 150 }}>
-      <StyledLabel id="operationTypeLabel">Operation type</StyledLabel>
-      <StyledSelect
+      <InputLabel
+        id="operationTypeLabel"
+        size="small"
+        sx={{color: `${color}99`}}
+      >
+        Operation type
+      </InputLabel>
+      <Select
         labelId="operationTypeLabel"
         id="operationType"
         value={typeFilter}
         label="Operation type"
         onChange={handleChange}
-        size='small'
-        color='secondary'
+        size="small"
+        color="secondary"
         sx={{
+          borderColor: color,
           color: color
         }}
       >
-        <MenuItem value={'None'}>None</MenuItem>
         <MenuItem value={'Income'} sx={{color: '#4caf50'}}>Income</MenuItem>
         <MenuItem value={'Outcome'} sx={{color: '#ef5350'}}>Outcome</MenuItem>
-      </StyledSelect>
+        <MenuItem value={'None'}>None</MenuItem>
+      </Select>
     </StyledFormControl>
   );
 };
