@@ -27,4 +27,7 @@ userRouter.put('/name/:name', protectRoute, require('../controllers/user/changeN
 // delete account handle
 userRouter.delete('/delete/:uuid', protectRoute, require('../controllers/user/deleteUser.js'));
 
+// user logout handle
+userRouter.delete('/logout', protectRoute, require('../controllers/user/logout.js'));
+
 module.exports = userRouter;

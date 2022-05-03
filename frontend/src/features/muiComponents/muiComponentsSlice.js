@@ -17,9 +17,9 @@ const initialState = {
   },
   recordSelected: '',
   filters: {
-    conceptFilter: 'None',
+    conceptFilter: '',
     typeFilter: 'None',
-    categoryFilter: 'None'
+    categoryFilter: ''
   }
 };
 
@@ -27,7 +27,7 @@ export const muiComponentsSlice = createSlice({
   name: 'muiComponents',
   initialState,
   reducers: {
-    resetMUIComponents: (state) => state = initialState,
+    resetMUIComponents: () => initialState,
     resetMUIDialogs: (state) => {
       state.openDeleteAccount = false;
       state.openDelAccConfirm = false;
@@ -78,9 +78,9 @@ export const muiComponentsSlice = createSlice({
     },
     resetFilters: (state, action) => {
       state.filters = {
-        conceptFilter: 'None',
+        conceptFilter: '',
         typeFilter: 'None',
-        categoryFilter: 'None'
+        categoryFilter: ''
       }
     },
   }

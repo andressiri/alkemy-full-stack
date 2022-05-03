@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'material-react-toastify';
-import {deleteAccount, logout, resetAuthReq, resetAuth} from '../features/auth/authSlice';
-import {resetRecords} from '../features/records/recordsSlice';
-import {resetMUIComponents, resetMUIDialogs} from '../features/muiComponents/muiComponentsSlice';
+import {deleteAccount, resetAuthReq} from '../features/auth/authSlice';
+import useLogout from '../functions/useLogout';
+import {resetMUIDialogs} from '../features/muiComponents/muiComponentsSlice';
 import BackdropSpinner from './BackdropSpinner';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -21,6 +21,7 @@ function PasswordToDelete() {
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const logout = useLogout();
 
   useEffect(() => {
     if (isError) {
@@ -29,11 +30,7 @@ function PasswordToDelete() {
 
     if (isSuccess) {
       toast.success(message);
-      dispatch(logout());
-      dispatch(resetAuth());
-      navigate('/');
-      dispatch(resetRecords());
-      dispatch(resetMUIComponents());
+      logout();
     };
 
     dispatch(resetAuthReq());

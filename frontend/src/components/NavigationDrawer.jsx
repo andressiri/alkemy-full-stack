@@ -1,32 +1,28 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {logout, requirePasswordChange, resetAuth} from '../features/auth/authSlice';
-import {resetRecords} from '../features/records/recordsSlice';
-import {
-  changeDrawer,
-  changeDeleteAccount,
-  resetMUIComponents
-} from '../features/muiComponents/muiComponentsSlice';
+import {requirePasswordChange} from '../features/auth/authSlice';
+import {changeDrawer, changeDeleteAccount} from '../features/muiComponents/muiComponentsSlice';
+import useLogout from '../functions/useLogout';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LoginIcon from '@mui/icons-material/Login';
 import FaceIcon from '@mui/icons-material/Face';
-import PasswordIcon from '@mui/icons-material/Password';
+import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NoAccountsIcon from '@mui/icons-material/NoAccounts';
+import PasswordIcon from '@mui/icons-material/Password';
 
 function NavigationDrawer() {
   const {user} = useSelector((state) => state.auth);
   const {openDrawer} = useSelector((state) => state.muiComponents);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const logout = useLogout();
 
   const toggleDrawer = () => (event) => {
     if (
@@ -39,8 +35,8 @@ function NavigationDrawer() {
   };
 
   const handleLogin = () => navigate('/login');
-  const handleRegister = () => navigate('/register');
 
+  const handleRegister = () => navigate('/register');
 
   const handleChangeName = () => navigate('/name');
 
@@ -50,16 +46,41 @@ function NavigationDrawer() {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
-    dispatch(resetAuth());
-    navigate('/login');
-    dispatch(resetRecords());
-    dispatch(resetMUIComponents());
+    logout();
+    dispatch(changeDrawer());
   };
 
-  const handleDeleteAccount = () => {
-    dispatch(changeDeleteAccount());
-  };
+  const handleDeleteAccount = () => dispatch(changeDeleteAccount());
+
+  let arrayToDisplay = [{
+      text:'Change name',
+      icon: <FaceIcon />,
+      onClick: handleChangeName
+    }, {
+      text: 'Change password',
+      icon: <PasswordIcon />,
+      onClick: handleChangePassword
+    }, {
+      text: 'Logout',
+      icon: <LogoutIcon />,
+      onClick: handleLogout
+    }, {
+      text: 'Delete account',
+      icon: <NoAccountsIcon />,
+      onClick: handleDeleteAccount
+    }
+  ];
+
+  if (!user) arrayToDisplay = [{
+      text:'Register',
+      icon: <AccountCircleIcon />,
+      onClick: handleRegister
+    }, {
+      text: 'Login',
+      icon: <LoginIcon />,
+      onClick: handleLogin
+    },
+  ];
 
   return (
     <Drawer
@@ -74,47 +95,14 @@ function NavigationDrawer() {
         onKeyDown={toggleDrawer()}
       >
         <List>
-          {!user
-
-            ? <Divider>
-                <ListItem button onClick={handleLogin}>
-                  <ListItemIcon>
-                    <LoginIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Login" />
-                </ListItem>
-                <ListItem button onClick={handleRegister}>
-                  <ListItemIcon>
-                    <AccountCircleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Register" />
-                </ListItem>
-              </Divider>
-            : [{
-                text:'Change name',
-                icon: <FaceIcon />,
-                onClick: handleChangeName
-              }, {
-                text: 'Change password',
-                icon: <PasswordIcon />,
-                onClick: handleChangePassword
-              }, {
-                text: 'Logout',
-                icon: <LogoutIcon />,
-                onClick: handleLogout
-              }, {
-                text: 'Delete account',
-                icon: <NoAccountsIcon />,
-                onClick: handleDeleteAccount
-              }].map((obj) => (
-                <ListItem button onClick={obj.onClick} key={obj.text}>
-                  <ListItemIcon>
-                    {obj.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={obj.text} />
-                </ListItem>
-              ))
-          }
+          {arrayToDisplay.map((obj) => (
+            <ListItem button onClick={obj.onClick} key={obj.text}>
+              <ListItemIcon>
+                {obj.icon}
+              </ListItemIcon>
+              <ListItemText primary={obj.text} />
+            </ListItem>
+          ))}
         </List>
       </Box>
     </Drawer>

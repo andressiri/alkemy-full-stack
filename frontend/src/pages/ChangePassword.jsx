@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'material-react-toastify';
-import {changePassword, resetAuthReq, resetToken, logout, resetAuth} from '../features/auth/authSlice';
-import {resetRecords} from '../features/records/recordsSlice';
-import {resetMUIComponents} from '../features/muiComponents/muiComponentsSlice';
+import {changePassword, resetAuthReq, resetToken} from '../features/auth/authSlice';
+import useLogout from '../functions/useLogout';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -22,11 +21,17 @@ function ChangePassword() {
     password2: ''
   });
   const {password, password2} = formData;
-  const {isLoading, isError, isSuccess, message, temporaryToken} = useSelector(
-    (state) => state.auth 
-  );
+  const {
+    user,
+    isLoading,
+    isError,
+    isSuccess,
+    message,
+    temporaryToken
+  } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const logout = useLogout();
 
   useEffect(() => {
     if (isError) {
@@ -35,11 +40,8 @@ function ChangePassword() {
 
     if (isSuccess) {
       toast.success(message);
-      dispatch(logout());
-      dispatch(resetAuth());
+      logout();
       navigate('/login');
-      dispatch(resetRecords());
-      dispatch(resetMUIComponents());
     };
 
     if (!temporaryToken) {
@@ -78,8 +80,12 @@ function ChangePassword() {
   };
 
   const handleGoToLogin = () => {
-    dispatch(resetToken());
-    navigate('/login');
+    if (!user) {
+      logout();
+    } else {
+      dispatch(resetToken());
+      navigate('/login');
+    };
   };
 
   if (!temporaryToken) return (<></>);

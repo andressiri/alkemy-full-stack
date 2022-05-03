@@ -22,9 +22,10 @@ const login = async (userData) => {
 
 // Logout user
 const logout = () => {
+  axios.delete(API_URL + 'logout');
   localStorage.removeItem('user');
   localStorage.removeItem('remember');
-}
+};
 
 // Send verification code
 const sendCode = async (email, token) => {

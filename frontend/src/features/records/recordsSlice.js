@@ -66,7 +66,7 @@ export const recordsSlice = createSlice({
   name: 'records',
   initialState,
   reducers: {
-    resetRecords: (state) => state = initialState,
+    resetRecords: () => initialState,
     resetRecordsReq: (state) => {
       state.isLoading = false;
       state.isError = false;
@@ -85,14 +85,10 @@ export const recordsSlice = createSlice({
         state.isSuccess = true;
         state.message = action.payload.message;
         if (state.records[0] === 'No record to show here') {
-          console.log(state.records[0])
           state.records = [action.payload.recordData];
         } else {
-          console.log(state.records[0])
           state.records.unshift(action.payload.recordData);
         };
-
-        console.log(state.records[0])
 
         const incomesSum = state.records.filter((record) => {
           return record.operation_type === 'Income'

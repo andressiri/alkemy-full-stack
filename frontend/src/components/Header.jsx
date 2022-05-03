@@ -1,8 +1,7 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {logout, resetAuth} from '../features/auth/authSlice';
-import {resetRecords} from '../features/records/recordsSlice';
-import {changeDrawer, resetMUIComponents} from '../features/muiComponents/muiComponentsSlice';
+import {changeDrawer} from '../features/muiComponents/muiComponentsSlice';
+import useLogout from '../functions/useLogout.js'
 import {useNavigate, useLocation} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -19,6 +18,7 @@ function Header() {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const logout = useLogout();
 
   let additionColor = '#ef5350';
   if (recordsAdditionResult > 0) additionColor = '#4caf50';
@@ -31,13 +31,7 @@ function Header() {
   
   const handleGoToRegister = () => navigate('/register');
   
-  const handleLogout = () => {
-    dispatch(logout());
-    dispatch(resetAuth());
-    dispatch(resetRecords());
-    dispatch(resetMUIComponents());
-    navigate('/');
-  };
+  const handleLogout = () => logout();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
