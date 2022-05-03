@@ -62,12 +62,20 @@ function RecordForm({parentToChild}) {
       return;
     };
 
+    let auxAmount = amount.replace(/\.$/, '');
+    auxAmount = auxAmount.replace(/^0*/, '');  //if amount starts with '0.' it will end up starting with '.', but server handles it parsing the string again.
+    if (!auxAmount) {
+      toast.error('Please enter a valid amount');
+      return;
+    };
+    //auxAmount = auxAmount.replace()
+
     handleEffect.current = true;
 
     const recordData = {
       record_uuid: recordSelected,
       concept,
-      amount,
+      amount: auxAmount,
       operation_date: date,
       operation_type: operationType,
       category
@@ -81,11 +89,13 @@ function RecordForm({parentToChild}) {
   };
 
   const onAmountChange = (event) => {
-    const newState = {
-      ...recordFormState,
-      amount: event.target.value
+    if (event.target.value.match(/^[0-9]*$|^[0-9]+\.[0-9]{0,2}$/)) {
+      const newState = {
+        ...recordFormState,
+        amount: event.target.value
+      };
+      dispatch(updateRecordFormState(newState));
     };
-    dispatch(updateRecordFormState(newState));
   };
 
   const handleOnCancel = () => {
@@ -147,7 +157,7 @@ function RecordForm({parentToChild}) {
               id="amount"
               value={amount}
               label="Amount"
-              type="number"
+              type="text"
               name="amount"
               onChange={onAmountChange}
             />

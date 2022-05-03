@@ -7,6 +7,8 @@ const Record = require('../../models/Record.js');
 module.exports = asyncHandler(async (req, res) => {
   const record_uuid = req.params.uuid;
   const {concept, amount, operation_date, category} = req.body; // operation_type can't be updated
+  const parsedAmount = parseFloat(amount);
+  const auxDate = new Date(operation_date);
 
   if (!concept || !amount || !operation_date) {
     res.status(400);
@@ -31,8 +33,8 @@ module.exports = asyncHandler(async (req, res) => {
   const updateResult = await Record.update(
     {
       concept: concept,
-      amount: amount,
-      operation_date: operation_date,
+      amount: parsedAmount,
+      operation_date: auxDate,
       category: category
     },
     {
@@ -44,7 +46,7 @@ module.exports = asyncHandler(async (req, res) => {
 
   const recordData = {
     ...updateResult[1][0],
-    user_uuid: 'null'
+    user_uuid: null
   };
 
   res.status(200).json({message: `Record updated`, recordData});

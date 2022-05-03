@@ -35,7 +35,7 @@ function RecordDisplayBar({parentToChild}) {
   const handleEditRecord = () => {
     const recordData = {
       concept,
-      amount: parseFloat(amount),
+      amount: parseFloat(amount).toFixed(2),
       date: operation_date,
       operationType: operation_type,
       category

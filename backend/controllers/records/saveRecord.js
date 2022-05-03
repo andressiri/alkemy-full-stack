@@ -7,6 +7,7 @@ const Record = require('../../models/Record.js');
 module.exports = asyncHandler(async (req, res) => {
   const {concept, amount, operation_date, operation_type, category} = req.body;
   const parsedAmount = parseFloat(amount);
+  const auxDate = new Date(operation_date);
 
   if (!concept || !amount || !operation_date || !operation_type) {
     res.status(400);
@@ -26,11 +27,16 @@ module.exports = asyncHandler(async (req, res) => {
   const createResult = await Record.create({
     concept,
     amount: parsedAmount,
-    operation_date,
+    operation_date: auxDate,
     operation_type,
     category,
     user_uuid: req.user.user_uuid
   });
 
-  res.status(201).json({message: 'Record created', recordData: createResult.dataValues});
+  const recordData = {
+    ...createResult.dataValues,
+    user_uuid: null,
+  };
+
+  res.status(201).json({message: 'Record created', recordData});
 })

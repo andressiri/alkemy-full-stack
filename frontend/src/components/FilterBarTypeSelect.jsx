@@ -64,6 +64,7 @@ function FilterBarTypeSelect() {
       <InputLabel
         id="operationTypeLabel"
         size="small"
+        color="secondary"
         sx={{color: `${color}99`}}
       >
         Operation type

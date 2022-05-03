@@ -92,13 +92,14 @@ export const recordsSlice = createSlice({
 
         const incomesSum = state.records.filter((record) => {
           return record.operation_type === 'Income'
-        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0);
 
         const outcomesSum = state.records.filter((record) => {
           return record.operation_type === 'Outcome'
-        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0);
 
-        state.recordsAdditionResult = incomesSum - outcomesSum;
+        const finalResult = incomesSum - outcomesSum;
+        state.recordsAdditionResult = parseFloat(finalResult).toFixed(2);
       })
       .addCase(saveRecord.rejected, (state, action) => {
         state.isLoading = false;
@@ -122,13 +123,14 @@ export const recordsSlice = createSlice({
         
         const incomesSum = state.records.filter((record) => {
           return record.operation_type === 'Income'
-        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0);
 
         const outcomesSum = state.records.filter((record) => {
           return record.operation_type === 'Outcome'
-        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
-
-        state.recordsAdditionResult = incomesSum - outcomesSum;
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0);
+        
+        const finalResult = incomesSum - outcomesSum;
+        state.recordsAdditionResult = parseFloat(finalResult).toFixed(2);
       })
       .addCase(getRecords.rejected, (state, action) => {
         state.isLoading = false;
@@ -150,13 +152,14 @@ export const recordsSlice = createSlice({
         
         const incomesSum = state.records.filter((record) => {
           return record.operation_type === 'Income'
-        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0);
 
         const outcomesSum = state.records.filter((record) => {
           return record.operation_type === 'Outcome'
-        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0);
 
-        state.recordsAdditionResult = incomesSum - outcomesSum;
+        const finalResult = incomesSum - outcomesSum;
+        state.recordsAdditionResult = parseFloat(finalResult).toFixed(2);
       })
       .addCase(updateRecord.rejected, (state, action) => {
         state.isLoading = false;
@@ -183,13 +186,14 @@ export const recordsSlice = createSlice({
         
         const incomesSum = state.records.filter((record) => {
           return record.operation_type === 'Income'
-        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0);
 
         const outcomesSum = state.records.filter((record) => {
           return record.operation_type === 'Outcome'
-        }).reduce((sum, record) => sum + parseFloat(record.amount), 0.0);
+        }).reduce((sum, record) => sum + parseFloat(record.amount), 0);
 
-        state.recordsAdditionResult = incomesSum - outcomesSum;
+        const finalResult = incomesSum - outcomesSum;
+        state.recordsAdditionResult = parseFloat(finalResult).toFixed(2);
       })
       .addCase(deleteRecord.rejected, (state, action) => {
         state.isLoading = false;

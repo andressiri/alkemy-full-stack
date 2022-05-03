@@ -10,7 +10,7 @@ const initialState = {
   openDeleteRecordConfirm: false,
   recordFormState: {
     concept: '',
-    amount: 0,
+    amount: '',
     date: new Date().toString(),
     operationType: '',
     category: ''
@@ -61,7 +61,7 @@ export const muiComponentsSlice = createSlice({
     resetRecordFormState: (state) => {
       state.recordFormState = {
         concept: '',
-        amount: 0,
+        amount: '',
         date: new Date().toString(),
         operationType: '',
         category: ''
