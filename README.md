@@ -11,6 +11,7 @@
 
   ## Instalación
   Para instalar esta aplicación para probarla en desarrollo necesitas:
+
     1. Crear e ir a un nuevo directorio.
     2. Inicializar un nuevo repositorio con el comando "git init".
     3. Obten [este repositorio](https://github.com/andressiri/alkemy-full-stack) con el comando "git pull https://github.com/andressiri/alkemy-full-stack"
@@ -64,6 +65,7 @@
 
   ## Installation
   To install this app for development mode testing you need to:
+
     1. Create and go to a new directory.
     2. Initialize a new repository with "git init" command.
     3. Git pull [this repository](https://github.com/andressiri/alkemy-full-stack) with "git pull https://github.com/andressiri/alkemy-full-stack" command.
