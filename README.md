@@ -64,12 +64,12 @@
 
   ## Installation
   To install this app for development mode testing you need to:
-    * Create and go to a new directory.
-    * Initialize a new repository with "git init" command.
-    * Git pull [this repository](https://github.com/andressiri/alkemy-full-stack) with "git pull https://github.com/andressiri/alkemy-full-stack" command.
-    * Install root directory dependencies with "npm install" command.
-    * Move to frontend directory and install client dependencies with the "npm install" command again.
-    * Create a .env file at the root directory with the following variables:
+    - Create and go to a new directory.
+    - Initialize a new repository with "git init" command.
+    - Git pull [this repository](https://github.com/andressiri/alkemy-full-stack) with "git pull https://github.com/andressiri/alkemy-full-stack" command.
+    - Install root directory dependencies with "npm install" command.
+    - Move to frontend directory and install client dependencies with the "npm install" command again.
+    - Create a .env file at the root directory with the following variables:
       - NODE_ENV = development
       - DB_NAME = "your PostgreSQL database name"
       - DB_USERNAME = "your PostgreSQL user name"
@@ -78,27 +78,27 @@
       - MAILER_MAIL = "your **gmail** email"
       - MAIL_PASSWORD" = "the "application password" generated with google" (not your email password)
 
-    * Create tables at your PostgreSQL database:
+    - Create tables at your PostgreSQL database:
       - "people" table:
-        * user_uuid UUID PRIMARY KEY
-        * name VARCHAR(50) NOT NULL
-        * email VARCHAR(100) NOT NULL UNIQUE
-        * password VARCHAR(100) NOT NULL
-        * verified BOOLEAN
-        * createdAt TIMESTAMP NOT NULL
-        * updatedAt TIMESTAMP
+        - user_uuid UUID PRIMARY KEY
+        - name VARCHAR(50) NOT NULL
+        - email VARCHAR(100) NOT NULL UNIQUE
+        - password VARCHAR(100) NOT NULL
+        - verified BOOLEAN
+        - createdAt TIMESTAMP NOT NULL
+        - updatedAt TIMESTAMP
       
       - "records" table:
-        * record_uuid UUID PRIMARY KEY
-        * concept VARCHAR(50) NOT NULL
-        * amount REAL NOT NULL
-        * operation_date DATE NOT NULL
-        * operation_type VARCHAR(7) NOT NULL
-        * category VARCHAR(50)
-        * user_UUID UUID
-        * createdAt TIMESTAMP NOT NULL
-        * updatedAt TIMESTAMP NOT NULL
-        * and add a constraint for operation_type: 
+        - record_uuid UUID PRIMARY KEY
+        - concept VARCHAR(50) NOT NULL
+        - amount REAL NOT NULL
+        - operation_date DATE NOT NULL
+        - operation_type VARCHAR(7) NOT NULL
+        - category VARCHAR(50)
+        - user_UUID UUID
+        - createdAt TIMESTAMP NOT NULL
+        - updatedAt TIMESTAMP NOT NULL
+        - and add a constraint for operation_type: 
           operation_type VARCHAER(7) CONSTRAINT type_valid_values
             CHECK(operation_type = "Income" OR operation_type = "Outcome")
      
