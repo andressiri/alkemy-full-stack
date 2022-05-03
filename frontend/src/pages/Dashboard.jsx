@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {getRecords} from '../features/records/recordsSlice';
@@ -19,9 +19,10 @@ function Dashboard() {
     openAddRecord,
     openEditRecord,
     openDeleteRecordConfirm,
-    filters
+    conceptFilter,
+    typeFilter,
+    categoryFilter
   } = useSelector((state) => state.muiComponents);
-  const {conceptFilter, typeFilter, categoryFilter} = filters;
   const {user} = useSelector((state) => state.auth);
   const {records, isLoading} = useSelector((state) => state.records);
   const dispatch = useDispatch();
@@ -32,9 +33,8 @@ function Dashboard() {
   }, [user, records, dispatch]);
 
   useEffect(() => {
-    console.log(user)
     if (user && user.verified !== true) navigate('/verification');
-  }, []);
+  }, [user, navigate]);
   
   let arrayToDisplay = records.map(record => {return record});
 

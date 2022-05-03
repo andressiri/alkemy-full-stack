@@ -1,8 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {toast} from 'material-react-toastify';
 import {
-  changeAddRecord,
-  changeEditRecord,
   changeCloseConfirm,
   updateRecordFormState,
   resetRecordFormState,
@@ -10,22 +9,21 @@ import {
   resetMUIDialogs
 } from '../features/muiComponents/muiComponentsSlice';
 import {resetRecordsReq, saveRecord, updateRecord} from '../features/records/recordsSlice';
-import {toast} from 'material-react-toastify';
+import RecordFormAutocomplete from './RecordFormAutocomplete';
+import RecordFormTypeSelect from './RecordFormTypeSelect';
 import BackdropSpinner from './BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import EditIcon from '@mui/icons-material/Edit';
+import Dialog from '@mui/material/Dialog';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
-import RecordFormAutocomplete from './RecordFormAutocomplete';
-import RecordFormTypeSelect from './RecordFormTypeSelect';
+import EditIcon from '@mui/icons-material/Edit';
 import {AdapterMoment} from '@mui/x-date-pickers/AdapterMoment';
-import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 
 
 function RecordForm({parentToChild}) {
@@ -54,7 +52,7 @@ function RecordForm({parentToChild}) {
 
     dispatch(resetRecordsReq());
     handleEffect.current = false;
-  }, [isError, isSuccess, message, dispatch]);
+  }, [isError, isSuccess, message, specifics, dispatch]);
 
   const handleRecordFormAction = (event) => {
     event.preventDefault();
@@ -112,7 +110,6 @@ function RecordForm({parentToChild}) {
     dispatch(updateRecordFormState(newState));
   };
 
-  //handle on close
   return (
     <Dialog open={true} onClose={handleOnClose} fullWidth>
       {isLoading && <BackdropSpinner />}
@@ -139,7 +136,10 @@ function RecordForm({parentToChild}) {
             }
           </Typography>
           <Box component="form" onSubmit={handleRecordFormAction} noValidate sx={{ mt: 1 }}>
-            <RecordFormAutocomplete required parentToChild={{specifics: 'Concept', required: true}} />
+            <RecordFormAutocomplete
+              required
+              parentToChild={{specifics: 'Concept', required: true}}
+            />
             <TextField
               margin="normal"
               required

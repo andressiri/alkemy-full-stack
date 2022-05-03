@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'material-react-toastify';
-import {deleteAccount, resetAuthReq} from '../features/auth/authSlice';
 import useLogout from '../functions/useLogout';
+import {deleteAccount, resetAuthReq} from '../features/auth/authSlice';
 import {resetMUIDialogs} from '../features/muiComponents/muiComponentsSlice';
 import BackdropSpinner from './BackdropSpinner';
 import Button from '@mui/material/Button';
@@ -24,9 +24,7 @@ function PasswordToDelete() {
   const logout = useLogout();
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    };
+    if (isError) toast.error(message);
 
     if (isSuccess) {
       toast.success(message);
@@ -34,11 +32,9 @@ function PasswordToDelete() {
     };
 
     dispatch(resetAuthReq());
-  }, [isError, isSuccess, message, navigate, dispatch]);
+  }, [isError, isSuccess, message, logout, dispatch]);
 
-  const passwordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  const passwordChange = (event) => setPassword(event.target.value);
 
   const handleClose = () => {
     toast.success('Account delete canceled');

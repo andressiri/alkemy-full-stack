@@ -1,9 +1,9 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import {changeAddRecord, resetFilters} from '../features/muiComponents/muiComponentsSlice';
-import Box from '@mui/material/Box';
 import FilterBarAutocomplete from './FilterBarAutocomplete';
-import OperationTypeSelect from './OperationTypeSelect';
+import FilterBarTypeSelect from './FilterBarTypeSelect';
+import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import AddCircleSharpIcon from '@mui/icons-material/AddCircleSharp';
 import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
@@ -11,13 +11,9 @@ import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
 function FilterBar() {
   const dispatch = useDispatch();
 
-  const handleAddRecord = () => {
-    dispatch(changeAddRecord());
-  };
+  const handleAddRecord = () => dispatch(changeAddRecord());
 
-  const handleResetFilters = () => {
-    dispatch(resetFilters());
-  };
+  const handleResetFilters = () => dispatch(resetFilters());
 
   return (
     <Box
@@ -35,7 +31,7 @@ function FilterBar() {
       }}
     >
       <FilterBarAutocomplete parentToChild={{specifics: 'Concept'}}/>
-      <OperationTypeSelect />
+      <FilterBarTypeSelect />
       <FilterBarAutocomplete parentToChild={{specifics: 'Category'}}/>
       <Box sx={{m: 0, display: 'flex', width: '150px', alignItems: 'center', justifyContent: 'center'}}>
         <IconButton

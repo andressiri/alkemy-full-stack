@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import useLogout from '../functions/useLogout';
 import {toast} from 'material-react-toastify';
 import {changePassword, resetAuthReq, resetToken} from '../features/auth/authSlice';
-import useLogout from '../functions/useLogout';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -11,9 +11,9 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Link from '@mui/material/Link';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 function ChangePassword() {
   const [formData, setFormData] = useState({
@@ -34,9 +34,7 @@ function ChangePassword() {
   const logout = useLogout();
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    };
+    if (isError) toast.error(message);
 
     if (isSuccess) {
       toast.success(message);
@@ -44,12 +42,10 @@ function ChangePassword() {
       navigate('/login');
     };
 
-    if (!temporaryToken) {
-      navigate('/');
-    };
+    if (!temporaryToken) navigate('/');
 
     dispatch(resetAuthReq());
-  }, [isError, isSuccess, message, temporaryToken, navigate, dispatch]);
+  }, [isError, isSuccess, message, temporaryToken, navigate, dispatch, logout]);
 
   const onInputChange = (event) => {
     setFormData((prevState) => ({

@@ -1,21 +1,21 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
 import styled from '@emotion/styled';
-import TextField from '@mui/material/TextField';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import {useSelector, useDispatch} from 'react-redux';
+import {updateConceptFilter, updateCategoryFilter} from '../features/muiComponents/muiComponentsSlice';
+import Autocomplete, {createFilterOptions} from '@mui/material/Autocomplete';
 import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import ListItemText from '@mui/material/ListItemText';
+import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { updateFilters } from '../features/muiComponents/muiComponentsSlice';
 
 function FilterBarAutocomplete({parentToChild}) {
   const filter = createFilterOptions();
-  const {filters} = useSelector((state) => state.muiComponents);
+  const {conceptFilter, categoryFilter} = useSelector((state) => state.muiComponents);
   const {specifics} = parentToChild;
-  let value = filters.conceptFilter;
-  if (specifics === 'Category') value = filters.categoryFilter;
+  let value = conceptFilter;
+  if (specifics === 'Category') value = categoryFilter;
   const dispatch = useDispatch();
 
   const StyledAutocomplete = styled(Autocomplete)({
@@ -89,33 +89,27 @@ function FilterBarAutocomplete({parentToChild}) {
     switch (specifics) {
       case 'Concept': return concepts;
       case 'Category': return categories;
+      // no default
     };
   };
 
   const onAutcompleteChange = (event, newValue) => {
-    if (newValue === null) newValue = {content: 'None'};
-    let newState = filters
-    let specificValue = 'conceptFilter';
-    if (specifics === 'Category') specificValue = 'categoryFilter';
+    if (newValue === null) newValue = {content: ''};
+    let valueToSend = {content: ''}
 
     if (typeof newValue === 'string') {
-      newState = {
-        ...newState,
-        [specificValue]: {content : newValue}
-      };
+      valueToSend = newValue;
     } else if (newValue && newValue.inputValue) {
-      newState = {
-        ...newState,
-        [specificValue]: newValue.inputValue
-      };
+      valueToSend = newValue.inputValue;
     } else {
-      newState = {
-        ...newState,
-        [specificValue]: newValue.content
-      };
-    }
+      valueToSend = newValue.content;
+    };
 
-    dispatch(updateFilters(newState));
+    if (specifics === 'Concept') {
+      dispatch(updateConceptFilter(valueToSend));
+    } else {
+      dispatch(updateCategoryFilter(valueToSend));
+    };
   };
 
   const autocompleteFilterOptions = (options, params) => {
@@ -151,13 +145,15 @@ function FilterBarAutocomplete({parentToChild}) {
     <ListItem {...props} key={option.content}>
       <ListItemText primary={option.content} />
       <ListItemSecondaryAction>
-        <IconButton
-          edge="end"
-          aria-label="delete"
-          //onClick={(e) => handleOptionDelete(option)} TODO
-        >
-          <DeleteIcon />
-        </IconButton>
+        {option.content !== 'None' &&
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            //onClick={(e) => handleOptionDelete(option)} TODO
+          >
+            <DeleteIcon />
+          </IconButton>
+        }
       </ListItemSecondaryAction>
     </ListItem>
   );

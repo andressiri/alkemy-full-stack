@@ -28,6 +28,6 @@ userRouter.put('/name/:name', protectRoute, require('../controllers/user/changeN
 userRouter.delete('/delete/:uuid', protectRoute, require('../controllers/user/deleteUser.js'));
 
 // user logout handle
-userRouter.delete('/logout', protectRoute, require('../controllers/user/logout.js'));
+userRouter.delete('/logout', require('../controllers/user/logout.js'));
 
 module.exports = userRouter;

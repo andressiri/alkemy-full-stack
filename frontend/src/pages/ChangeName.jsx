@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'material-react-toastify';
 import {changeName, resetAuthReq} from '../features/auth/authSlice';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import FaceIcon from '@mui/icons-material/Face';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import FaceIcon from '@mui/icons-material/Face';
 
 function ChangeName() {
   const [name, setName] = useState('');
@@ -23,25 +23,19 @@ function ChangeName() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    };
+    if (isError) toast.error(message);
 
     if (isSuccess) {
       toast.success(message);
       navigate('/');
     };
 
-    if (!user) {
-      navigate('/');
-    };
+    if (!user) navigate('/');
 
     dispatch(resetAuthReq());
   }, [isError, isSuccess, message, user, navigate, dispatch]);
 
-  const onNameChange = (event) => {
-    setName(event.target.value);
-  };
+  const onNameChange = (event) => setName(event.target.value);
 
   const handleChangeName = (event) => {
     event.preventDefault();
@@ -57,9 +51,7 @@ function ChangeName() {
     }));
   };
 
-  const handleCancel = () => {
-    navigate('/login');
-  };
+  const handleCancel = () => navigate('/login');
 
   if (!user) return (<></>);
 

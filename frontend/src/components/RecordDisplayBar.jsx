@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import styled from '@emotion/styled';
 import {useDispatch} from 'react-redux';
 import {
   changeDeleteRecordConfirm,
@@ -8,10 +9,9 @@ import {
 } from '../features/muiComponents/muiComponentsSlice';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import { TextField } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import styled from '@emotion/styled';
 
 function RecordDisplayBar({parentToChild}) {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ function RecordDisplayBar({parentToChild}) {
   const handleDeleteRecord = () => {
     dispatch(updateRecordSelected(record_uuid));
     dispatch(changeDeleteRecordConfirm());
-  }
+  };
 
   return (
     <Box
@@ -98,7 +98,14 @@ function RecordDisplayBar({parentToChild}) {
         defaultValue={category}
         sx={{m: 1,  width: 150}}
       />
-      <Box sx={{display: 'flex', width: '150px', alignItems: 'center', justifyContent: 'center'}}>
+      <Box 
+        sx={{
+          display: 'flex',
+          width: '150px',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
         <IconButton
           size="large"
           edge="start"

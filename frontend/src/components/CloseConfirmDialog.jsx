@@ -15,13 +15,9 @@ function CloseConfirmDialog() {
   const {openCloseConfirm} = useSelector((state) => state.muiComponents);
   const dispatch = useDispatch();
 
-  const handleClose = () => {
-    dispatch(changeCloseConfirm());
-  };
+  const handleClose = () => dispatch(changeCloseConfirm());
 
-  const handleCancel = () => {
-    dispatch(changeCloseConfirm());
-  };
+  const handleCancel = () => dispatch(changeCloseConfirm());
 
   const handleConfirm = () => {
     dispatch(resetRecordFormState());
@@ -32,7 +28,7 @@ function CloseConfirmDialog() {
     <Dialog
       open={openCloseConfirm}
       onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
+      aria-labelledby="alert-dialog-description"
       aria-describedby="alert-dialog-description"
     >
       <DialogContent>

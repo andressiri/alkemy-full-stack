@@ -16,11 +16,9 @@ const initialState = {
     category: ''
   },
   recordSelected: '',
-  filters: {
-    conceptFilter: '',
-    typeFilter: 'None',
-    categoryFilter: ''
-  }
+  conceptFilter: '',
+  typeFilter: 'None',
+  categoryFilter: ''
 };
 
 export const muiComponentsSlice = createSlice({
@@ -73,15 +71,19 @@ export const muiComponentsSlice = createSlice({
     updateRecordSelected: (state, action) => {
       state.recordSelected = action.payload;
     },
-    updateFilters: (state, action) => {
-      state.filters = action.payload;
+    updateConceptFilter: (state, action) => {
+      state.conceptFilter = action.payload;
     },
-    resetFilters: (state, action) => {
-      state.filters = {
-        conceptFilter: '',
-        typeFilter: 'None',
-        categoryFilter: ''
-      }
+    updateTypeFilter: (state, action) => {
+      state.typeFilter = action.payload;
+    },
+    updateCategoryFilter: (state, action) => {
+      state.categoryFilter = action.payload;
+    },
+    resetFilters: (state) => {
+      state.conceptFilter = ''
+      state.typeFilter = 'None';
+      state.categoryFilter = '';
     },
   }
 });
@@ -99,7 +101,9 @@ export const {
   updateRecordFormState,
   resetRecordFormState,
   updateRecordSelected,
-  updateFilters,
+  updateConceptFilter,
+  updateTypeFilter,
+  updateCategoryFilter,
   resetFilters
 } = muiComponentsSlice.actions;
 export default muiComponentsSlice.reducer;

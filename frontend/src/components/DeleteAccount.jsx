@@ -15,9 +15,7 @@ function DeleteAccount() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleClose = () => {
-    dispatch(resetMUIDialogs());
-  };
+  const handleClose = () => dispatch(resetMUIDialogs());
 
   const handleConfirm = () => {
     dispatch(requireAccountDelete());

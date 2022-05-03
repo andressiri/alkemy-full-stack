@@ -1,14 +1,14 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {changeDrawer} from '../features/muiComponents/muiComponentsSlice';
-import useLogout from '../functions/useLogout.js'
 import {useNavigate, useLocation} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import useLogout from '../functions/useLogout.js'
+import {changeDrawer} from '../features/muiComponents/muiComponentsSlice';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import PaidIcon from '@mui/icons-material/Paid';
 
@@ -16,10 +16,9 @@ function Header() {
   const {user} = useSelector((state) => state.auth);
   const {recordsAdditionResult} = useSelector((state) => state.records);
   const dispatch = useDispatch();
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
   const logout = useLogout();
-
   let additionColor = '#ef5350';
   if (recordsAdditionResult > 0) additionColor = '#4caf50';
  
@@ -37,7 +36,14 @@ function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Box sx={{flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }} >
+          <Box 
+            sx={{
+              flexGrow: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start'
+            }}
+          >
             <IconButton
               size="large"
               edge="start"

@@ -2,13 +2,13 @@ import React, {useEffect, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'material-react-toastify';
 import {resetMUIDialogs} from '../features/muiComponents/muiComponentsSlice';
+import {deleteRecord, resetRecordsReq} from '../features/records/recordsSlice';
 import BackdropSpinner from './BackdropSpinner';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import { deleteRecord, resetRecordsReq } from '../features/records/recordsSlice';
 
 function ConfirmDeleteRecordDialog() {
   const handleEffect = useRef(false);
@@ -35,17 +35,12 @@ function ConfirmDeleteRecordDialog() {
     dispatch(resetMUIDialogs());
   }, [isError, isSuccess, message, dispatch]);
 
-  const handleClose = () => {
-    dispatch(resetMUIDialogs());
-  };
+  const handleClose = () => dispatch(resetMUIDialogs());
 
-  const handleCancel = () => {
-    dispatch(resetMUIDialogs());
-  };
+  const handleCancel = () => dispatch(resetMUIDialogs());
 
   const handleConfirm = () => {
     handleEffect.current = true;
-
     dispatch(deleteRecord({record_uuid: recordSelected, token: user.token}));
   };
 
@@ -53,7 +48,7 @@ function ConfirmDeleteRecordDialog() {
     <Dialog
       open={true}
       onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
+      aria-labelledby="alert-dialog-description"
       aria-describedby="alert-dialog-description"
     >
       {isLoading && <BackdropSpinner />}

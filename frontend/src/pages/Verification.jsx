@@ -1,21 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {toast} from 'material-react-toastify';
 import {useSelector, useDispatch} from 'react-redux';
-import {sendCode, checkCode, resetAuthReq, changeVerificationStatus} from '../features/auth/authSlice';
+import {toast} from 'material-react-toastify';
+import {
+  sendCode,
+  checkCode,
+  resetAuthReq,
+  changeVerificationStatus
+} from '../features/auth/authSlice';
 import {changeDelAccConfirm} from '../features/muiComponents/muiComponentsSlice';
 import validateEmail from '../functions/validateEmail';
 import BackdropSpinner from '../components/BackdropSpinner';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
 import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import MailLockIcon from '@mui/icons-material/MailLock';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 
 function Verification() {
   const [email, setEmail] = useState('');
@@ -36,9 +41,7 @@ function Verification() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    };
+    if (isError) toast.error(message);
     
     if (isSuccess) {
       setEmailSent(true);
@@ -57,12 +60,21 @@ function Verification() {
       toast.success(message);
     };
     
-    if (!userVerificationRequired && !accountDeleteRequired && !passwordChangeRequired) {
+    if (!userVerificationRequired && !accountDeleteRequired && !passwordChangeRequired)
       navigate('/');
-    };
     
     dispatch(resetAuthReq());
-  }, [isError, isSuccess, message, temporaryToken, userVerificationRequired, accountDeleteRequired, navigate, dispatch]);
+  }, [
+    isError,
+    isSuccess,
+    message,
+    temporaryToken,
+    userVerificationRequired,
+    passwordChangeRequired,
+    accountDeleteRequired,
+    navigate,
+    dispatch
+  ]);
   
   const onEmailChange = (event) => setEmail(event.target.value);  
   

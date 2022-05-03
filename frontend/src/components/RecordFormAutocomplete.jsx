@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {updateRecordFormState} from '../features/muiComponents/muiComponentsSlice';
-import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import ListItemText from '@mui/material/ListItemText';
+import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function RecordFormAutocomplete({parentToChild}) {
@@ -18,6 +18,7 @@ function RecordFormAutocomplete({parentToChild}) {
   const dispatch = useDispatch();
 
   const onAutcompleteChange = (event, newValue) => {
+    if (newValue === null) newValue = {content: ''};
     let newState = recordFormState
 
     if (typeof newValue === 'string') {
@@ -70,12 +71,13 @@ function RecordFormAutocomplete({parentToChild}) {
     switch (specifics) {
       case 'Concept': return concepts;
       case 'Category': return categories;
+      //no default
     };
   };
 
   const autocompleteFilterOptions = (options, params) => {
     const filtered = filter(options, params);
-    const { inputValue } = params;
+    const {inputValue} = params;
 
     // Suggest the creation of a new value
     const isExisting = options.some((option) => inputValue === option.content);
