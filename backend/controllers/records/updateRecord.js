@@ -30,6 +30,11 @@ module.exports = asyncHandler(async (req, res) => {
     throw new Error('You can\'t update that resource');
   };
 
+  if (isNaN(parsedAmount)) {
+    res.status(400);
+    throw new Error('Please enter a number for the amount field');
+  };
+
   const updateResult = await Record.update(
     {
       concept: concept,
