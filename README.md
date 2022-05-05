@@ -26,38 +26,38 @@
   5. Ir al directorio "frontend" e instalar las dependencias con el comando "npm install" nuevamente.
   6. Crear un archivo .env en el directorio raíz con las siguientes variables:
 
-  * NODE_ENV = development
-  * DB_NAME = < el nombre de tu base de datos PostgreSQL >
-  * DB_USERNAME = < tu nombre de usuario para esa base de datos de PostgreSQL >
-  * DB_PASSWORD = < la contraseña para ese usuario de PostgreSQL >
-  * JWT_SECRET = < una cadena que quieras usar como secreto para el token de JWT >
-  * MAILER_MAIL = < tu dirección de email de **gmail** >
-  * MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
+      * NODE_ENV = development
+      * DB_NAME = < el nombre de tu base de datos PostgreSQL >
+      * DB_USERNAME = < tu nombre de usuario para esa base de datos de PostgreSQL >
+      * DB_PASSWORD = < la contraseña para ese usuario de PostgreSQL >
+      * JWT_SECRET = < una cadena que quieras usar como secreto para el token de JWT >
+      * MAILER_MAIL = < tu dirección de email de **gmail** >
+      * MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
 
   7. Crea las tablas en tu base de datos PostgreSQL:
 
-  * La tabla "people":
+      * La tabla "people":
 
-  * user_uuid UUID PRIMARY KEY
-  * name VARCHAR(50) NOT NULL
-  * email VARCHAR(100) NOT NULL UNIQUE
-  * password VARCHAR(100) NOT NULL
-  * verified BOOLEAN
-  * createdAt TIMESTAMP NOT NULL
-  * updatedAt TIMESTAMP
+          * user_uuid UUID PRIMARY KEY
+          * name VARCHAR(50) NOT NULL
+          * email VARCHAR(100) NOT NULL UNIQUE
+          * password VARCHAR(100) NOT NULL
+          * verified BOOLEAN
+          * createdAt TIMESTAMP NOT NULL
+          * updatedAt TIMESTAMP
 
-  * La tabla "records":
+      * La tabla "records":
 
-  * record_uuid UUID PRIMARY KEY
-  * concept VARCHAR(50) NOT NULL
-  * amount REAL NOT NULL
-  * operation_date DATE NOT NULL
-  * operation_type VARCHAR(7) NOT NULL
-  * category VARCHAR(50)
-  * user_UUID UUID
-  * createdAt TIMESTAMP NOT NULL
-  * updatedAt TIMESTAMP NOT NULL
-  * agrega una restricción para operation_type: operation_type VARCHAER(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+          * record_uuid UUID PRIMARY KEY
+          * concept VARCHAR(50) NOT NULL
+          * amount REAL NOT NULL
+          * operation_date DATE NOT NULL
+          * operation_type VARCHAR(7) NOT NULL
+          * category VARCHAR(50)
+          * user_UUID UUID
+          * createdAt TIMESTAMP NOT NULL
+          * updatedAt TIMESTAMP NOT NULL
+          * agrega una restricción para operation_type: operation_type VARCHAER(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
 
   TODO: explicar en detalle cómo instalar PostgreSQL, para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. Crear el archivo sql para la creación de las tablas y explicar cómo usarlo.
 
@@ -88,38 +88,38 @@
   5. Move to frontend directory and install client dependencies with the "npm install" command again.
   6. Create a .env file at the root directory with the following variables:
 
-  * NODE_ENV = development
-  * DB_NAME = < your PostgreSQL database name >
-  * DB_USERNAME = < your PostgreSQL user name >
-  * DB_PASSWORD = < your PostgreSQL password for previous user >
-  * JWT_SECRET = < whatever you want to use as JWT secret >
-  * MAILER_MAIL = < your **gmail** email address >
-  * MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
+      * NODE_ENV = development
+      * DB_NAME = < your PostgreSQL database name >
+      * DB_USERNAME = < your PostgreSQL user name >
+      * DB_PASSWORD = < your PostgreSQL password for previous user >
+      * JWT_SECRET = < whatever you want to use as JWT secret >
+      * MAILER_MAIL = < your **gmail** email address >
+      * MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
 
   7. Create tables at your PostgreSQL database:
 
-  * "people" table:
+      * "people" table:
 
-  * user_uuid UUID PRIMARY KEY
-  * name VARCHAR(50) NOT NULL
-  * email VARCHAR(100) NOT NULL UNIQUE
-  * password VARCHAR(100) NOT NULL
-  * verified BOOLEAN
-  * createdAt TIMESTAMP NOT NULL
-  * updatedAt TIMESTAMP
+          * user_uuid UUID PRIMARY KEY
+          * name VARCHAR(50) NOT NULL
+          * email VARCHAR(100) NOT NULL UNIQUE
+          * password VARCHAR(100) NOT NULL
+          * verified BOOLEAN
+          * createdAt TIMESTAMP NOT NULL
+          * updatedAt TIMESTAMP
 
-  * "records" table:
+      * "records" table:
 
-  * record_uuid UUID PRIMARY KEY
-  * concept VARCHAR(50) NOT NULL
-  * amount REAL NOT NULL
-  * operation_date DATE NOT NULL
-  * operation_type VARCHAR(7) NOT NULL
-  * category VARCHAR(50)
-  * user_UUID UUID
-  * createdAt TIMESTAMP NOT NULL
-  * updatedAt TIMESTAMP NOT NULL
-  * and add a constraint for operation_type: operation_type VARCHAER(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+          * record_uuid UUID PRIMARY KEY
+          * concept VARCHAR(50) NOT NULL
+          * amount REAL NOT NULL
+          * operation_date DATE NOT NULL
+          * operation_type VARCHAR(7) NOT NULL
+          * category VARCHAR(50)
+          * user_UUID UUID
+          * createdAt TIMESTAMP NOT NULL
+          * updatedAt TIMESTAMP NOT NULL
+          * and add a constraint for operation_type: operation_type VARCHAER(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
 
   TODO: explain more in detail how to install PostgreSQL, what is JWT secret for and how to get application mail password. Create sql file and explain how to run it
 
