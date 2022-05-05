@@ -40,13 +40,13 @@
 
         <summary>La tabla "people":</summary>
 
-        * user_uuid UUID PRIMARY KEY
-        * name VARCHAR(50) NOT NULL
-        * email VARCHAR(100) NOT NULL UNIQUE
-        * password VARCHAR(100) NOT NULL
-        * verified BOOLEAN
-        * createdAt TIMESTAMP NOT NULL
-        * updatedAt TIMESTAMP
+        - user_uuid UUID PRIMARY KEY
+        - name VARCHAR(50) NOT NULL
+        - email VARCHAR(100) NOT NULL UNIQUE
+        - password VARCHAR(100) NOT NULL
+        - verified BOOLEAN
+        - createdAt TIMESTAMP NOT NULL
+        - updatedAt TIMESTAMP
 
       </details>
 
@@ -54,16 +54,16 @@
 
         <summary>La tabla "records":</summary>
 
-        * record_uuid UUID PRIMARY KEY
-        * concept VARCHAR(50) NOT NULL
-        * amount REAL NOT NULL
-        * operation_date DATE NOT NULL
-        * operation_type VARCHAR(7) NOT NULL
-        * category VARCHAR(50)
-        * user_UUID UUID
-        * createdAt TIMESTAMP NOT NULL
-        * updatedAt TIMESTAMP NOT NULL
-        * agrega una restricción para operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+        - record_uuid UUID PRIMARY KEY
+        - concept VARCHAR(50) NOT NULL
+        - amount REAL NOT NULL
+        - operation_date DATE NOT NULL
+        - operation_type VARCHAR(7) NOT NULL
+        - category VARCHAR(50)
+        - user_UUID UUID
+        - createdAt TIMESTAMP NOT NULL
+        - updatedAt TIMESTAMP NOT NULL
+        - agrega una restricción para operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
 
       </details>
 
@@ -110,13 +110,13 @@
 
         <summary>"people" table:</summary>
 
-        * user_uuid UUID PRIMARY KEY
-        * name VARCHAR(50) NOT NULL
-        * email VARCHAR(100) NOT NULL UNIQUE
-        * password VARCHAR(100) NOT NULL
-        * verified BOOLEAN
-        * createdAt TIMESTAMP NOT NULL
-        * updatedAt TIMESTAMP
+        - user_uuid UUID PRIMARY KEY
+        - name VARCHAR(50) NOT NULL
+        - email VARCHAR(100) NOT NULL UNIQUE
+        - password VARCHAR(100) NOT NULL
+        - verified BOOLEAN
+        - createdAt TIMESTAMP NOT NULL
+        - updatedAt TIMESTAMP
 
       </details>
 
@@ -124,16 +124,16 @@
 
         <summary>"records" table:</summary>
 
-        * record_uuid UUID PRIMARY KEY
-        * concept VARCHAR(50) NOT NULL
-        * amount REAL NOT NULL
-        * operation_date DATE NOT NULL
-        * operation_type VARCHAR(7) NOT NULL
-        * category VARCHAR(50)
-        * user_UUID UUID
-        * createdAt TIMESTAMP NOT NULL
-        * updatedAt TIMESTAMP NOT NULL
-        * and add a constraint for operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+        - record_uuid UUID PRIMARY KEY
+        - concept VARCHAR(50) NOT NULL
+        - amount REAL NOT NULL
+        - operation_date DATE NOT NULL
+        - operation_type VARCHAR(7) NOT NULL
+        - category VARCHAR(50)
+        - user_UUID UUID
+        - createdAt TIMESTAMP NOT NULL
+        - updatedAt TIMESTAMP NOT NULL
+        - and add a constraint for operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
 
       </details>
 
