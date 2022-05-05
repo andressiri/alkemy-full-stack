@@ -3,7 +3,7 @@
 
 <details>
 
-  <summary>Español</summary><blockquote>
+  <summary>Español</summary>
 
   Una aplicación para administración de presupuesto personal, donde puedes guardar con detalle tus ingresos y egresos de dinero y ver un balance de tus operaciones registradas. También puedes tener una mejor organización de ellas clasificándolas por concepto, tipo y categoría.
 
@@ -38,51 +38,42 @@
 
       <details>
 
-      <summary>
-      * La tabla "people":
-      </summary>
-      <blockquote>
+        <summary>La tabla "people":</summary>
 
-          * user_uuid UUID PRIMARY KEY
-          * name VARCHAR(50) NOT NULL
-          * email VARCHAR(100) NOT NULL UNIQUE
-          * password VARCHAR(100) NOT NULL
-          * verified BOOLEAN
-          * createdAt TIMESTAMP NOT NULL
-          * updatedAt TIMESTAMP
-      
-      </blockquote>
+        * user_uuid UUID PRIMARY KEY
+        * name VARCHAR(50) NOT NULL
+        * email VARCHAR(100) NOT NULL UNIQUE
+        * password VARCHAR(100) NOT NULL
+        * verified BOOLEAN
+        * createdAt TIMESTAMP NOT NULL
+        * updatedAt TIMESTAMP
+
       </details>
 
       <details>
 
-      <summary>
-      * La tabla "records":
-      </summary>
-      <blockquote>
+        <summary>La tabla "records":</summary>
 
-          * record_uuid UUID PRIMARY KEY
-          * concept VARCHAR(50) NOT NULL
-          * amount REAL NOT NULL
-          * operation_date DATE NOT NULL
-          * operation_type VARCHAR(7) NOT NULL
-          * category VARCHAR(50)
-          * user_UUID UUID
-          * createdAt TIMESTAMP NOT NULL
-          * updatedAt TIMESTAMP NOT NULL
-          * agrega una restricción para operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+        * record_uuid UUID PRIMARY KEY
+        * concept VARCHAR(50) NOT NULL
+        * amount REAL NOT NULL
+        * operation_date DATE NOT NULL
+        * operation_type VARCHAR(7) NOT NULL
+        * category VARCHAR(50)
+        * user_UUID UUID
+        * createdAt TIMESTAMP NOT NULL
+        * updatedAt TIMESTAMP NOT NULL
+        * agrega una restricción para operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
 
-      </blockquote>
       </details>
 
   TODO: explicar en detalle cómo instalar PostgreSQL, para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. Crear el archivo sql para la creación de las tablas y explicar cómo usarlo.
 
-</blockquote>
 </details>
 
 <details>
 
-  <summary>English</summary><blockquote>
+  <summary>English</summary>
 
   An app for personal budget administration, where you can save your money incomes and outcomes with detail and see a balance of your registered operations. You can also get a better organization sorting them by concept, type and category.
 
@@ -117,44 +108,35 @@
 
       <details>
 
-      <summary>
-        * "people" table:
-      </summary>
-      <blockquote>
+        <summary>"people" table:</summary>
 
-          * user_uuid UUID PRIMARY KEY
-          * name VARCHAR(50) NOT NULL
-          * email VARCHAR(100) NOT NULL UNIQUE
-          * password VARCHAR(100) NOT NULL
-          * verified BOOLEAN
-          * createdAt TIMESTAMP NOT NULL
-          * updatedAt TIMESTAMP
+        * user_uuid UUID PRIMARY KEY
+        * name VARCHAR(50) NOT NULL
+        * email VARCHAR(100) NOT NULL UNIQUE
+        * password VARCHAR(100) NOT NULL
+        * verified BOOLEAN
+        * createdAt TIMESTAMP NOT NULL
+        * updatedAt TIMESTAMP
 
-      </blockquote>
       </details>
 
       <details>
 
-      <summary>
-        * "records" table:
-      </summary>
-      <blockquote>
+        <summary>"records" table:</summary>
 
-          * record_uuid UUID PRIMARY KEY
-          * concept VARCHAR(50) NOT NULL
-          * amount REAL NOT NULL
-          * operation_date DATE NOT NULL
-          * operation_type VARCHAR(7) NOT NULL
-          * category VARCHAR(50)
-          * user_UUID UUID
-          * createdAt TIMESTAMP NOT NULL
-          * updatedAt TIMESTAMP NOT NULL
-          * and add a constraint for operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+        * record_uuid UUID PRIMARY KEY
+        * concept VARCHAR(50) NOT NULL
+        * amount REAL NOT NULL
+        * operation_date DATE NOT NULL
+        * operation_type VARCHAR(7) NOT NULL
+        * category VARCHAR(50)
+        * user_UUID UUID
+        * createdAt TIMESTAMP NOT NULL
+        * updatedAt TIMESTAMP NOT NULL
+        * and add a constraint for operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
 
-      </blockquote>
       </details>
 
   TODO: explain more in detail how to install PostgreSQL, what is JWT secret for and how to get application mail password. Create sql file and explain how to run it
 
-</blockquote>
 </details>
