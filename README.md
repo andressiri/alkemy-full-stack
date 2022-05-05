@@ -19,16 +19,16 @@
     4. Instalar las dependencias del directorio raíz con el comando "npm install".
     5. Ir al directorio "frontend" e instalar las dependencias con el comando "npm install" nuevamente.
     6. Crear un archivo .env en el directorio raíz con las siguientes variables:
-      - NODE_ENV = development
-      - DB_NAME = <el nombre de tu base de datos PostgreSQL>
-      - DB_USERNAME = <tu nombre de usuario para esa base de datos de PostgreSQL>
-      - DB_PASSWORD = <la contraseña para ese usuario de PostgreSQL>
-      - JWT_SECRET = <una cadena que quieras usar como secreto para el token de JWT>
-      - MAILER_MAIL = "tu email de **gmail**"
-      - MAIL_PASSWORD" = "tu "contraseña de aplicación" generada desde google" (no es la constraseña de tu email)
+      * NODE_ENV = development
+      * DB_NAME = <el nombre de tu base de datos PostgreSQL>
+      * DB_USERNAME = <tu nombre de usuario para esa base de datos de PostgreSQL>
+      * DB_PASSWORD = <la contraseña para ese usuario de PostgreSQL>
+      * JWT_SECRET = <una cadena que quieras usar como secreto para el token de JWT>
+      * MAILER_MAIL = "tu email de **gmail**"
+      * MAIL_PASSWORD" = "tu "contraseña de aplicación" generada desde google" (no es la constraseña de tu email)
 
     7. Crea las tablas en tu base de datos PostgreSQL:
-      - La tabla "people":
+      * La tabla "people":
         - user_uuid UUID PRIMARY KEY
         - name VARCHAR(50) NOT NULL
         - email VARCHAR(100) NOT NULL UNIQUE
@@ -37,7 +37,7 @@
         - createdAt TIMESTAMP NOT NULL
         - updatedAt TIMESTAMP
       
-      - La tabla "records":
+      * La tabla "records":
         - record_uuid UUID PRIMARY KEY
         - concept VARCHAR(50) NOT NULL
         - amount REAL NOT NULL
@@ -54,10 +54,10 @@
      TODO: explicar en detalle cómo instalar PostgreSQL, para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. Crear el archivo sql para la creación de las tablas y explicar cómo usarlo.
 
 </details>
-gi
+
 <details>
   <summary>English</summary>
-  
+
   An app for personal budget administration, where you can save your money incomes and outcomes with detail and see a balance of your registered operations. You can also get a better organization sorting them by concept, type and category.
 
   ## Motivation for the project
