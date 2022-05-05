@@ -36,7 +36,11 @@
 
   7. Crea las tablas en tu base de datos PostgreSQL:
 
+      <details>
+
+      <summary>
       * La tabla "people":
+      </summary>
 
           * user_uuid UUID PRIMARY KEY
           * name VARCHAR(50) NOT NULL
@@ -45,8 +49,14 @@
           * verified BOOLEAN
           * createdAt TIMESTAMP NOT NULL
           * updatedAt TIMESTAMP
+      
+      </details>
 
+      <details>
+
+      <summary>
       * La tabla "records":
+      </summary>
 
           * record_uuid UUID PRIMARY KEY
           * concept VARCHAR(50) NOT NULL
@@ -57,7 +67,9 @@
           * user_UUID UUID
           * createdAt TIMESTAMP NOT NULL
           * updatedAt TIMESTAMP NOT NULL
-          * agrega una restricción para operation_type: operation_type VARCHAER(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+          * agrega una restricción para operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+
+      </details>
 
   TODO: explicar en detalle cómo instalar PostgreSQL, para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. Crear el archivo sql para la creación de las tablas y explicar cómo usarlo.
 
@@ -85,7 +97,7 @@
   2. Initialize a new repository with "git init" command.
   3. Git pull this repository with "git pull https://github.com/andressiri/alkemy-full-stack" command.
   4. Install root directory dependencies with "npm install" command.
-  5. Move to frontend directory and install client dependencies with the "npm install" command again.
+  5. Move to "frontend" directory and install client dependencies with the "npm install" command again.
   6. Create a .env file at the root directory with the following variables:
 
       * NODE_ENV = development
@@ -96,9 +108,13 @@
       * MAILER_MAIL = < your **gmail** email address >
       * MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
 
-  7. Create tables at your PostgreSQL database:
+  7. Create tables required at your PostgreSQL database:
 
+      <details>
+
+      <summary>
       * "people" table:
+      </summary>
 
           * user_uuid UUID PRIMARY KEY
           * name VARCHAR(50) NOT NULL
@@ -108,7 +124,11 @@
           * createdAt TIMESTAMP NOT NULL
           * updatedAt TIMESTAMP
 
+      <details>
+
+      <summary>
       * "records" table:
+      </summary>
 
           * record_uuid UUID PRIMARY KEY
           * concept VARCHAR(50) NOT NULL
@@ -119,7 +139,9 @@
           * user_UUID UUID
           * createdAt TIMESTAMP NOT NULL
           * updatedAt TIMESTAMP NOT NULL
-          * and add a constraint for operation_type: operation_type VARCHAER(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+          * and add a constraint for operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+
+      </details>
 
   TODO: explain more in detail how to install PostgreSQL, what is JWT secret for and how to get application mail password. Create sql file and explain how to run it
 
