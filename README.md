@@ -1,6 +1,7 @@
 # Spends Checker alkemy-full-stack
 <details>
   <summary>Español</summary>
+
   Una aplicación para administración de presupuesto personal, donde puedes guardar con detalle tus ingresos y egresos de dinero y ver un balance de tus operaciones registradas. También puedes tener una mejor organización de ellas clasificándolas por concepto, tipo y categoría.
 
   ## Motivación para el proyecto
@@ -53,9 +54,10 @@
      TODO: explicar en detalle cómo instalar PostgreSQL, para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. Crear el archivo sql para la creación de las tablas y explicar cómo usarlo.
 
 </details>
-
+gi
 <details>
   <summary>English</summary>
+  
   An app for personal budget administration, where you can save your money incomes and outcomes with detail and see a balance of your registered operations. You can also get a better organization sorting them by concept, type and category.
 
   ## Motivation for the project
