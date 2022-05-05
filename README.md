@@ -14,15 +14,15 @@
 
     1. Crear e ir a un nuevo directorio.
     2. Inicializar un nuevo repositorio con el comando "git init".
-    3. Obten [este repositorio](https://github.com/andressiri/alkemy-full-stack) con el comando "git pull https://github.com/andressiri/alkemy-full-stack"
-    4. Instala las dependencias del directorio raíz con el comando "npm install".
-    5. Dirigete al directorio "frontend" e instala las dependencias con el comando "npm install" nuevamente.
-    6. Crea un archivo .env en el directorio razíz con las siguientes variables:
+    3. Obtener este repositorio con el comando "git pull https://github.com/andressiri/alkemy-full-stack".
+    4. Instalar las dependencias del directorio raíz con el comando "npm install".
+    5. Ir al directorio "frontend" e instalar las dependencias con el comando "npm install" nuevamente.
+    6. Crear un archivo .env en el directorio raíz con las siguientes variables:
       - NODE_ENV = development
-      - DB_NAME = "el nombre de tu base de datos PostgreSQL"
-      - DB_USERNAME = "tu nombre de usuario para esa base de datos de PostgreSQL"
-      - DB_PASSWORD = "la contraseña para ese usuario de PostgreSQL"
-      - JWT_SECRET = "lo que sea que quieras usar como secreto para el token de JWT"
+      - DB_NAME = <el nombre de tu base de datos PostgreSQL>
+      - DB_USERNAME = <tu nombre de usuario para esa base de datos de PostgreSQL>
+      - DB_PASSWORD = <la contraseña para ese usuario de PostgreSQL>
+      - JWT_SECRET = <una cadena que quieras usar como secreto para el token de JWT>
       - MAILER_MAIL = "tu email de **gmail**"
       - MAIL_PASSWORD" = "tu "contraseña de aplicación" generada desde google" (no es la constraseña de tu email)
 
@@ -53,6 +53,7 @@
      TODO: explicar en detalle cómo instalar PostgreSQL, para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. Crear el archivo sql para la creación de las tablas y explicar cómo usarlo.
 
 </details>
+
 <details>
   <summary>English</summary>
   An app for personal budget administration, where you can save your money incomes and outcomes with detail and see a balance of your registered operations. You can also get a better organization sorting them by concept, type and category.
@@ -68,7 +69,7 @@
 
     1. Create and go to a new directory.
     2. Initialize a new repository with "git init" command.
-    3. Git pull [this repository](https://github.com/andressiri/alkemy-full-stack) with "git pull https://github.com/andressiri/alkemy-full-stack" command.
+    3. Git pull this repository with "git pull https://github.com/andressiri/alkemy-full-stack" command.
     4. Install root directory dependencies with "npm install" command.
     5. Move to frontend directory and install client dependencies with the "npm install" command again.
     6. Create a .env file at the root directory with the following variables:
@@ -105,4 +106,5 @@
             CHECK(operation_type = "Income" OR operation_type = "Outcome")
      
      TODO: explain more in detail how to install PostgreSQL, what is JWT secret for and how to get application mail password. Create sql file and explain how to run it
+
 </details>
