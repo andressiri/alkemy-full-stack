@@ -24,50 +24,66 @@
   3. Obtener este repositorio con el comando "git pull https://github.com/andressiri/alkemy-full-stack".
   4. Instalar las dependencias del directorio raíz con el comando "npm install".
   5. Ir al directorio "frontend" e instalar las dependencias con el comando "npm install" nuevamente.
-  6. Crear un archivo .env en el directorio raíz con las siguientes variables:
-
-      * NODE_ENV = development
-      * DB_NAME = < el nombre de tu base de datos PostgreSQL >
-      * DB_USERNAME = < tu nombre de usuario para esa base de datos de PostgreSQL >
-      * DB_PASSWORD = < la contraseña para ese usuario de PostgreSQL >
-      * JWT_SECRET = < una cadena que quieras usar como secreto para el token de JWT >
-      * MAILER_MAIL = < tu dirección de email de **gmail** >
-      * MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
-
-  7. Crea las tablas en tu base de datos PostgreSQL:
+  6. Crear la base de datos PostgreSQL requerida:
 
       <details>
 
-        <summary>La tabla "people":</summary>
+        <summary>Instalar el servidor PostgreSQL en tu computadora.</summary>
 
-        - user_uuid UUID PRIMARY KEY
-        - name VARCHAR(50) NOT NULL
-        - email VARCHAR(100) NOT NULL UNIQUE
-        - password VARCHAR(100) NOT NULL
-        - verified BOOLEAN
-        - createdAt TIMESTAMP NOT NULL
-        - updatedAt TIMESTAMP
+        - Descargar el instalador en [el sitio oficial](https://www.postgresql.org/download/).
+        - En Windows considerar que es necesario haber ingresado como administrador o superusuario para realizar la instalación. De ser necesario, se recomienda seguir [las instrucciones para Windows provistas en el sitio oficial](https://www.enterprisedb.com/docs/supported-open-source/postgresql/installer/02_installing_postgresql_with_the_graphical_installation_wizard/01_invoking_the_graphical_installer/).
+        - En Mac OS considerar que hay que correr el paquete dmg descargado como usuario administrador. De ser necesario, se recomienda seguir [las instrucciones para Mac OS provistas en el sitio oficial](https://www.enterprisedb.com/postgres-tutorials/installation-postgresql-mac-os).
+        - En Ubuntu para Linux seguir [ las instrucciones provistas en el sitio oficial para Ubuntu](https://www.enterprisedb.com/postgres-tutorials/how-install-postgres-ubuntu).
+        - Necesitarás la constraseña que ingreses en la instalación para conectarte a la base de datos.
 
       </details>
 
       <details>
 
-        <summary>La tabla "records":</summary>
+        <summary>Crear la base de datos y sus tablas:</summary>
 
-        - record_uuid UUID PRIMARY KEY
-        - concept VARCHAR(50) NOT NULL
-        - amount REAL NOT NULL
-        - operation_date DATE NOT NULL
-        - operation_type VARCHAR(7) NOT NULL
-        - category VARCHAR(50)
-        - user_UUID UUID
-        - createdAt TIMESTAMP NOT NULL
-        - updatedAt TIMESTAMP NOT NULL
-        - agrega una restricción para operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+        <details>
+
+          <summary>
+          **Recomendado**: corre el archivo createDatabase.sql provisto en este repositorio.
+          </summary>
+
+          - Conectar a la consola "SQL shell (psql)" (instalada al instalar el servidor PostgreSQL). Los valores por defecto para la conexión son: 
+              - para Server: "localhost".
+              - para Database: "postgres".
+              - para Port: "5432".
+              - para Username: "postgres".
+          Inmediatamente después de ingresar el nombre de usuario (Username), debes ingresar la contraseña para ese usuario. Para el usuario por defecto (postgres), es la contraseña que ingresaste durante la instalación.
+          - Ya en la consola psql corre el comando "\i ruta/a/createDatabase.sql;", donde "ruta/a/" es la ruta al directorio raíz del proyecto. Si tienes problemas con el nombre de la ruta, considera cambiar le nombre de los directorios, o mejor aún, simplemente copia el archivo createDatabase.sql a otro directorio y córrelo desde ahí. También considera que la ruta puede fallar si no usas el estilo de barra Unix ("/").
+          - Una vez que hayas hecho esto con éxito, el proceso debería crear una base de datos llamada andres-siri-alkemy-test, conectarse a ella, crear dos tablas (people y records) y hacer varias (31) inserciones para un usuario falso provisto para probar la aplicación. El email de este usuario es "user@fake.test" y su contraseña es "123456".
+          - Si por algún motivo no puedes instalar el archivo createDataba.sql, puede correr las líneas del archivo en la consola psql o usar pgAdmin 4.
+
+        </details>
+
+        <details>
+
+          <summary>
+          Crearlas usando pgAdmin 4
+          </summary>
+
+          - Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
+
+        </details>
 
       </details>
 
-  TODO: explicar en detalle cómo instalar PostgreSQL, para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. Crear el archivo sql para la creación de las tablas y explicar cómo usarlo.
+  7. Crear un archivo .env en el directorio raíz con las siguientes variables:
+
+      NODE_ENV = development
+      DB_NAME = < andres-siri-alkemy-test o el nombre de tu base de datos PostgreSQL >
+      DB_USERNAME = < "postgres" (default) o tu nombre de usuario para esa base de datos de PostgreSQL >
+      DB_PASSWORD = < la contraseña para ese usuario de PostgreSQL >
+      JWT_SECRET = < una cadena que quieras usar como secreto para el token de JWT >
+      MAILER_MAIL = < tu dirección de email de **gmail** >
+      MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
+
+
+  TODO: explicar en detalle para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. 
 
 </details>
 
@@ -94,49 +110,65 @@
   3. Git pull this repository with "git pull https://github.com/andressiri/alkemy-full-stack" command.
   4. Install root directory dependencies with "npm install" command.
   5. Move to "frontend" directory and install client dependencies with the "npm install" command again.
-  6. Create a .env file at the root directory with the following variables:
-
-      * NODE_ENV = development
-      * DB_NAME = < your PostgreSQL database name >
-      * DB_USERNAME = < your PostgreSQL user name >
-      * DB_PASSWORD = < your PostgreSQL password for previous user >
-      * JWT_SECRET = < whatever you want to use as JWT secret >
-      * MAILER_MAIL = < your **gmail** email address >
-      * MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
-
-  7. Create tables required at your PostgreSQL database:
+  6. Create the PostgreSQL required database:
 
       <details>
 
-        <summary>"people" table:</summary>
+        <summary>Install PostgreSQL server in your computer.</summary>
 
-        - user_uuid UUID PRIMARY KEY
-        - name VARCHAR(50) NOT NULL
-        - email VARCHAR(100) NOT NULL UNIQUE
-        - password VARCHAR(100) NOT NULL
-        - verified BOOLEAN
-        - createdAt TIMESTAMP NOT NULL
-        - updatedAt TIMESTAMP
+        - Download the installer at [official site](https://www.postgresql.org/download/).
+        - In Windows consider you need to be logged as administrator or superuser to perform and installation. If needed, follow the [instructions provided at official site for Windows](https://www.enterprisedb.com/docs/supported-open-source/postgresql/installer/02_installing_postgresql_with_the_graphical_installation_wizard/01_invoking_the_graphical_installer/).
+        - In Mac OS consider you have to run the downloaded dmg package as administrator user. If needed, follow the [instructions provided at official site for Mac OS](https://www.enterprisedb.com/postgres-tutorials/installation-postgresql-mac-os).
+        - In Ubuntu for Linux follow the [instructions provided at official site for Ubuntu](https://www.enterprisedb.com/postgres-tutorials/how-install-postgres-ubuntu).
+        - You will need the password your enter in the installation to connect to the database.
 
       </details>
 
       <details>
 
-        <summary>"records" table:</summary>
+        <summary>Create the database and it's tables:</summary>
 
-        - record_uuid UUID PRIMARY KEY
-        - concept VARCHAR(50) NOT NULL
-        - amount REAL NOT NULL
-        - operation_date DATE NOT NULL
-        - operation_type VARCHAR(7) NOT NULL
-        - category VARCHAR(50)
-        - user_UUID UUID
-        - createdAt TIMESTAMP NOT NULL
-        - updatedAt TIMESTAMP NOT NULL
-        - and add a constraint for operation_type: operation_type VARCHAR(7) CONSTRAINT type_valid_values CHECK(operation_type = "Income" OR operation_type = "Outcome")
+        <details>
+
+          <summary>
+          **Recommended**: run the createDatabase.sql file provided in this repository.
+          </summary>
+
+          - Connect to the "SQL shell (psql)" console (installed with the PostgreSQL server). The default values for connection are: 
+              - for Server: "localhost".
+              - for Database: "postgres".
+              - for Port: "5432".
+              - for Username: "postgres".
+          Right after entering the username, you should enter the password for that user. For the default user (postgres), it is the password you provided in the installation.
+          - In the psql console run the command "\i path/to/createDatabase.sql;", where "path/to/" is the path to this project root folder. If you have problems with the path name, consider changing the directories names or, better, just copy the createDatabase.sql file to another directory and run it from there. Also notice that the path may be wrong if you don't use the Unix style slash ("/").
+          - Once you have successfully done this, it should create a database named andres-siri-alkemy-test, connect to it, create two tables (people and records) and make many (31) insertions for a fake user created for testing. This user email is "user@fake.test" and it's password is "123456".
+          - If for some reason you can't install the createDataba.sql file, you can run the lines of that file in the psql console or use pgAdmin 4.
+
+        </details>
+
+        <details>
+
+          <summary>
+          Create them using pgAdmin 4
+          </summary>
+
+          - Open the "pgAdmin 4" application (installed with the PostgreSQL server).
+
+        </details>
 
       </details>
 
-  TODO: explain more in detail how to install PostgreSQL, what is JWT secret for and how to get application mail password. Create sql file and explain how to run it
+  7. Create a .env file at the root directory with the following variables:
+
+      NODE_ENV = development
+      DB_NAME = < andres-siri-alkemy-test or your PostgreSQL database name >
+      DB_USERNAME = < "postgres" (default) or your PostgreSQL user name >
+      DB_PASSWORD = < your PostgreSQL password for previous username >
+      JWT_SECRET = < whatever you want to use as JWT secret >
+      MAILER_MAIL = < your **gmail** email address >
+      MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
+
+
+  TODO: explain more in detail what is JWT secret for and how to get application mail password. 
 
 </details>
