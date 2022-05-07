@@ -46,17 +46,17 @@
 
         <details>
 
-        <summary><strong>Recomendado</strong>: corre el archivo createDatabase.sql provisto en este repositorio.</summary>
+        <summary><strong>Recomendado</strong>: correr el archivo createDatabase.sql provisto en este repositorio.</summary>
 
         - Conectar a la consola "SQL shell (psql)" (instalada al instalar el servidor PostgreSQL). Los valores por defecto para la conexión son: 
             - para Server: "localhost".
             - para Database: "postgres".
             - para Port: "5432".
             - para Username: "postgres".
-        Inmediatamente después de ingresar el nombre de usuario (Username), debes ingresar la contraseña para ese usuario. Para el usuario por defecto (postgres), es la contraseña que ingresaste durante la instalación.
-        - Ya en la consola psql corre el comando "\i ruta/a/createDatabase.sql;", donde "ruta/a/" es la ruta al directorio raíz del proyecto. Si tienes problemas con el nombre de la ruta, considera cambiar le nombre de los directorios, o mejor aún, simplemente copia el archivo createDatabase.sql a otro directorio y córrelo desde ahí. También considera que la ruta puede fallar si no usas el estilo de barra Unix ("/").
-        - Una vez que hayas hecho esto con éxito, el proceso debería crear una base de datos llamada andres-siri-alkemy-test, conectarse a ella, crear dos tablas (people y records) y hacer varias (31) inserciones para un usuario falso provisto para probar la aplicación. El email de este usuario es "user@fake.test" y su contraseña es "123456".
-        - Si por algún motivo no puedes instalar el archivo createDataba.sql, puede correr las líneas del archivo en la consola psql o usar pgAdmin 4.
+        Inmediatamente después de ingresar el nombre de usuario (Username), se debe ingresar la contraseña para ese usuario. Para el usuario por defecto (postgres), es la contraseña que se ingresó durante la instalación.
+        - Ya en la consola psql correr el comando "\i ruta/a/createDatabase.sql;", donde "ruta/a/" es la ruta al directorio raíz del proyecto. En caso de tener problemas con el nombre de la ruta, considerar cambiar el nombre de los directorios, o mejor aún, simplemente copiar el archivo createDatabase.sql a otro directorio y correrlo desde ahí. También considerar que la ruta puede fallar si no se usa el estilo de barra Unix ("/").
+        - Una vez realizado lo anterior con éxito, el proceso debería crear una base de datos llamada andres-siri-alkemy-test, conectarse a ella, crear dos tablas (people y records) y hacer varias (31) inserciones para un usuario falso provisto para probar la aplicación. El email de este usuario es "user@fake.test" y su contraseña es "123456".
+        - Si por algún motivo no es posible instalar el archivo createDataba.sql, se puede correr las líneas del archivo en la consola psql o usar pgAdmin 4.
 
         </details>
 
