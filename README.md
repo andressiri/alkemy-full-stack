@@ -5,7 +5,6 @@
 
   <summary>Español</summary>
 
-
   Una aplicación para administración de presupuesto personal, donde puedes guardar con detalle tus ingresos y egresos de dinero y ver un balance de tus operaciones registradas. También puedes tener una mejor organización de ellas clasificándolas por concepto, tipo y categoría.
 
   ## Motivación para el proyecto
@@ -31,7 +30,6 @@
 
         <summary>Instalar el servidor PostgreSQL en tu computadora.</summary>
 
-
         - Descargar el instalador en [el sitio oficial](https://www.postgresql.org/download/).
         - En Windows considerar que es necesario haber ingresado como administrador o superusuario para realizar la instalación. De ser necesario, se recomienda seguir [las instrucciones para Windows provistas en el sitio oficial](https://www.enterprisedb.com/docs/supported-open-source/postgresql/installer/02_installing_postgresql_with_the_graphical_installation_wizard/01_invoking_the_graphical_installer/).
         - En Mac OS considerar que hay que correr el paquete dmg descargado como usuario administrador. De ser necesario, se recomienda seguir [las instrucciones para Mac OS provistas en el sitio oficial](https://www.enterprisedb.com/postgres-tutorials/installation-postgresql-mac-os).
@@ -44,6 +42,7 @@
 
         <summary>Crear la base de datos y sus tablas:</summary>
 
+        <blockquote>
 
         <details>
 
@@ -65,10 +64,11 @@
 
         <summary>Crearlas usando pgAdmin 4</summary>
 
-
         - Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
 
         </details>
+
+        </blockquote>
 
       </details>
 
@@ -90,7 +90,6 @@
 <details>
 
   <summary>English</summary>
-
 
   An app for personal budget administration, where you can save your money incomes and outcomes with detail and see a balance of your registered operations. You can also get a better organization sorting them by concept, type and category.
 
@@ -117,7 +116,6 @@
 
         <summary>Install PostgreSQL server in your computer.</summary>
 
-
         - Download the installer at [official site](https://www.postgresql.org/download/).
         - In Windows consider you need to be logged as administrator or superuser to perform and installation. If needed, follow the [instructions provided at official site for Windows](https://www.enterprisedb.com/docs/supported-open-source/postgresql/installer/02_installing_postgresql_with_the_graphical_installation_wizard/01_invoking_the_graphical_installer/).
         - In Mac OS consider you have to run the downloaded dmg package as administrator user. If needed, follow the [instructions provided at official site for Mac OS](https://www.enterprisedb.com/postgres-tutorials/installation-postgresql-mac-os).
@@ -130,6 +128,7 @@
 
         <summary>Create the database and it's tables:</summary>
 
+        <blockquote>
 
         <details>
 
@@ -151,10 +150,38 @@
 
         <summary>Create them using pgAdmin 4</summary>
 
-
-        - Open the "pgAdmin 4" application (installed with the PostgreSQL server).
+        1. Open the "pgAdmin 4" application (installed with the PostgreSQL server).
+        2. Use the password you entered during the installation.
+            ![enter installation password](/assets/README/postgre%20pgadmin/0.%20Enter%20installation%20password.png)
+        3. Create a new database.
+            ![create a new database](/assets/README/postgre%20pgadmin/1.%20Create%20Database.png)
+        4. Name it "andres-siri-alkemy-test" or a name of your choice.
+            ![create a new database menu](/assets/README/postgre%20pgadmin/2.%20Create%20Database%20menu.png)
+        5. Create the first table.
+            ![create first table](/assets/README/postgre%20pgadmin/3.%20Create%20first%20table.png)
+        6. Name the first table as "people".
+            ![name first table](/assets/README/postgre%20pgadmin/4.%20Name%20first%20table.png)
+        7. Define "people" table columns.
+            ![define first table](/assets/README/postgre%20pgadmin/5.%20Define%20first%20table.png)
+        8. Set email unique constraint.
+            ![set email unique constraint name](/assets/README/postgre%20pgadmin/6.%20Set%20email%20unique%20constraint%201.png)
+            ![set email unique constraint column](/assets/README/postgre%20pgadmin/7.%20Set%20email%20unique%20constraint%202.png)
+        9. Create a second table.
+            ![create a second table](/assets/README/postgre%20pgadmin/8.%20Create%20second%20table.png)
+        10. Name second table as "records".
+            ![name second table](/assets/README/postgre%20pgadmin/9.%20Name%20second%20table.png)
+        11. Define "records" table columns.
+            ![define second table](/assets/README/postgre%20pgadmin/10.%20Define%20second%20table.png)
+        12. Set foreign constraint to the user_uuid column.
+            ![set foreign key constraint name](/assets/README/postgre%20pgadmin/11.%20Set%20foreign%20key%20constraint%20to%20user_uuid%201.png)
+            ![set foreign key constraint conditions](/assets/README/postgre%20pgadmin/12.%20Set%20foreign%20key%20constraint%20to%20user_uuid%202.png)
+        13. Set operation_type column valid values.
+            ![set operation_type constraint name](/assets/README/postgre%20pgadmin/13.%20Set%20operation_type%20valid%20values%201.png)
+            ![set operation_type constraint conditions](/assets/README/postgre%20pgadmin/14.%20Set%20operation_type%20valid%20values%202.png)
 
         </details>
+
+        </blockquote>
 
       </details>
 
