@@ -111,6 +111,23 @@
           MAILER_MAIL = < tu dirección de email de **gmail** >
           MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
 
+      <details>
+
+      <summary>Generar una contraseña de aplicación en Google</summary>
+
+      Para generar una nueva contraseña de aplicación seguir los siguientes pasos:
+
+      1. En una nueva pestaña de Chrome ir a "Gestionar tu cuenta de Google".
+          ![gestionar tu cuenta de google](/assets/README/gmail%20application%20password/1.%20Gestionar%20tu%20cuenta%20de%20Google.png)
+      2. Ir a "Iniciar sesión en Google" en la sección de "Seguridad" y clickear en "Contraseñas de aplicaciones". Notar que es necesario tener la verificación en dos pasos activada para poder hacer esto.
+          ![ir a contraseñas de aplicaciones](/assets/README/gmail%20application%20password/2.%20Ir%20a%20contrase%C3%B1as%20de%20aplicaciones.png)
+      3. Crear una nueva constraseña de aplicación, el nombre es indistinto.
+          ![crear una nueva constraseña de aplicación](/assets/README/gmail%20application%20password/3.%20Crear%20una%20nueva%20contrase%C3%B1a%20de%20aplicaci%C3%B3n.png)
+      4. Obtener la nueva contraseña de aplicación creada.
+          ![obtener la nueva contraseña de aplicación](/assets/README/gmail%20application%20password/4.%20Obtener%20la%20constrase%C3%B1a%20de%20aplicaci%C3%B3n.png)
+
+      </details>
+
 
   TODO: explicar en detalle para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. 
 
@@ -222,15 +239,13 @@
           DB_NAME = < andres-siri-alkemy-test or your PostgreSQL database name >
           DB_USERNAME = < "postgres" (default) or your PostgreSQL user name >
           DB_PASSWORD = < your PostgreSQL password for previous username >
-          JWT_SECRET = < whatever you want to use as JWT secret >
+          JWT_SECRET = < whatever you want, to use as JWT secret >
           MAILER_MAIL = < your **gmail** email address >
           MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
 
       <details>
 
-      <summary>Variables help</summary>
-
-      #### Generate application password
+      <summary>Generate application password help</summary>
 
       To generate a new application password follow the next steps:
 
