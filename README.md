@@ -44,9 +44,7 @@
 
         <details>
 
-          <summary>
-          **Recomendado**: corre el archivo createDatabase.sql provisto en este repositorio.
-          </summary>
+          <summary><strong>Recomendado</strong>: corre el archivo createDatabase.sql provisto en este repositorio.</summary>
 
           - Conectar a la consola "SQL shell (psql)" (instalada al instalar el servidor PostgreSQL). Los valores por defecto para la conexión son: 
               - para Server: "localhost".
@@ -62,9 +60,7 @@
 
         <details>
 
-          <summary>
-          Crearlas usando pgAdmin 4
-          </summary>
+          <summary>Crearlas usando pgAdmin 4</summary>
 
           - Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
 
@@ -74,13 +70,13 @@
 
   7. Crear un archivo .env en el directorio raíz con las siguientes variables:
 
-      NODE_ENV = development
-      DB_NAME = < andres-siri-alkemy-test o el nombre de tu base de datos PostgreSQL >
-      DB_USERNAME = < "postgres" (default) o tu nombre de usuario para esa base de datos de PostgreSQL >
-      DB_PASSWORD = < la contraseña para ese usuario de PostgreSQL >
-      JWT_SECRET = < una cadena que quieras usar como secreto para el token de JWT >
-      MAILER_MAIL = < tu dirección de email de **gmail** >
-      MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
+          NODE_ENV = development
+          DB_NAME = < andres-siri-alkemy-test o el nombre de tu base de datos PostgreSQL >
+          DB_USERNAME = < "postgres" (default) o tu nombre de usuario para esa base de datos de PostgreSQL >
+          DB_PASSWORD = < la contraseña para ese usuario de PostgreSQL >
+          JWT_SECRET = < una cadena que quieras usar como secreto para el token de JWT >
+          MAILER_MAIL = < tu dirección de email de **gmail** >
+          MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
 
 
   TODO: explicar en detalle para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. 
@@ -128,11 +124,9 @@
 
         <summary>Create the database and it's tables:</summary>
 
-        <details>
+          <details>
 
-          <summary>
-          **Recommended**: run the createDatabase.sql file provided in this repository.
-          </summary>
+          <summary><strong>Recommended</strong>: run the createDatabase.sql file provided in this repository.</summary>
 
           - Connect to the "SQL shell (psql)" console (installed with the PostgreSQL server). The default values for connection are: 
               - for Server: "localhost".
@@ -148,9 +142,7 @@
 
         <details>
 
-          <summary>
-          Create them using pgAdmin 4
-          </summary>
+          <summary>Create them using pgAdmin 4</summary>
 
           - Open the "pgAdmin 4" application (installed with the PostgreSQL server).
 
@@ -160,13 +152,13 @@
 
   7. Create a .env file at the root directory with the following variables:
 
-      NODE_ENV = development
-      DB_NAME = < andres-siri-alkemy-test or your PostgreSQL database name >
-      DB_USERNAME = < "postgres" (default) or your PostgreSQL user name >
-      DB_PASSWORD = < your PostgreSQL password for previous username >
-      JWT_SECRET = < whatever you want to use as JWT secret >
-      MAILER_MAIL = < your **gmail** email address >
-      MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
+          NODE_ENV = development
+          DB_NAME = < andres-siri-alkemy-test or your PostgreSQL database name >
+          DB_USERNAME = < "postgres" (default) or your PostgreSQL user name >
+          DB_PASSWORD = < your PostgreSQL password for previous username >
+          JWT_SECRET = < whatever you want to use as JWT secret >
+          MAILER_MAIL = < your **gmail** email address >
+          MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
 
 
   TODO: explain more in detail what is JWT secret for and how to get application mail password. 
