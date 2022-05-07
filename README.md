@@ -40,9 +40,9 @@
 
       <details>
 
-        <summary>Crear la base de datos y sus tablas:</summary>
+      <summary>Crear la base de datos y sus tablas:</summary>
 
-        <details>
+          <details>
 
           <summary><strong>Recomendado</strong>: corre el archivo createDatabase.sql provisto en este repositorio.</summary>
 
@@ -56,15 +56,15 @@
           - Una vez que hayas hecho esto con éxito, el proceso debería crear una base de datos llamada andres-siri-alkemy-test, conectarse a ella, crear dos tablas (people y records) y hacer varias (31) inserciones para un usuario falso provisto para probar la aplicación. El email de este usuario es "user@fake.test" y su contraseña es "123456".
           - Si por algún motivo no puedes instalar el archivo createDataba.sql, puede correr las líneas del archivo en la consola psql o usar pgAdmin 4.
 
-        </details>
+          </details>
 
-        <details>
+          <details>
 
           <summary>Crearlas usando pgAdmin 4</summary>
 
           - Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
 
-        </details>
+          </details>
 
       </details>
 
@@ -124,27 +124,27 @@
 
         <summary>Create the database and it's tables:</summary>
 
-          <details>
+        <details>
 
-          <summary><strong>Recommended</strong>: run the createDatabase.sql file provided in this repository.</summary>
+        <summary><strong>Recommended</strong>: run the createDatabase.sql file provided in this repository.</summary>
 
-          - Connect to the "SQL shell (psql)" console (installed with the PostgreSQL server). The default values for connection are: 
+        - Connect to the "SQL shell (psql)" console (installed with the PostgreSQL server). The default values for connection are: 
               - for Server: "localhost".
               - for Database: "postgres".
               - for Port: "5432".
               - for Username: "postgres".
-          Right after entering the username, you should enter the password for that user. For the default user (postgres), it is the password you provided in the installation.
-          - In the psql console run the command "\i path/to/createDatabase.sql;", where "path/to/" is the path to this project root folder. If you have problems with the path name, consider changing the directories names or, better, just copy the createDatabase.sql file to another directory and run it from there. Also notice that the path may be wrong if you don't use the Unix style slash ("/").
-          - Once you have successfully done this, it should create a database named andres-siri-alkemy-test, connect to it, create two tables (people and records) and make many (31) insertions for a fake user created for testing. This user email is "user@fake.test" and it's password is "123456".
-          - If for some reason you can't install the createDataba.sql file, you can run the lines of that file in the psql console or use pgAdmin 4.
+        Right after entering the username, you should enter the password for that user. For the default user (postgres), it is the password you provided in the installation.
+        - In the psql console run the command "\i path/to/createDatabase.sql;", where "path/to/" is the path to this project root folder. If you have problems with the path name, consider changing the directories names or, better, just copy the createDatabase.sql file to another directory and run it from there. Also notice that the path may be wrong if you don't use the Unix style slash ("/").
+        - Once you have successfully done this, it should create a database named andres-siri-alkemy-test, connect to it, create two tables (people and records) and make many (31) insertions for a fake user created for testing. This user email is "user@fake.test" and it's password is "123456".
+        - If for some reason you can't install the createDataba.sql file, you can run the lines of that file in the psql console or use pgAdmin 4.
 
         </details>
 
         <details>
 
-          <summary>Create them using pgAdmin 4</summary>
+        <summary>Create them using pgAdmin 4</summary>
 
-          - Open the "pgAdmin 4" application (installed with the PostgreSQL server).
+        - Open the "pgAdmin 4" application (installed with the PostgreSQL server).
 
         </details>
 
