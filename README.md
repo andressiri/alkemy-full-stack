@@ -64,7 +64,34 @@
 
         <summary>Crearlas usando pgAdmin 4</summary>
 
-        - Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
+        1. Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
+        2. Usar la contraseña que se ingresó durante la instalación.
+            ![enter installation password](/assets/README/postgre%20pgadmin/0.%20Enter%20installation%20password.png)
+        3. Crear una nueva base de datos.
+            ![create a new database](/assets/README/postgre%20pgadmin/1.%20Create%20Database.png)
+        4. Nombrarla "andres-siri-alkemy-test" o un nombre a elección.
+            ![create a new database menu](/assets/README/postgre%20pgadmin/2.%20Create%20Database%20menu.png)
+        5. Crear la primer tabla.
+            ![create first table](/assets/README/postgre%20pgadmin/3.%20Create%20first%20table.png)
+        6. Nombrar la primer tabla como "people".
+            ![name first table](/assets/README/postgre%20pgadmin/4.%20Name%20first%20table.png)
+        7. Definir las columnas de la tabla "people".
+            ![define first table](/assets/README/postgre%20pgadmin/5.%20Define%20first%20table.png)
+        8. Crear la restricción de valor único para la columna "email".
+            ![set email unique constraint name](/assets/README/postgre%20pgadmin/6.%20Set%20email%20unique%20constraint%201.png)
+            ![set email unique constraint column](/assets/README/postgre%20pgadmin/7.%20Set%20email%20unique%20constraint%202.png)
+        9. Crear una segunda tabla.
+            ![create a second table](/assets/README/postgre%20pgadmin/8.%20Create%20second%20table.png)
+        10. Nombrar la segunda tabla como "records".
+            ![name second table](/assets/README/postgre%20pgadmin/9.%20Name%20second%20table.png)
+        11. Definir las columnas de la tabla "records".
+            ![define second table](/assets/README/postgre%20pgadmin/10.%20Define%20second%20table.png)
+        12. Crear la restricción de llave foránea para la columna "user_uuid".
+            ![set foreign key constraint name](/assets/README/postgre%20pgadmin/11.%20Set%20foreign%20key%20constraint%20to%20user_uuid%201.png)
+            ![set foreign key constraint conditions](/assets/README/postgre%20pgadmin/12.%20Set%20foreign%20key%20constraint%20to%20user_uuid%202.png)
+        13. Crear la restricción de valores válidos para la columna "operation_type".
+            ![set operation_type constraint name](/assets/README/postgre%20pgadmin/13.%20Set%20operation_type%20valid%20values%201.png)
+            ![set operation_type constraint conditions](/assets/README/postgre%20pgadmin/14.%20Set%20operation_type%20valid%20values%202.png)
 
         </details>
 
@@ -163,7 +190,7 @@
             ![name first table](/assets/README/postgre%20pgadmin/4.%20Name%20first%20table.png)
         7. Define "people" table columns.
             ![define first table](/assets/README/postgre%20pgadmin/5.%20Define%20first%20table.png)
-        8. Set email unique constraint.
+        8. Set "email" column unique constraint.
             ![set email unique constraint name](/assets/README/postgre%20pgadmin/6.%20Set%20email%20unique%20constraint%201.png)
             ![set email unique constraint column](/assets/README/postgre%20pgadmin/7.%20Set%20email%20unique%20constraint%202.png)
         9. Create a second table.
@@ -172,7 +199,7 @@
             ![name second table](/assets/README/postgre%20pgadmin/9.%20Name%20second%20table.png)
         11. Define "records" table columns.
             ![define second table](/assets/README/postgre%20pgadmin/10.%20Define%20second%20table.png)
-        12. Set foreign constraint to the user_uuid column.
+        12. Set foreign constraint to the "user_uuid" column.
             ![set foreign key constraint name](/assets/README/postgre%20pgadmin/11.%20Set%20foreign%20key%20constraint%20to%20user_uuid%201.png)
             ![set foreign key constraint conditions](/assets/README/postgre%20pgadmin/12.%20Set%20foreign%20key%20constraint%20to%20user_uuid%202.png)
         13. Set operation_type column valid values.
