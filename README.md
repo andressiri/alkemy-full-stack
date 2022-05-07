@@ -226,23 +226,23 @@
           MAILER_MAIL = < your **gmail** email address >
           MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
 
-  <details>
+      <details>
 
-    <summary>Variables help</summary>
+      <summary>Variables help</summary>
 
-    #### Generate application password
+      #### Generate application password
 
-    To generate a new application password follow the next steps:
+      To generate a new application password follow the next steps:
 
-    1. In a new Chrome tab go to "Manage your Google Account".
-        ![go to Manage your Google Account](/assets/README/gmail%20application%20password/1.%20Manage%20your%20google%20account.png)
-    2. Go to "Signing in to Google" in the "Security" section and click into "App passwords". Notice you must have your 2-Step Verification activated in order to do this.
-        ![go to app passwords](/assets/README/gmail%20application%20password/2.%20Go%20to%20app%20passwords.png)
-    3. Create a new application password, you can name it as you want.
-        ![create a new application password](/assets/README/gmail%20application%20password/3.%20Create%20a%20new%20application%20password.png)
-    4. Get the new password created.
-        ![get the new password](/assets/README/gmail%20application%20password/4.%20Get%20the%20new%20password.png)
+      1. In a new Chrome tab go to "Manage your Google Account".
+          ![go to Manage your Google Account](/assets/README/gmail%20application%20password/1.%20Manage%20your%20google%20account.png)
+      2. Go to "Signing in to Google" in the "Security" section and click into "App passwords". Notice you must have your 2-Step Verification activated in order to do this.
+          ![go to app passwords](/assets/README/gmail%20application%20password/2.%20Go%20to%20app%20passwords.png)
+      3. Create a new application password, you can name it as you want.
+          ![create a new application password](/assets/README/gmail%20application%20password/3.%20Create%20a%20new%20application%20password.png)
+      4. Get the new password created.
+          ![get the new password](/assets/README/gmail%20application%20password/4.%20Get%20the%20new%20password.png)
 
-  </details>
+      </details>
 
 </details>
