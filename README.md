@@ -48,11 +48,13 @@
 
         <summary><strong>Recomendado</strong>: correr el archivo createDatabase.sql provisto en este repositorio.</summary>
 
-        - Conectar a la consola "SQL shell (psql)" (instalada al instalar el servidor PostgreSQL). Los valores por defecto para la conexión son: 
+        - Conectar a la consola "SQL shell (psql)" (instalada al instalar el servidor PostgreSQL). Los valores por defecto para la conexión son:
+
             - para Server: "localhost".
             - para Database: "postgres".
             - para Port: "5432".
             - para Username: "postgres".
+
         Inmediatamente después de ingresar el nombre de usuario (Username), se debe ingresar la contraseña para ese usuario. Para el usuario por defecto (postgres), es la contraseña que se ingresó durante la instalación.
         - Ya en la consola psql correr el comando "\i ruta/a/createDatabase.sql;", donde "ruta/a/" es la ruta al directorio raíz del proyecto. En caso de tener problemas con el nombre de la ruta, considerar cambiar el nombre de los directorios, o mejor aún, simplemente copiar el archivo createDatabase.sql a otro directorio y correrlo desde ahí. También considerar que la ruta puede fallar si no se usa el estilo de barra Unix ("/").
         - Una vez realizado lo anterior con éxito, el proceso debería crear una base de datos llamada andres-siri-alkemy-test, conectarse a ella, crear dos tablas (people y records) y hacer varias (31) inserciones para un usuario falso provisto para probar la aplicación. El email de este usuario es "user@fake.test" y su contraseña es "123456".
@@ -162,10 +164,12 @@
         <summary><strong>Recommended</strong>: run the createDatabase.sql file provided in this repository.</summary>
 
         - Connect to the "SQL shell (psql)" console (installed with the PostgreSQL server). The default values for connection are: 
-              - for Server: "localhost".
-              - for Database: "postgres".
-              - for Port: "5432".
-              - for Username: "postgres".
+
+            - for Server: "localhost".
+            - for Database: "postgres".
+            - for Port: "5432".
+            - for Username: "postgres".
+
         Right after entering the username, you should enter the password for that user. For the default user (postgres), it is the password you provided in the installation.
         - In the psql console run the command "\i path/to/createDatabase.sql;", where "path/to/" is the path to this project root folder. If you have problems with the path name, consider changing the directories names or, better, just copy the createDatabase.sql file to another directory and run it from there. Also notice that the path may be wrong if you don't use the Unix style slash ("/").
         - Once you have successfully done this, it should create a database named andres-siri-alkemy-test, connect to it, create two tables (people and records) and make many (31) insertions for a fake user created for testing. This user email is "user@fake.test" and it's password is "123456".
@@ -222,7 +226,23 @@
           MAILER_MAIL = < your **gmail** email address >
           MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
 
+  <details>
 
-  TODO: explain more in detail what is JWT secret for and how to get application mail password. 
+    <summary>Variables help</summary>
+
+    #### Generate application password
+
+    To generate a new application password follow the next steps:
+
+    1. In a new Chrome tab go to "Manage your Google Account".
+        ![go to Manage your Google Account](/assets/README/gmail%20application%20password/1.%20Manage%20your%20google%20account.png)
+    2. Go to "Signing in to Google" in the "Security" section and click into "App passwords". Notice you must have your 2-Step Verification activated in order to do this.
+        ![go to app passwords](/assets/README/gmail%20application%20password/2.%20Go%20to%20app%20passwords.png)
+    3. Create a new application password, you can name it as you want.
+        ![create a new application password](/assets/README/gmail%20application%20password/3.%20Create%20a%20new%20application%20password.png)
+    4. Get the new password created.
+        ![get the new password](/assets/README/gmail%20application%20password/4.%20Get%20the%20new%20password.png)
+
+  </details>
 
 </details>
