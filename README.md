@@ -5,6 +5,7 @@
 
   <summary>Español</summary>
 
+
   Una aplicación para administración de presupuesto personal, donde puedes guardar con detalle tus ingresos y egresos de dinero y ver un balance de tus operaciones registradas. También puedes tener una mejor organización de ellas clasificándolas por concepto, tipo y categoría.
 
   ## Motivación para el proyecto
@@ -30,6 +31,7 @@
 
         <summary>Instalar el servidor PostgreSQL en tu computadora.</summary>
 
+
         - Descargar el instalador en [el sitio oficial](https://www.postgresql.org/download/).
         - En Windows considerar que es necesario haber ingresado como administrador o superusuario para realizar la instalación. De ser necesario, se recomienda seguir [las instrucciones para Windows provistas en el sitio oficial](https://www.enterprisedb.com/docs/supported-open-source/postgresql/installer/02_installing_postgresql_with_the_graphical_installation_wizard/01_invoking_the_graphical_installer/).
         - En Mac OS considerar que hay que correr el paquete dmg descargado como usuario administrador. De ser necesario, se recomienda seguir [las instrucciones para Mac OS provistas en el sitio oficial](https://www.enterprisedb.com/postgres-tutorials/installation-postgresql-mac-os).
@@ -40,31 +42,33 @@
 
       <details>
 
-      <summary>Crear la base de datos y sus tablas:</summary>
+        <summary>Crear la base de datos y sus tablas:</summary>
 
-          <details>
 
-          <summary><strong>Recomendado</strong>: corre el archivo createDatabase.sql provisto en este repositorio.</summary>
+        <details>
 
-          - Conectar a la consola "SQL shell (psql)" (instalada al instalar el servidor PostgreSQL). Los valores por defecto para la conexión son: 
-              - para Server: "localhost".
-              - para Database: "postgres".
-              - para Port: "5432".
-              - para Username: "postgres".
-          Inmediatamente después de ingresar el nombre de usuario (Username), debes ingresar la contraseña para ese usuario. Para el usuario por defecto (postgres), es la contraseña que ingresaste durante la instalación.
-          - Ya en la consola psql corre el comando "\i ruta/a/createDatabase.sql;", donde "ruta/a/" es la ruta al directorio raíz del proyecto. Si tienes problemas con el nombre de la ruta, considera cambiar le nombre de los directorios, o mejor aún, simplemente copia el archivo createDatabase.sql a otro directorio y córrelo desde ahí. También considera que la ruta puede fallar si no usas el estilo de barra Unix ("/").
-          - Una vez que hayas hecho esto con éxito, el proceso debería crear una base de datos llamada andres-siri-alkemy-test, conectarse a ella, crear dos tablas (people y records) y hacer varias (31) inserciones para un usuario falso provisto para probar la aplicación. El email de este usuario es "user@fake.test" y su contraseña es "123456".
-          - Si por algún motivo no puedes instalar el archivo createDataba.sql, puede correr las líneas del archivo en la consola psql o usar pgAdmin 4.
+        <summary><strong>Recomendado</strong>: corre el archivo createDatabase.sql provisto en este repositorio.</summary>
 
-          </details>
+        - Conectar a la consola "SQL shell (psql)" (instalada al instalar el servidor PostgreSQL). Los valores por defecto para la conexión son: 
+            - para Server: "localhost".
+            - para Database: "postgres".
+            - para Port: "5432".
+            - para Username: "postgres".
+        Inmediatamente después de ingresar el nombre de usuario (Username), debes ingresar la contraseña para ese usuario. Para el usuario por defecto (postgres), es la contraseña que ingresaste durante la instalación.
+        - Ya en la consola psql corre el comando "\i ruta/a/createDatabase.sql;", donde "ruta/a/" es la ruta al directorio raíz del proyecto. Si tienes problemas con el nombre de la ruta, considera cambiar le nombre de los directorios, o mejor aún, simplemente copia el archivo createDatabase.sql a otro directorio y córrelo desde ahí. También considera que la ruta puede fallar si no usas el estilo de barra Unix ("/").
+        - Una vez que hayas hecho esto con éxito, el proceso debería crear una base de datos llamada andres-siri-alkemy-test, conectarse a ella, crear dos tablas (people y records) y hacer varias (31) inserciones para un usuario falso provisto para probar la aplicación. El email de este usuario es "user@fake.test" y su contraseña es "123456".
+        - Si por algún motivo no puedes instalar el archivo createDataba.sql, puede correr las líneas del archivo en la consola psql o usar pgAdmin 4.
 
-          <details>
+        </details>
 
-          <summary>Crearlas usando pgAdmin 4</summary>
+        <details>
 
-          - Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
+        <summary>Crearlas usando pgAdmin 4</summary>
 
-          </details>
+
+        - Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
+
+        </details>
 
       </details>
 
@@ -86,6 +90,7 @@
 <details>
 
   <summary>English</summary>
+
 
   An app for personal budget administration, where you can save your money incomes and outcomes with detail and see a balance of your registered operations. You can also get a better organization sorting them by concept, type and category.
 
@@ -112,6 +117,7 @@
 
         <summary>Install PostgreSQL server in your computer.</summary>
 
+
         - Download the installer at [official site](https://www.postgresql.org/download/).
         - In Windows consider you need to be logged as administrator or superuser to perform and installation. If needed, follow the [instructions provided at official site for Windows](https://www.enterprisedb.com/docs/supported-open-source/postgresql/installer/02_installing_postgresql_with_the_graphical_installation_wizard/01_invoking_the_graphical_installer/).
         - In Mac OS consider you have to run the downloaded dmg package as administrator user. If needed, follow the [instructions provided at official site for Mac OS](https://www.enterprisedb.com/postgres-tutorials/installation-postgresql-mac-os).
@@ -123,6 +129,7 @@
       <details>
 
         <summary>Create the database and it's tables:</summary>
+
 
         <details>
 
@@ -143,6 +150,7 @@
         <details>
 
         <summary>Create them using pgAdmin 4</summary>
+
 
         - Open the "pgAdmin 4" application (installed with the PostgreSQL server).
 
