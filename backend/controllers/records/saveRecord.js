@@ -35,8 +35,8 @@ module.exports = asyncHandler(async (req, res) => {
 
   const recordData = {
     ...createResult.dataValues,
-    user_uuid: null,
   };
+  delete recordData.user_uuid;
 
   res.status(201).json({message: 'Record created', recordData});
 })

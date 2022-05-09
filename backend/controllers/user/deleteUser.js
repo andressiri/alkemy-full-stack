@@ -10,6 +10,11 @@ module.exports = asyncHandler(async (req, res) => {
   const {password} = req.body;
   let user_uuid = '';
 
+  if (req.params.uuid === req.headers.authorization.split(' ')[1]) {
+    res.status(401);
+    throw new Error('You must obtain an extra temporary token to do this');
+  };
+
   try {
     user_uuid = jwt.verify(req.params.uuid, process.env.JWT_SECRET).user_uuid;
 

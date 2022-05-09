@@ -32,7 +32,7 @@ module.exports = asyncHandler(async (req, res) => {
 
   if (isNaN(parsedAmount)) {
     res.status(400);
-    throw new Error('Please enter a number for the amount field');
+    throw new Error('Please enter a number at the amount field');
   };
 
   const updateResult = await Record.update(
@@ -51,8 +51,8 @@ module.exports = asyncHandler(async (req, res) => {
 
   const recordData = {
     ...updateResult[1][0],
-    user_uuid: null
   };
+  delete recordData.user_uuid;
 
   res.status(200).json({message: `Record updated`, recordData});
 })
