@@ -113,7 +113,7 @@
 
       <details>
 
-      <summary>Generar una contraseña de aplicación en Google</summary>
+      <summary>Cómo generar una contraseña de aplicación en Google</summary>
 
       Para generar una nueva contraseña de aplicación seguir los siguientes pasos:
 
@@ -128,8 +128,7 @@
 
       </details>
 
-
-  TODO: explicar en detalle para qué es el secreto de JWT y y cómo obtener la contraseña de aplicación para tu cuenta de gmail. 
+  8. Finalmente, para correr el cliente en el puerto 3000 usar el comando "npm run client" en el directorio raíz, y para el servidor en el puerto 8080 usar el comando "npm run server", también en el directorio raíz.
 
 </details>
 
@@ -245,7 +244,7 @@
 
       <details>
 
-      <summary>Generate application password help</summary>
+      <summary>How to generate application password</summary>
 
       To generate a new application password follow the next steps:
 
@@ -259,5 +258,7 @@
           ![get the new password](/assets/README/gmail%20application%20password/4.%20Get%20the%20new%20password.png)
 
       </details>
+
+  8. Finally, to run the client at port 3000 use "npm run client" command at root directory, and for the server at port 8080 use "npm run server" command, also at root directory.
 
 </details>
