@@ -17,7 +17,7 @@
 
   ## Instalación
 
-  Para instalar esta aplicación para probarla en desarrollo necesitas:
+  Para instalar esta aplicación y probarla en desarrollo necesitas:
 
   1. Crear e ir a un nuevo directorio.
   2. Inicializar un nuevo repositorio con el comando "git init".
@@ -68,31 +68,57 @@
 
         1. Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
         2. Usar la contraseña que se ingresó durante la instalación.
+
             ![enter installation password](/assets/README/postgre%20pgadmin/0.%20Enter%20installation%20password.png)
+
         3. Crear una nueva base de datos.
+
             ![create a new database](/assets/README/postgre%20pgadmin/1.%20Create%20Database.png)
+
         4. Nombrarla "andres-siri-alkemy-test" o un nombre a elección.
+
             ![create a new database menu](/assets/README/postgre%20pgadmin/2.%20Create%20Database%20menu.png)
+
         5. Crear la primer tabla.
+
             ![create first table](/assets/README/postgre%20pgadmin/3.%20Create%20first%20table.png)
+
         6. Nombrar la primer tabla como "people".
+
             ![name first table](/assets/README/postgre%20pgadmin/4.%20Name%20first%20table.png)
+
         7. Definir las columnas de la tabla "people".
+
             ![define first table](/assets/README/postgre%20pgadmin/5.%20Define%20first%20table.png)
+
         8. Crear la restricción de valor único para la columna "email".
+
             ![set email unique constraint name](/assets/README/postgre%20pgadmin/6.%20Set%20email%20unique%20constraint%201.png)
+
             ![set email unique constraint column](/assets/README/postgre%20pgadmin/7.%20Set%20email%20unique%20constraint%202.png)
+
         9. Crear una segunda tabla.
+
             ![create a second table](/assets/README/postgre%20pgadmin/8.%20Create%20second%20table.png)
+
         10. Nombrar la segunda tabla como "records".
+
             ![name second table](/assets/README/postgre%20pgadmin/9.%20Name%20second%20table.png)
+
         11. Definir las columnas de la tabla "records".
+
             ![define second table](/assets/README/postgre%20pgadmin/10.%20Define%20second%20table.png)
+
         12. Crear la restricción de llave foránea para la columna "user_uuid".
+
             ![set foreign key constraint name](/assets/README/postgre%20pgadmin/11.%20Set%20foreign%20key%20constraint%20to%20user_uuid%201.png)
+
             ![set foreign key constraint conditions](/assets/README/postgre%20pgadmin/12.%20Set%20foreign%20key%20constraint%20to%20user_uuid%202.png)
+
         13. Crear la restricción de valores válidos para la columna "operation_type".
+
             ![set operation_type constraint name](/assets/README/postgre%20pgadmin/13.%20Set%20operation_type%20valid%20values%201.png)
+
             ![set operation_type constraint conditions](/assets/README/postgre%20pgadmin/14.%20Set%20operation_type%20valid%20values%202.png)
 
         </details>
@@ -108,7 +134,7 @@
           DB_USERNAME = < "postgres" (default) o tu nombre de usuario para esa base de datos de PostgreSQL >
           DB_PASSWORD = < la contraseña para ese usuario de PostgreSQL >
           JWT_SECRET = < una cadena que quieras usar como secreto para el token de JWT >
-          MAILER_MAIL = < tu dirección de email de **gmail** >
+          MAILER_MAIL = < tu dirección de email de <strong>gmail</strong> >
           MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
 
       <details>
@@ -118,17 +144,30 @@
       Para generar una nueva contraseña de aplicación seguir los siguientes pasos:
 
       1. En una nueva pestaña de Chrome ir a "Gestionar tu cuenta de Google".
+
           ![gestionar tu cuenta de google](/assets/README/gmail%20application%20password/1.%20Gestionar%20tu%20cuenta%20de%20Google.png)
+
       2. Ir a "Iniciar sesión en Google" en la sección de "Seguridad" y clickear en "Contraseñas de aplicaciones". Notar que es necesario tener la verificación en dos pasos activada para poder hacer esto.
+
           ![ir a contraseñas de aplicaciones](/assets/README/gmail%20application%20password/2.%20Ir%20a%20contrase%C3%B1as%20de%20aplicaciones.png)
+
       3. Crear una nueva constraseña de aplicación, el nombre es indistinto.
+
           ![crear una nueva constraseña de aplicación](/assets/README/gmail%20application%20password/3.%20Crear%20una%20nueva%20contrase%C3%B1a%20de%20aplicaci%C3%B3n.png)
+
       4. Obtener la nueva contraseña de aplicación creada.
+
           ![obtener la nueva contraseña de aplicación](/assets/README/gmail%20application%20password/4.%20Obtener%20la%20constrase%C3%B1a%20de%20aplicaci%C3%B3n.png)
 
       </details>
 
   8. Finalmente, para correr el cliente en el puerto 3000 usar el comando "npm run client" en el directorio raíz, y para el servidor en el puerto 8080 usar el comando "npm run server", también en el directorio raíz.
+
+  ## Documentación de la API
+
+  La API que brinda el servidor, creada para la aplicación, está [documentada y publicada con Postman](https://documenter.getpostman.com/view/16003276/Uyxeonsr). Ahí puedes cargar y correr la API a postman directamente o usar postman en el navegador, utilizando el botón que dice "Run in Postman" ubicado en la esquina superior derecha de la ventana.
+
+      ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
 </details>
 
@@ -199,31 +238,57 @@
 
         1. Open the "pgAdmin 4" application (installed with the PostgreSQL server).
         2. Use the password you entered during the installation.
+
             ![enter installation password](/assets/README/postgre%20pgadmin/0.%20Enter%20installation%20password.png)
+
         3. Create a new database.
+
             ![create a new database](/assets/README/postgre%20pgadmin/1.%20Create%20Database.png)
+
         4. Name it "andres-siri-alkemy-test" or a name of your choice.
+
             ![create a new database menu](/assets/README/postgre%20pgadmin/2.%20Create%20Database%20menu.png)
+
         5. Create the first table.
+
             ![create first table](/assets/README/postgre%20pgadmin/3.%20Create%20first%20table.png)
+
         6. Name the first table as "people".
+
             ![name first table](/assets/README/postgre%20pgadmin/4.%20Name%20first%20table.png)
+
         7. Define "people" table columns.
+
             ![define first table](/assets/README/postgre%20pgadmin/5.%20Define%20first%20table.png)
+
         8. Set "email" column unique constraint.
+
             ![set email unique constraint name](/assets/README/postgre%20pgadmin/6.%20Set%20email%20unique%20constraint%201.png)
+
             ![set email unique constraint column](/assets/README/postgre%20pgadmin/7.%20Set%20email%20unique%20constraint%202.png)
+
         9. Create a second table.
+
             ![create a second table](/assets/README/postgre%20pgadmin/8.%20Create%20second%20table.png)
+
         10. Name second table as "records".
+
             ![name second table](/assets/README/postgre%20pgadmin/9.%20Name%20second%20table.png)
+
         11. Define "records" table columns.
+
             ![define second table](/assets/README/postgre%20pgadmin/10.%20Define%20second%20table.png)
+
         12. Set foreign constraint to the "user_uuid" column.
+
             ![set foreign key constraint name](/assets/README/postgre%20pgadmin/11.%20Set%20foreign%20key%20constraint%20to%20user_uuid%201.png)
+
             ![set foreign key constraint conditions](/assets/README/postgre%20pgadmin/12.%20Set%20foreign%20key%20constraint%20to%20user_uuid%202.png)
+
         13. Set operation_type column valid values.
+
             ![set operation_type constraint name](/assets/README/postgre%20pgadmin/13.%20Set%20operation_type%20valid%20values%201.png)
+
             ![set operation_type constraint conditions](/assets/README/postgre%20pgadmin/14.%20Set%20operation_type%20valid%20values%202.png)
 
         </details>
@@ -239,7 +304,7 @@
           DB_USERNAME = < "postgres" (default) or your PostgreSQL user name >
           DB_PASSWORD = < your PostgreSQL password for previous username >
           JWT_SECRET = < whatever you want, to use as JWT secret >
-          MAILER_MAIL = < your **gmail** email address >
+          MAILER_MAIL = < your <strong>gmail</strong> email address >
           MAIL_PASSWORD" = < the "application password" generated with google > (not your email password)
 
       <details>
@@ -249,16 +314,29 @@
       To generate a new application password follow the next steps:
 
       1. In a new Chrome tab go to "Manage your Google Account".
+
           ![go to Manage your Google Account](/assets/README/gmail%20application%20password/1.%20Manage%20your%20google%20account.png)
+
       2. Go to "Signing in to Google" in the "Security" section and click into "App passwords". Notice you must have your 2-Step Verification activated in order to do this.
+
           ![go to app passwords](/assets/README/gmail%20application%20password/2.%20Go%20to%20app%20passwords.png)
+
       3. Create a new application password, you can name it as you want.
+
           ![create a new application password](/assets/README/gmail%20application%20password/3.%20Create%20a%20new%20application%20password.png)
+
       4. Get the new password created.
+
           ![get the new password](/assets/README/gmail%20application%20password/4.%20Get%20the%20new%20password.png)
 
       </details>
 
   8. Finally, to run the client at port 3000 use "npm run client" command at root directory, and for the server at port 8080 use "npm run server" command, also at root directory.
+
+  ## API documentation
+
+  The API that provides the server, created for the application, is [documented and published with Postman](https://documenter.getpostman.com/view/16003276/Uyxeonsr). There you can load and run the API in postman directly or use postman in the web browser, using the button that says "Run in Postman" located in the right superior corner of the window.
+
+      ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
 </details>
