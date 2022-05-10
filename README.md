@@ -355,7 +355,7 @@
 
   <summary>Node JS</summary>
 
-  Node.js is an asynchronous event-driven JavaScript runtime built on Chrome's V8 JavaScript engine designed to build scalable network applications. Of course Node.js has many pros and cons compared with other copeting languages and frameworks, but the main reasons that explain why I chose it for this small project are, first, because of the "Javascript everywhere" advantage, as Node.js supports JavaScript both client-side and server-side, and second, the vast libraries repository you can access with the Node Package Manager.
+  [Node.js](https://nodejs.org/) is an asynchronous event-driven JavaScript runtime built on [Chrome's V8 JavaScript engine](https://v8.dev/) designed to build scalable network applications. Of course Node.js has many pros and cons compared with other copeting languages and frameworks, but the main reasons that explain why I chose it for this small project are, first, because of the "Javascript everywhere" advantage, as Node.js supports JavaScript both client-side and server-side, and second, the vast libraries repository you can access with the Node Package Manager.
 
   </details>
 
@@ -363,7 +363,7 @@
 
   <summary>Express</summary>
 
-  Express is a fast, unopinionated and minimalist web framework for Node.js that provides a robust set of features. The main reason I chose it is because, without adding many restrictions, it makes much more clear and easier to control requests and responses and to design routes with, as it says in it's official site, "a myriad of HTTP utility methods and middleware at your disposal".
+  [Express](https://expressjs.com/) is a fast, unopinionated and minimalist web framework for Node.js that provides a robust set of features. The main reason I chose it is because, without adding many restrictions, it makes much more clear and easier to control requests and responses and to design routes with, as it says in it's official site, "a myriad of HTTP utility methods and middleware at your disposal".
 
   </details>
   
@@ -371,7 +371,7 @@
 
   <summary>PostgreSQL</summary>
 
-  PostgreSQL is a powerful object-relational database system. As it was required a relational database in the challenge I chose it, but one of the reasons for this decision over choosing other relational databases is that it is open-source with over 30 years of active and there is a wealth of information to be found describing how to install and use it through the official documentation. Other important reason is that some features, like create, update or delete, in my opinion, have better feedback or information returned after the action is done.
+  [PostgreSQL](https://www.postgresql.org/) is a powerful object-relational database system. As it was required a relational database in the challenge I chose it, but one of the reasons for this decision over choosing other relational databases is that it is open-source with over 30 years of active and there is a wealth of information to be found describing how to install and use it through the official documentation. Other important reason is that some features, like create, update or delete, in my opinion, have better feedback or information returned after the action is done.
 
   </details>
 
@@ -379,7 +379,7 @@
 
   <summary>Sequelize</summary>
 
-  Sequelize is a modern TypeScript and Node.js Object Relational Mapping tool for PostgresSQL and more relational SQL databases. As an ORM Sequelize allows me to access the database using the object-oriented logic with Javascript, a great advantage considering I was required that my server URLS should return JSON data. 
+  [Sequelize](https://sequelize.org/) is a modern TypeScript and Node.js Object Relational Mapping tool for PostgresSQL and more relational SQL databases. As an ORM Sequelize allows me to access the database using the object-oriented logic with Javascript, a great advantage considering I was required that my server URLS should return JSON data. 
 
   </details>
 
@@ -387,7 +387,7 @@
 
   <summary>Json Web Token</summary>
 
-  JSON Web Token (JWT) is an open standard ([RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret or a public/private key pair. I chose this to use for my authorization and authentication methods as it results in a pretty simple way of doing it, and having used Passport before, I wanted to learn something else. I found it better as it has less restrictions, besides Passport provides a middleware built on that I had to develop instead.
+  [JSON Web Token (JWT)](https://jwt.io/) is an open standard ([RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret or a public/private key pair. I chose this to use for my authorization and authentication methods as it results in a pretty simple way of doing it, and having used [Passport](https://www.passportjs.org/) before, I wanted to learn something else. I found it better as it has less restrictions, besides Passport provides a middleware built on that I had to develop instead.
 
   </details>
 
@@ -395,7 +395,7 @@
 
   <summary>React JS</summary>
 
-  
+  [React](https://reactjs.org/) is an efficient, declarative, and flexible open-source JavaScript library for building simple, fast, and scalable user interfaces for frontends of web applications. It uses JSX which is basic JavaScript that allows HTML quoting, what facilitates developing components. As I have chosen to first learn React in my path, I decided to use it again for this project to learn more about it and gain experience. I chose React because it had been recommended to me and I agree that it is easier to learn and use at start and has a giant potencial when learned in depth, it has a strong community support and is widely used in the IT market, with other technological advantages as fast rendering.
 
   </details>
 
@@ -403,7 +403,7 @@
 
   <summary>Redux - Redux Toolkit</summary>
 
-
+  [Redux](https://redux.js.org/) is a Predictable State Container for Javascript Apps that helps managing state and write applications that behave consistently. [Redux Toolkit](https://redux-toolkit.js.org/) is the official, opinionated, batteries-included toolset for efficient Redux development, built over Redux but with much more advantages. I decided to use them with the intention of learning more technologies, I knew Redux but never used it properly in a project before, it always seemed easier and a better option to use React context. But knowing about Redux Toolkit made me wanna try it, and I found out a fantastic technology. Still having a lot to learn, I found that it is great for managing queries to APIs with createAsyncThunk and a great way to boost the separation of concerns creating slices to manage the state.
 
   </details>
 
@@ -411,18 +411,23 @@
 
   <summary>Material UI</summary>
 
-
+  [Material UI](https://mui.com/) is an open-source project that features React components that implement Google's Material Design. I was decided to start my journey with frontend css frameworks and I was going to build a small and simple React application, so in that situation I was attracted to use Material UI, putting a pin in [Bootstrap](https://getbootstrap.com/) to learn it later. I also tried to take advantage of the material design default colors pallette.
 
   </details>
-
 
   <details>
 
   <summary>Extra libraries</summary>
 
-
+  - [bcryptjs](https://www.npmjs.com/package/bcryptjs): it is a library that helps hash passwords, for a better security.
+  - [express-session](https://www.npmjs.com/package/express-session): helps create a session middleware, that I needed to store the code and the email address for user identity verification process.
+  - [express-async-handler](https://www.npmjs.com/package/express-async-handler): Simple middleware for handling exceptions inside of async express routes and passing them to your express error handlers, which I used also because it results in a much cleaner code.
+  - [nodemailer](https://nodemailer.com/about/): is a module for Node.js applications to allow easy as cake email sending.
+  - [axios](https://axios-http.com/): is a promise-based HTTP Client for node.js and the browser, not that I really needed it, just trying to change from fetch and learn axios too.
+  - [material-react-toastify](https://www.npmjs.com/package/material-react-toastify): it allows you to add notification snackbars to your app with ease, and it has been made in compliance with Material.io design spec-sheet.
+  - [react-router-dom](https://v5.reactrouter.com/): is the standard routing library for React, it keeps your UI in sync with the URL and has a collection of navigational components.
+  - [react-beforeunload](https://www.npmjs.com/package/react-beforeunload): React component and hook which listens to the beforeunload window event.
 
   </details>
-
 
 </details>
