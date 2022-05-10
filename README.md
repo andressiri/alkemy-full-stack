@@ -13,7 +13,7 @@
 
   ## Estado actual
 
-  El proyecto se encuentra terminado en su mayor parte. En lo relativo a la consigna a cumplir, sólo resta crear un observer que restrinja el renderizado de los registros a diez y únicamente muestre los restantes si el usuario así lo solicita. Además, aunque el diseño que responda a los distintos tamaños de pantalla funciona, se lo ve bastante pobre, debiendo revisar puntos claves para una mejor experiencia del usuario. Por otro lado, personalmente considero de importancia agregar algunas funcionalidades extra. Aunque la aplicación es sencilla, resulta básico el permitir agregar y quitar opciones a los filtros a gusto, la posibilidad de acotar los registros a fechas determinadas y que el usuario pueda disponer de otra suma resultante de los filtros aplicados.
+  El proyecto se encuentra terminado en su mayor parte. En lo relativo a la consigna a cumplir, sólo resta crear un observer que restrinja el renderizado de los registros a diez y únicamente muestre los restantes si el usuario así lo solicita. Además, aunque el diseño que responda a los distintos tamaños de pantalla funciona, se lo ve bastante pobre, debiendo revisar puntos claves para una mejor experiencia del usuario. Por otro lado, personalmente considero de importancia agregar algunas funcionalidades extra. Aunque la aplicación es sencilla, resulta básico el permitir agregar y quitar opciones a los filtros a gusto, la posibilidad de acotar los registros a fechas determinadas y que el usuario pueda disponer de otra suma resultante de los filtros aplicados. Considerando el código, algunos componentes aún pueden ser modularizados de mejor manera.
 
   ## Instalación
 
@@ -169,6 +169,10 @@
 
   ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
+  ## Organización del código
+  
+  El código está organizado en archivos y directiorios teniendo en cuenta la separación de intereses lo más posible. De esta manera los archivos tratan de ser lo más concisos que puedan y hacerse cargo de una sola acción de ser posible, incluso dando como resultado un archivo realmente corto, como algunos controladores en el directorio backend. Pero algunos de ellos deben agrupar varias acciones para encapsular una funcionalidad o una lógica, incluso si resultan en un archivo realmente largo, como los "slices" para el manejo de estado. Dicho esto, la mayor parte de la estructura y los nombres de los directorios en frontend siguen lo que es dado al usar "create-react-app" y el paquete "react-redux" que incluye Redux Toolkit.
+
 </details>
 
 <details>
@@ -183,7 +187,7 @@
 
   ## Build status
 
-  The project is mostly finished. In relation to the assignment to fulfill, it's just missing the creation of an observer that restricts the records rendering to ten and just shows the rest of them if the user requires to do so. Furthermore, besides the design is responsive, it seems pretty poor, so it's important to check some breakpoints for a better user experience. On the other hand, I personally think that it is important to incorporate some functionalities, like allow adding or deleting options to the filters as pleased, the possibility to delimit the records to certain dates and that the user can have another addition after filters are applied.
+  The project is mostly finished. In relation to the assignment to fulfill, it's just missing the creation of an observer that restricts the records rendering to ten and just shows the rest of them if the user requires to do so. Furthermore, besides the design is responsive, it seems pretty poor, so it's important to check some breakpoints for a better user experience. On the other hand, I personally think that it is important to incorporate some functionalities, like allow adding or deleting options to the filters as pleased, the possibility to delimit the records to certain dates and that the user can have another addition after filters are applied. Regarding the code, some components may be modularized in a better way.
 
   ## Installation
   
@@ -339,4 +343,8 @@
 
   ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
+  ## Code arrangement
+  
+  The code is arranged in files and directories taking in consideration the separation of concerns the most possible. In that way files try to be the more consice they can be and take care of just one action if possible, even giving as result really short files, like some controllers at the backend directory. But some of them must group many actions to encapsulate a functionality or a logic, even if it results in a really large file, like the state management slices. With that said, most of the structure and directories names at frontend follow what is given by using "create-react-app" and "react-redux" package that includes Redux Toolkit.
+ 
 </details>
