@@ -13,7 +13,7 @@
 
   ## Estado actual
 
-  El proyecto se encuentra terminado en su mayor parte. En lo relativo a la consigna a cumplir, sólo resta crear un observer que restrinja el renderizado de los registros a diez y únicamente muestre los restantes si el usuario así lo solicita. Además, aunque el diseño que responda a los distintos tamaños de pantalla funciona, se lo ve bastante pobre, debiendo revisar puntos claves para una mejor experiencia del usuario. Por otro lado, personalmente considero de importancia agregar algunas funcionalidades extra. Aunque la aplicación es sencilla, resulta básico el permitir agregar y quitar opciones a los filtros a gusto, la posibilidad de acotar los registros a fechas determinadas y que el usuario pueda disponer de otra suma resultante de los filtros aplicados. Considerando el código, algunos componentes aún pueden ser modularizados de mejor manera.
+  El proyecto se encuentra terminado en su mayor parte. En lo relativo a la consigna a cumplir, sólo resta crear un observer que restrinja el renderizado de los registros a diez y únicamente muestre los restantes si el usuario así lo solicita. Además, aunque el diseño que responda a los distintos tamaños de pantalla funciona, se lo ve bastante pobre, debiendo revisar puntos claves para una mejor experiencia del usuario. La página de inicio claramente necesita una mejora. Por otro lado, personalmente considero de importancia agregar algunas funcionalidades extra. Aunque la aplicación es sencilla, resulta básico el permitir agregar y quitar opciones a los filtros a gusto, la posibilidad de acotar los registros a fechas determinadas y que el usuario pueda disponer de otra suma resultante de los filtros aplicados. Considerando el código, algunos componentes aún pueden ser modularizados de mejor manera.
 
   ## Instalación
 
@@ -173,6 +173,89 @@
   
   El código está organizado en archivos y directorios teniendo en cuenta la separación de intereses lo más posible. De esta manera los archivos tratan de ser lo más concisos que puedan y hacerse cargo de una sola acción de ser posible, incluso dando como resultado un archivo realmente corto, como algunos controladores en el directorio backend. Pero algunos de ellos deben agrupar varias acciones para encapsular una funcionalidad o una lógica, incluso si resultan en un archivo realmente largo, como los "slices" para el manejo de estados. Dicho esto, la mayor parte de la estructura y los nombres de los directorios en frontend siguen lo que es dado al usar "create-react-app" y el paquete "react-redux" que incluye Redux Toolkit.
 
+  ## Tecnologías utilizadas
+
+  Esta sección lista las tecnologías o frameworks que fueron utilizados para hacer le proyecto, con una breve descripción y la razón o intención de utlizarlas.
+
+  <details>
+
+  <summary>Node JS</summary>
+
+  [Node.js](https://nodejs.org/es) es un entorno de ejecución orientado a eventos asíncronos para JavaScript construido con [V8, motor de JavaScript de Chrome](https://v8.dev/), y diseñado para crear aplicaciones network escalables. Por supuesto Node.js tiene varios pros y contras comparado con otros lenguajes y frameworks con los que compite, pero las principales razones que explican por qué lo elegí para este pequeño proyecto son, primero, por la ventaja de poder utilizar "Javascript en todos lados", siendo que Node.js soporta Javascript tanto en el lado del cliente como en el lado del servidor, y segundo, el vasto repositorio de librerías al que se tiene acceso con Node Package Manager.
+
+  </details>
+
+  <details>
+
+  <summary>Express</summary>
+
+  [Express](https://expressjs.com/es) es una infraestructura web rápida, minimalista y flexible para Node.js que proporciona un conjunto sólido de prestaciones. La principal razón por la cual la elegí es que, sin agregar muchas restricciones, hace mucho más claro y fácil el control de las peticiones y las respuestas y el diseño de rutas con, como dice en su sitio oficial, "con miles de métodos de programa de utilidad HTTP y middleware a su disposición".
+
+  </details>
+  
+  <details>
+
+  <summary>PostgreSQL</summary>
+
+  [PostgreSQL](https://www.postgresql.org/) es un poderoso sistema de bases de datos objeto-relacional. Como fue requerida una base de datos relacional en el desafío la elegí, pero una de las razones para tomar esta decisión en lugar de elegir otra base de datos relacional es que es de código abierto con más de 30 años de actividad y hay una gran cantidad de información fácil de encontrar que describe cómo instalarla y utilizarla en la documentación oficial. Otra razón importante es que algunas funciones, como crear, actualizar o eliminar, en mi opinión, tienen un mejor retorno de información luego de que la acción es realizada.
+
+  </details>
+
+  <details>
+
+  <summary>Sequelize</summary>
+
+  [Sequelize](https://sequelize.org/) es un moderno Mapeador de Objetos Relacionales u ORM (por las siglas en inglés de Object Relational Mapping) para TypeScript y Node.js en conjunto con PostgresSQL y otras bases de datos relacionales SQL. Siendo un ORM, Sequelize me permite acceder a la base de datos usando una lógica orientada a objetos con Javascript, una gran ventaja considerando que me fue solicitado que las URLS de mi servidor respondan utilizando datos JSON. 
+
+  </details>
+
+  <details>
+
+  <summary>Json Web Token</summary>
+
+  [JSON Web Token (JWT)](https://jwt.io/) es un estándar abierto ([RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)) que define una forma compacta y contenida en sí misma de transmitir de forma segura información entre dos partes en formato de objeto JSON. Esta información puede ser verificada y es confiable porque está cifrada digitalmente, ya que los tokens pueden ser cifrados utilizando un secreto o un par de llaves público/privado. Elegí esto para mis métodos de autorización y autenticación porque resulta en una manera bastante sencilla de llevarlos a cabo y, habiendo utilizado [Passport](https://www.passportjs.org/) antes, quería aprender algo más. Lo encontré mejor porque tiene menos restricciones, aunque Passport provea un middleware ya incluído que tuve que desarrollar en este caso.
+
+  </details>
+
+  <details>
+
+  <summary>React JS</summary>
+
+  [React](https://es.reactjs.org/) es una librería de Javascript de código abierto eficiente, declarativa, y flexible para construir interfaces de usuario simples, rápidas, y escalables para el frontend de aplicaciones web. Utiliza JSX que es una extensión de sintaxis de JavaScript que permite mezclar HTML, lo que facilita el desarrollo de componentes. Como yo ya he elegido aprender React primero en mi proceso de aprendizaje, decidí utilizarlo nuevamente para este proyecto para aprender más y ganar experiencia. Elegí React en su momento por recomendaciones, siendo que estoy de acuerdo con las razones que me dieron: que es más fácil de aprender y usar en un principio y que tiene un enorme potencial cuando se lo aprende en profundidad, que tiene un gran apoyo de la comunidad y que es empleado ampliamente en el mercado laboral IT; junto con otras ventajas tecnológicas como un renderizado rápido.
+
+  </details>
+
+  <details>
+
+  <summary>Redux - Redux Toolkit</summary>
+
+  [Redux](https://es.redux.js.org/) es un contenedor predecible del estado de aplicaciones JavaScript que ayuda a manejarlo y escribir aplicaciones que se comporten consistentemente. [Redux Toolkit](https://redux-toolkit.js.org/) es el set de herramientas oficial, estructurado y con baterías incluídas para un desarrollo eficiente con Redux, construído sobre Redux pero con muchas más ventajas. Decidí utilizarlos con la intención de aprender más tecnologías, conocía Redux pero nunca la había implementado en un proyecto, siempre me pareció correcto y más fácil y mejor usar el contexto de React. Pero el conocer Redux Toolkit me hizo querer probarlos, y encontré una tecnología fantástica. Aún teniendo mucho que aprender, me resultan excelentes para manejar las peticiones a APIs con createAsyncThunk y una gran manera de mejorar la separación de intereses creando fragmentos ( o rebanadas- slices) del estado para manejarlo.
+
+  </details>
+
+  <details>
+
+  <summary>Material UI</summary>
+
+  [Material UI](https://mui.com/) es un proyecto de código abierto que cuenta con componentes de React que implementan Material Design de Google. Estaba decidido a empezar mi viaje con los frameworks de css para frontend e iba a construir una aplicación de React pequeña y simple, entonces en esa situación me vi atraído hacia Material UI, teniendo en consderación [Bootstrap](https://getbootstrap.com/) para aprender más adelante. También intenté sacar ventaja de la paleta de colores que viene por default gracias al diseño "material".
+
+  </details>
+
+  <details>
+
+  <summary>Extra libraries</summary>
+
+  - [bcryptjs](https://www.npmjs.com/package/bcryptjs): es una librería que ayuda a encriptar las constraseñas, para una mejor seguridad.
+  - [express-session](https://www.npmjs.com/package/express-session): ayuda a crear un middleware de sesión, que necesitaba para poder almacenar el código y la dirección de correo electrónico para el proceso de verificación de identidad del usuario.
+  - [express-async-handler](https://www.npmjs.com/package/express-async-handler): un middleware simple para manejar excepciones dentro de una ruta asíncrona de express y pasarlas a un controlador de error de express, que también usé porque resulta en un código mucho más claro y limpio.
+  - [nodemailer](https://nodemailer.com/about/): es un módulo para aplicaciones de Node.js que permite enviar correos elctrónicos de manera muy fácil.
+  - [axios](https://axios-http.com/): es un cliente HTTP basado en promesas para node.js y el navegador, no es que lo necesitara realmente, solo intenté cambiar fetch y aprender axios también.
+  - [material-react-toastify](https://www.npmjs.com/package/material-react-toastify): permite agregar barritas de notificaciones a la aplicación de manera sencilla, y esta creado en cumplimiento con la hoja de especificaciones de diseño de Material.io.
+  - [react-router-dom](https://v5.reactrouter.com/): es la librería de mapeo de rutas de React estándar, mantiene la Interfaz de Usuario en sintonía con la URL y tiene una colección de componentes de navegación.
+  - [react-beforeunload](https://www.npmjs.com/package/react-beforeunload): Un componente y hook de React que escucha el evento beforeunload de la ventana.
+
+  </details>
+
 </details>
 
 <details>
@@ -187,7 +270,7 @@
 
   ## Build status
 
-  The project is mostly finished. In relation to the assignment to fulfill, it's just missing the creation of an observer that restricts the records rendering to ten and just shows the rest of them if the user requires to do so. Furthermore, besides the design is responsive, it seems pretty poor, so it's important to check some breakpoints for a better user experience. On the other hand, I personally think that it is important to incorporate some functionalities, like allow adding or deleting options to the filters as pleased, the possibility to delimit the records to certain dates and that the user can have another addition after filters are applied. Regarding the code, some components may be modularized in a better way.
+  The project is mostly finished. In relation to the assignment to fulfill, it's just missing the creation of an observer that restricts the records rendering to ten and just shows the rest of them if the user requires to do so. Furthermore, besides the design is responsive, it seems pretty poor, so it's important to check some breakpoints for a better user experience. The landing page clearly needs an improvement. On the other hand, I personally think that it is important to incorporate some functionalities, like allow adding or deleting options to the filters as pleased, the possibility to delimit the records to certain dates and that the user can have another addition after filters are applied. Regarding the code, some components may be modularized in a better way.
 
   ## Installation
   
