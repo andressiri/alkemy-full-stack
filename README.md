@@ -171,7 +171,7 @@
 
   ## Organización del código
   
-  El código está organizado en archivos y directiorios teniendo en cuenta la separación de intereses lo más posible. De esta manera los archivos tratan de ser lo más concisos que puedan y hacerse cargo de una sola acción de ser posible, incluso dando como resultado un archivo realmente corto, como algunos controladores en el directorio backend. Pero algunos de ellos deben agrupar varias acciones para encapsular una funcionalidad o una lógica, incluso si resultan en un archivo realmente largo, como los "slices" para el manejo de estado. Dicho esto, la mayor parte de la estructura y los nombres de los directorios en frontend siguen lo que es dado al usar "create-react-app" y el paquete "react-redux" que incluye Redux Toolkit.
+  El código está organizado en archivos y directorios teniendo en cuenta la separación de intereses lo más posible. De esta manera los archivos tratan de ser lo más concisos que puedan y hacerse cargo de una sola acción de ser posible, incluso dando como resultado un archivo realmente corto, como algunos controladores en el directorio backend. Pero algunos de ellos deben agrupar varias acciones para encapsular una funcionalidad o una lógica, incluso si resultan en un archivo realmente largo, como los "slices" para el manejo de estados. Dicho esto, la mayor parte de la estructura y los nombres de los directorios en frontend siguen lo que es dado al usar "create-react-app" y el paquete "react-redux" que incluye Redux Toolkit.
 
 </details>
 
@@ -345,6 +345,6 @@
 
   ## Code arrangement
   
-  The code is arranged in files and directories taking in consideration the separation of concerns the most possible. In that way files try to be the more consice they can be and take care of just one action if possible, even giving as result really short files, like some controllers at the backend directory. But some of them must group many actions to encapsulate a functionality or a logic, even if it results in a really large file, like the state management slices. With that said, most of the structure and directories names at frontend follow what is given by using "create-react-app" and "react-redux" package that includes Redux Toolkit.
+  The code is arranged in files and directories taking in consideration the separation of concerns the most possible. In that way files try to be the more consice they can be and take care of just one action if possible, even giving as result really short files, like some controllers at the backend directory. But some of them must group many actions to encapsulate a functionality or a logic, even if it results in a really large file, like the states management slices. With that said, most of the structure and directories names at frontend follow what is given by using "create-react-app" and "react-redux" package that includes Redux Toolkit.
  
 </details>
