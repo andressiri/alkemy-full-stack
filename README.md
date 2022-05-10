@@ -17,7 +17,7 @@
 
   ## Instalación
 
-  Para instalar esta aplicación y probarla en desarrollo necesitas:
+  Para instalar esta aplicación y probarla en desarrollo necesitas tener instaladas en tu computadora versiones actualizadas de Node.js, NPM y Git para poder:
 
   1. Crear e ir a un nuevo directorio.
   2. Inicializar un nuevo repositorio con el comando "git init".
@@ -165,7 +165,7 @@
 
   ## Documentación de la API
 
-  La API que brinda el servidor, creada para la aplicación, está [documentada y publicada con Postman](https://documenter.getpostman.com/view/16003276/Uyxeonsr). Ahí puedes cargar y correr la API a postman directamente o usar postman en el navegador, utilizando el botón que dice "Run in Postman" ubicado en la esquina superior derecha de la ventana.
+  La API que brinda el servidor, creada para la aplicación, está [documentada y publicada con Postman](https://documenter.getpostman.com/view/16003276/Uyxeonsr). Ahí puedes cargar y correr la API en postman directamente o usar postman en el navegador, utilizando el botón que dice "Run in Postman" ubicado en la esquina superior derecha de la ventana.
 
   ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
@@ -191,7 +191,7 @@
 
   ## Installation
   
-  To install this app for development mode testing you need to:
+  To install this app for development mode testing you need to have installed in your computer updated versions of Node.js, NPM and Git in order to follow this steps:
 
   1. Create and go to a new directory.
   2. Initialize a new repository with "git init" command.
@@ -346,5 +346,83 @@
   ## Code arrangement
   
   The code is arranged in files and directories taking in consideration the separation of concerns the most possible. In that way files try to be the more consice they can be and take care of just one action if possible, even giving as result really short files, like some controllers at the backend directory. But some of them must group many actions to encapsulate a functionality or a logic, even if it results in a really large file, like the states management slices. With that said, most of the structure and directories names at frontend follow what is given by using "create-react-app" and "react-redux" package that includes Redux Toolkit.
- 
+
+  ## Technologies used
+
+  This section lists technologies or frameworks that have been used to do the project, with a brief description and the reason or intention of using them.
+
+  <details>
+
+  <summary>Node JS</summary>
+
+  Node.js is an asynchronous event-driven JavaScript runtime built on Chrome's V8 JavaScript engine designed to build scalable network applications. Of course Node.js has many pros and cons compared with other copeting languages and frameworks, but the main reasons that explain why I chose it for this small project are, first, because of the "Javascript everywhere" advantage, as Node.js supports JavaScript both client-side and server-side, and second, the vast libraries repository you can access with the Node Package Manager.
+
+  </details>
+
+  <details>
+
+  <summary>Express</summary>
+
+  Express is a fast, unopinionated and minimalist web framework for Node.js that provides a robust set of features. The main reason I chose it is because, without adding many restrictions, it makes much more clear and easier to control requests and responses and to design routes with, as it says in it's official site, "a myriad of HTTP utility methods and middleware at your disposal".
+
+  </details>
+  
+  <details>
+
+  <summary>PostgreSQL</summary>
+
+  PostgreSQL is a powerful object-relational database system. As it was required a relational database in the challenge I chose it, but one of the reasons for this decision over choosing other relational databases is that it is open-source with over 30 years of active and there is a wealth of information to be found describing how to install and use it through the official documentation. Other important reason is that some features, like create, update or delete, in my opinion, have better feedback or information returned after the action is done.
+
+  </details>
+
+  <details>
+
+  <summary>Sequelize</summary>
+
+  Sequelize is a modern TypeScript and Node.js Object Relational Mapping tool for PostgresSQL and more relational SQL databases. As an ORM Sequelize allows me to access the database using the object-oriented logic with Javascript, a great advantage considering I was required that my server URLS should return JSON data. 
+
+  </details>
+
+  <details>
+
+  <summary>Json Web Token</summary>
+
+  JSON Web Token (JWT) is an open standard ([RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret or a public/private key pair. I chose this to use for my authorization and authentication methods as it results in a pretty simple way of doing it, and having used Passport before, I wanted to learn something else. I found it better as it has less restrictions, besides Passport provides a middleware built on that I had to develop instead.
+
+  </details>
+
+  <details>
+
+  <summary>React JS</summary>
+
+  
+
+  </details>
+
+  <details>
+
+  <summary>Redux - Redux Toolkit</summary>
+
+
+
+  </details>
+
+  <details>
+
+  <summary>Material UI</summary>
+
+
+
+  </details>
+
+
+  <details>
+
+  <summary>Extra libraries</summary>
+
+
+
+  </details>
+
+
 </details>
