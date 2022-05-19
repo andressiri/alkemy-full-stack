@@ -1,12 +1,13 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
+const path = require('path');
 const session = require('express-session');
 const { errorHandler } = require('./middleware/errorMiddleware.js');
 
 const app = express();
 
 // Database
-const db = require('./config/postgreDB.js');
+const db = require('./config/postgreDB.js')();
   // Test DB
 db.authenticate()
   .then(() => {
@@ -31,6 +32,13 @@ app.use(session({
 
 // @/api router
 app.use('/api/v1', require('./routes/router.js'));
+
+// Serve frontend
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')));
+};
 
 app.use(errorHandler);
 
