@@ -171,14 +171,13 @@
 
   La API que brinda el servidor, creada para la aplicación, está [documentada y publicada con Postman](https://documenter.getpostman.com/view/16003276/Uyxeonsr). Ahí puedes cargar y correr la API en postman directamente o usar postman en el navegador, utilizando el botón que dice "Run in Postman" ubicado en la esquina superior derecha de la ventana.
 
-	<details>
+  <details>
 
-	<summary><img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" ></summary>
+  <summary> <img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" > </summary>
 
   ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
-	</details>
-
+  </details>
 
   ## Organización del código
   
@@ -441,11 +440,11 @@
 
   <details>
 
-	<summary><img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" ></summary>
+  <summary> <img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" > </summary>
 
   ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
-	</details>
+  </details>
 
   ## Code arrangement
   
