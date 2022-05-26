@@ -1,5 +1,5 @@
 
-# Spends Checker alkemy-full-stack
+# Spends Checker alkemy-full-stack <img src="/frontend/public/logo512.png" alt="Alkemy logo" width="40"/>
 
 [Go to Spends Checker site](https://sirialkemychallenge.herokuapp.com/)
 
