@@ -19,7 +19,6 @@ const protectRoute = asyncHandler(async (req, res, next) => {
       throw new Error('Not authorized, invalid token');
     };
 
-
     // Get user from the token
     req.user = await User.findOne({
       raw: true, 

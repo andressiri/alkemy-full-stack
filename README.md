@@ -1,6 +1,10 @@
 
 # Spends Checker alkemy-full-stack
 
+[Go to Spends Checker site](https://sirialkemychallenge.herokuapp.com/)
+
+***
+
 <details>
 
   <summary>Español</summary>
@@ -9,7 +13,7 @@
 
   ## Motivación para el proyecto
 
-  Este es un proyecto desarrollado para el [desafío Full Stack JS](https://drive.google.com/file/d/1LUY2tZ_OhShoSE2g9cYGGKM1ioFj0MhE/view?usp=sharing) de la aceleración de [Alkemy](https://www.alkemy.org/). Tomé como un reto personal el realizarlo en el menor tiempo posible con una deadline de diez días y aplicar el nuevo conocimiento adquirido en PostgreSQL, Sequelize, Redux Toolkit y Material UI, reforzando la práctica de React.
+  Este es un proyecto desarrollado para el [desafío Full Stack JS](https://drive.google.com/file/d/1LUY2tZ_OhShoSE2g9cYGGKM1ioFj0MhE/view?usp=sharing) de la aceleración de [Alkemy](https://www.alkemy.org/). Tomé como un reto personal el realizarlo en el menor tiempo posible con una deadline de diez días y aplicar el nuevo conocimiento adquirido en `PostgreSQL`, `Sequelize`, `Redux Toolkit` y `Material UI`, reforzando la práctica de `React`.
 
   ## Estado actual
 
@@ -17,13 +21,13 @@
 
   ## Instalación
 
-  Para instalar esta aplicación y probarla en desarrollo necesitas tener instaladas en tu computadora versiones actualizadas de Node.js, NPM y Git para poder:
+  Para instalar esta aplicación y probarla en desarrollo necesitas tener instaladas en tu computadora versiones actualizadas de `Node.js`, `NPM` y `Git` para poder:
 
   1. Crear e ir a un nuevo directorio.
-  2. Inicializar un nuevo repositorio con el comando "git init".
-  3. Obtener este repositorio con el comando "git pull https://github.com/andressiri/alkemy-full-stack".
-  4. Instalar las dependencias del directorio raíz con el comando "npm install".
-  5. Ir al directorio "frontend" e instalar las dependencias con el comando "npm install" nuevamente.
+  2. Inicializar un nuevo repositorio con el comando `git init`.
+  3. Obtener este repositorio con el comando `git pull https://github.com/andressiri/alkemy-full-stack`.
+  4. Instalar las dependencias del directorio raíz con el comando `npm install`.
+  5. Ir al directorio `/frontend` e instalar las dependencias con el comando `npm install` nuevamente.
   6. Crear la base de datos PostgreSQL requerida:
 
       <details>
@@ -46,9 +50,9 @@
 
         <details>
 
-        <summary><strong>Recomendado</strong>: correr el archivo createDatabase.sql provisto en este repositorio.</summary>
+        <summary><strong>Recomendado</strong>: correr el archivo <code>createDatabase.sql</code> provisto en este repositorio.</summary>
 
-        - Conectar a la consola "SQL shell (psql)" (instalada al instalar el servidor PostgreSQL). Los valores por defecto para la conexión son:
+        - Conectar a la consola `SQL shell (psql)` (instalada al instalar el servidor PostgreSQL). Los valores por defecto para la conexión son:
 
             - para Server: "localhost".
             - para Database: "postgres".
@@ -56,9 +60,9 @@
             - para Username: "postgres".
 
         Inmediatamente después de ingresar el nombre de usuario (Username), se debe ingresar la contraseña para ese usuario. Para el usuario por defecto (postgres), es la contraseña que se ingresó durante la instalación.
-        - Ya en la consola psql correr el comando "\i ruta/a/createDatabase.sql;", donde "ruta/a/" es la ruta al directorio raíz del proyecto. En caso de tener problemas con el nombre de la ruta, considerar cambiar el nombre de los directorios, o mejor aún, simplemente copiar el archivo createDatabase.sql a otro directorio y correrlo desde ahí. También considerar que la ruta puede fallar si no se usa el estilo de barra Unix ("/").
+        - Ya en la consola `psql` correr el comando `\i ruta/a/createDatabase.sql;`, donde `ruta/a/` es la ruta al directorio raíz del proyecto. En caso de tener problemas con el nombre de la ruta, considerar cambiar el nombre de los directorios, o mejor aún, simplemente copiar el archivo `createDatabase.sql` a otro directorio y correrlo desde ahí. También considerar que la ruta puede fallar si no se usa el estilo de barra Unix ("/").
         - Una vez realizado lo anterior con éxito, el proceso debería crear una base de datos llamada andres-siri-alkemy-test, conectarse a ella, crear dos tablas (people y records) y hacer varias (31) inserciones para un usuario falso provisto para probar la aplicación. El email de este usuario es "user@fake.test" y su contraseña es "123456".
-        - Si por algún motivo no es posible instalar el archivo createDataba.sql, se puede correr las líneas del archivo en la consola psql o usar pgAdmin 4.
+        - Si por algún motivo no es posible instalar el archivo `createDataba.sql`, se puede correr las líneas del archivo en la consola `psql` o usar pgAdmin 4.
 
         </details>
 
@@ -66,7 +70,7 @@
 
         <summary>Crearlas usando pgAdmin 4</summary>
 
-        1. Abrir la aplicación "pgAdmin 4" (instalada con el servidor PostgreSQL).
+        1. Abrir la aplicación `pgAdmin 4` (instalada con el servidor PostgreSQL).
         2. Usar la contraseña que se ingresó durante la instalación.
 
             ![enter installation password](/assets/README/postgre%20pgadmin/0.%20Enter%20installation%20password.png)
@@ -161,7 +165,7 @@
 
       </details>
 
-  8. Finalmente, para correr el cliente en el puerto 3000 usar el comando "npm run client" en el directorio raíz, y para el servidor en el puerto 8080 usar el comando "npm run server", también en el directorio raíz.
+  8. Finalmente, para correr el cliente en el puerto 3000 usar el comando `npm run client` en el directorio raíz, y para el servidor en el puerto 8080 usar el comando `npm run server`, también en el directorio raíz.
 
   ## Documentación de la API
 
@@ -171,7 +175,7 @@
 
   ## Organización del código
   
-  El código está organizado en archivos y directorios teniendo en cuenta la separación de intereses lo más posible. De esta manera los archivos tratan de ser lo más concisos que puedan y hacerse cargo de una sola acción de ser posible, incluso dando como resultado un archivo realmente corto, como algunos controladores en el directorio backend. Pero algunos de ellos deben agrupar varias acciones para encapsular una funcionalidad o una lógica, incluso si resultan en un archivo realmente largo, como los "slices" para el manejo de estados. Dicho esto, la mayor parte de la estructura y los nombres de los directorios en frontend siguen lo que es dado al usar "create-react-app" y el paquete "react-redux" que incluye Redux Toolkit.
+  El código está organizado en archivos y directorios teniendo en cuenta la separación de intereses lo más posible. De esta manera los archivos tratan de ser lo más concisos que puedan y hacerse cargo de una sola acción de ser posible, incluso dando como resultado un archivo realmente corto, como algunos controladores en el directorio backend. Pero algunos de ellos deben agrupar varias acciones para encapsular una funcionalidad o una lógica, incluso si resultan en un archivo realmente largo, como los "slices" para el manejo de estados. Dicho esto, la mayor parte de la estructura y los nombres de los directorios en frontend siguen lo que es dado al usar `create-react-app` y el paquete `react-redux` que incluye Redux Toolkit.
 
   ## Tecnologías utilizadas
 
@@ -270,7 +274,7 @@
 
   ## Motivation for the project
 
-  This is a project developed for the [Full Stack Challenge JS](https://drive.google.com/file/d/1LUY2tZ_OhShoSE2g9cYGGKM1ioFj0MhE/view?usp=sharing) of [Alkemy's](https://www.alkemy.org/) acceleration. I took it as a personal defiance making it in the lesser time possible with a ten days deadline and apply the recently acquired knowledge of PostgreSQL, Sequelize, Redux Toolkit and Material UI, strengthening the React practice.
+  This is a project developed for the [Full Stack Challenge JS](https://drive.google.com/file/d/1LUY2tZ_OhShoSE2g9cYGGKM1ioFj0MhE/view?usp=sharing) of [Alkemy's](https://www.alkemy.org/) acceleration. I took it as a personal defiance making it in the lesser time possible with a ten days deadline and apply the recently acquired knowledge of `PostgreSQL`, `Sequelize`, `Redux Toolkit` and `Material UI`, strengthening the `React` practice.
 
   ## Build status
 
@@ -278,13 +282,13 @@
 
   ## Installation
   
-  To install this app for development mode testing you need to have installed in your computer updated versions of Node.js, NPM and Git in order to follow this steps:
+  To install this app for development mode testing you need to have installed in your computer updated versions of `Node.js`, `NPM` and `Git` in order to follow this steps:
 
   1. Create and go to a new directory.
-  2. Initialize a new repository with "git init" command.
-  3. Git pull this repository with "git pull https://github.com/andressiri/alkemy-full-stack" command.
-  4. Install root directory dependencies with "npm install" command.
-  5. Move to "frontend" directory and install client dependencies with the "npm install" command again.
+  2. Initialize a new repository with `git init` command.
+  3. Git pull this repository with `git pull https://github.com/andressiri/alkemy-full-stack` command.
+  4. Install root directory dependencies with `npm install` command.
+  5. Move to `/frontend` directory and install client dependencies with the `npm install` command again.
   6. Create the PostgreSQL required database:
 
       <details>
@@ -307,9 +311,9 @@
 
         <details>
 
-        <summary><strong>Recommended</strong>: run the createDatabase.sql file provided in this repository.</summary>
+        <summary><strong>Recommended</strong>: run the <code>createDatabase.sql</code> file provided in this repository.</summary>
 
-        - Connect to the "SQL shell (psql)" console (installed with the PostgreSQL server). The default values for connection are: 
+        - Connect to the `SQL shell (psql)` console (installed with the PostgreSQL server). The default values for connection are: 
 
             - for Server: "localhost".
             - for Database: "postgres".
@@ -317,7 +321,7 @@
             - for Username: "postgres".
 
         Right after entering the username, you should enter the password for that user. For the default user (postgres), it is the password you provided in the installation.
-        - In the psql console run the command "\i path/to/createDatabase.sql;", where "path/to/" is the path to this project root folder. If you have problems with the path name, consider changing the directories names or, better, just copy the createDatabase.sql file to another directory and run it from there. Also notice that the path may be wrong if you don't use the Unix style slash ("/").
+        - In the `psql` console run the command `\i path/to/createDatabase.sql;`, where `path/to/` is the path to this project root folder. If you have problems with the path name, consider changing the directories names or, better, just copy the `createDatabase.sql` file to another directory and run it from there. Also notice that the path may be wrong if you don't use the Unix style slash ("/").
         - Once you have successfully done this, it should create a database named andres-siri-alkemy-test, connect to it, create two tables (people and records) and make many (31) insertions for a fake user created for testing. This user email is "user@fake.test" and it's password is "123456".
         - If for some reason you can't install the createDataba.sql file, you can run the lines of that file in the psql console or use pgAdmin 4.
 
