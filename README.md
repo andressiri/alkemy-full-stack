@@ -323,7 +323,7 @@
         Right after entering the username, you should enter the password for that user. For the default user (postgres), it is the password you provided in the installation.
         - In the `psql` console run the command `\i path/to/createDatabase.sql;`, where `path/to/` is the path to this project root folder. If you have problems with the path name, consider changing the directories names or, better, just copy the `createDatabase.sql` file to another directory and run it from there. Also notice that the path may be wrong if you don't use the Unix style slash ("/").
         - Once you have successfully done this, it should create a database named andres-siri-alkemy-test, connect to it, create two tables (people and records) and make many (31) insertions for a fake user created for testing. This user email is "user@fake.test" and it's password is "123456".
-        - If for some reason you can't install the createDataba.sql file, you can run the lines of that file in the psql console or use pgAdmin 4.
+        - If for some reason you can't install the `createDataba.sql` file, you can run the lines of that file in the psql console or use pgAdmin 4.
 
         </details>
 
@@ -331,7 +331,7 @@
 
         <summary>Create them using pgAdmin 4</summary>
 
-        1. Open the "pgAdmin 4" application (installed with the PostgreSQL server).
+        1. Open the `pgAdmin 4` application (installed with the PostgreSQL server).
         2. Use the password you entered during the installation.
 
             ![enter installation password](/assets/README/postgre%20pgadmin/0.%20Enter%20installation%20password.png)
