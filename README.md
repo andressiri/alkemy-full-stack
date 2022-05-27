@@ -1,7 +1,7 @@
 
-# <img src="/frontend/public/logo512.png" alt="Alkemy logo" width="30"/> Spends Checker alkemy-full-stack 
+# [<img src="/frontend/public/logo512.png" alt="Alkemy logo" width="30"/>](#) Spends Checker alkemy-full-stack 
 
-[Go to Spends Checker site](https://sirialkemychallenge.herokuapp.com/)
+* [Go to Spends Checker site](https://sirialkemychallenge.herokuapp.com/)
 
 ***
 
@@ -173,7 +173,7 @@
 
   <details>
 
-  <summary> <img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" > </summary>
+  <summary> [<img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" >](#) </summary>
 
   ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
@@ -440,7 +440,7 @@
 
   <details>
 
-  <summary> <img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" > </summary>
+  <summary> [<img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" >](#) </summary>
 
   ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
