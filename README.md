@@ -173,7 +173,7 @@
 
   <details>
 
-  <summary> [<img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" >](#) </summary>
+  <summary> <a href="#"><img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" ></a> </summary>
 
   ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
@@ -440,7 +440,7 @@
 
   <details>
 
-  <summary> [<img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button" >](#) </summary>
+  <summary> <a href="#"><img src="/assets/README/API/Run%20in%20postman%20button.png" alt="Run in Postman button"></a> </summary>
 
   ![API postman documentation](/assets/README/API/API%20postman%20documentation.png)
 
