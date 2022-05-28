@@ -132,15 +132,14 @@
       </details>
 
   7. Crear un archivo .env en el directorio raíz con las siguientes variables:
-
 				<pre>
-  		  	NODE_ENV = development
-  		  	DB_NAME = < andres-siri-alkemy-test o el nombre de tu base de datos PostgreSQL >
-  		  	DB_USERNAME = < "postgres" (default) o tu nombre de usuario para esa base de datos de PostgreSQL >
-  		  	DB_PASSWORD = < la contraseña para ese usuario de PostgreSQL >
-  		  	JWT_SECRET = < una cadena que quieras usar como secreto para el token de JWT >
-  		  	MAILER_MAIL = < tu dirección de email de <em><strong>gmail</strong></em> >
-  		  	MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
+					NODE_ENV = development
+					DB_NAME = < andres-siri-alkemy-test o el nombre de tu base de datos PostgreSQL >
+					DB_USERNAME = < "postgres" (default) o tu nombre de usuario para esa base de datos de PostgreSQL >
+					DB_PASSWORD = < la contraseña para ese usuario de PostgreSQL >
+					JWT_SECRET = < una cadena que quieras usar como secreto para el token de JWT >
+					MAILER_MAIL = < tu dirección de email de <em><strong>gmail</strong></em> >
+					MAIL_PASSWORD" = < tu "contraseña de aplicación" generada desde google" > (no es la constraseña de tu email)
 				</pre>
 
       <details>
