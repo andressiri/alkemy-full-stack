@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = '/api/v1/records/';
+const API_URL = process.env.NODE_ENV === "production"
+  ? `${window.location.origin}/api/v1/records/`
+  : '/api/v1/records/';
 
 // Save record
 const saveRecord = async (recordData, token) => {

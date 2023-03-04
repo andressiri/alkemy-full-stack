@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = '/api/v1/user/';
+const API_URL = process.env.NODE_ENV === "production"
+  ? `${window.location.origin}/api/v1/user/`
+  : '/api/v1/user/';
 
 // Register user
 const register = async (userData) => {
