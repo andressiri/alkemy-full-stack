@@ -1,8 +1,6 @@
 
 # [<img src="/frontend/public/logo512.png" alt="Alkemy logo" width="30"/>](#) Spends Checker alkemy-full-stack 
 
-* [Go to Spends Checker site](https://sirialkemychallenge.herokuapp.com/)
-
 ***
 
 <details>
