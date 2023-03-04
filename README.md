@@ -1,8 +1,6 @@
 
 # [<img src="/frontend/public/logo512.png" alt="Alkemy logo" width="30"/>](#) Spends Checker alkemy-full-stack 
 
-***
-
 <details>
 
   <summary>Español</summary>
