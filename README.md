@@ -8,6 +8,16 @@
 <details>
 
   <summary>Español</summary>
+  
+  ## Ir al sitio
+  
+  Es muy probable que el hosting del sitio no funcione del todo bien. Esto se debe a que los hosting son gratuitos y es probable que si no se ha ingresado en un tiempo (bastante corto) tarde en responder el servidor:
+  
+   * Con [Railway](https://railway.app/) posiblemente aparezca un error, pero no quiere decir que no funcione. Puede entonces tardar entre un minuto o dos en responder para poder acceder desde la primera vez que se ingresa: [Ir al sitio en Railway](https://alkemy-full-stack-production.up.railway.app/)
+   
+   * Con [Render](https://render.com/) es probable que tarde al rededor de 30 segundos en cargar la apicación, y una vez cargada suele andar mal un par de minutos: [Ir al sition en Render](https://spends-checker.onrender.com/) 
+
+  ## Descripción breve
 
   Una aplicación para administración de presupuesto personal, donde puedes guardar con detalle tus ingresos y egresos de dinero y ver un balance de tus operaciones registradas. También puedes tener una mejor organización de ellas clasificándolas por concepto, tipo y categoría.
 
@@ -276,6 +286,16 @@
 <details>
 
   <summary>English</summary>
+  
+  ## Go to site
+  
+  It is very likely that the hosting of the site is not working properly. This is because the hosting is free and it is probable that if the had not been used for a (fairly short) time, it will take a while for the server to respond:
+  
+   * With [Railway](https://railway.app/) you may possibly get an error, but it doesn't mean it won't work. It may then take a minute or two for the server to respond so that you can log in the first time: [Go to site on Railway](https://alkemy-full-stack-production.up.railway.app/)
+   
+   * With [Render](https://render.com/) it is likely to take about 30 seconds to load the application, and once it is loaded it usually runs poorly for a couple of minutes: [Go to site in Render](https://spends-checker.onrender.com/)
+   
+   ## Brief description
 
   An app for personal budget administration, where you can save your money incomes and outcomes with detail and see a balance of your registered operations. You can also get a better organization sorting them by concept, type and category.
 
