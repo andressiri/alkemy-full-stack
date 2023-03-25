@@ -15,9 +15,9 @@
    
   ### Usuario de prueba
   
-  user: user@fake.test
+  Usuario: user@fake.test
 	
-  password: 123456
+  Contraseña: 123456
 
   ## Descripción breve
 
@@ -299,9 +299,9 @@
    
   ### Test user
   
-  user: user@fake.test
+  User: user@fake.test
 
-  password: 123456
+  Password: 123456
    
    ## Brief description
 
