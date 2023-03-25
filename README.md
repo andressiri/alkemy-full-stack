@@ -11,7 +11,12 @@
   
    * Con [Railway](https://railway.app/) posiblemente aparezca un error, pero no quiere decir que no funcione. Puede entonces tardar entre un minuto o dos en responder adecuadamente desde la primera vez que se ingresa. Luego de esto, debería funcionar correctamente: [Ir al sitio en Railway](https://alkemy-full-stack-production.up.railway.app/)
    
-   * Con [Render](https://render.com/) es probable que tarde alrededor de 30 segundos en cargar la apicación, y una vez cargada suele andar mal un par de minutos: [Ir al sitio en Render](https://spends-checker.onrender.com/) 
+   * Con [Render](https://render.com/) es probable que tarde alrededor de 30 segundos en cargar la apicación, y una vez cargada suele andar mal un par de minutos: [Ir al sitio en Render](https://spends-checker.onrender.com/)
+   
+  ### Usuario de prueba
+  
+  user: user@fake.test
+  password: 123456
 
   ## Descripción breve
 
@@ -290,6 +295,11 @@
    * With [Railway](https://railway.app/) you may possibly get an error, but it doesn't mean it won't work. It will then take a minute or two for the server to respond properly from the first time you tried to enter. After that, it should work fine: [Go to site on Railway](https://alkemy-full-stack-production.up.railway.app/)
    
    * With [Render](https://render.com/) it is likely to take about 30 seconds to load the application, and once it is loaded it usually runs poorly for a couple of minutes: [Go to site in Render](https://spends-checker.onrender.com/)
+   
+  ### Test user
+  
+  user: user@fake.test
+  password: 123456
    
    ## Brief description
 
